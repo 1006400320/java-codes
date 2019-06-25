@@ -1,0 +1,8 @@
+rootProject.name = 'java-codes'
+
+include 'base'
+include 'demos'
+
+
+project(':base').projectDir = "$rootDir/base" as File
+project(':demos').projectDir = "$rootDir/demos" as File
