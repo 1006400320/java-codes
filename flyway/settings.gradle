@@ -1,5 +1,0 @@
-rootProject.name = 'flyway'
-
-includeFlat  'base'
-
-project(':base').projectDir = "$rootDir/../base" as File
