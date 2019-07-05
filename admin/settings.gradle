@@ -1,0 +1,5 @@
+rootProject.name = 'admin'
+
+includeFlat  'base'
+
+project(':base').projectDir = "$rootDir/../base" as File
