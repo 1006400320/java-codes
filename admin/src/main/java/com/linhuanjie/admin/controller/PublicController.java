@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PublicController {
 
-//    @GetMapping(value={"/","/common/index","/index"})
-//    public String index(){ return "common/index"; }
+    @GetMapping(value={"/","/common/index","/index"})
+    public String index(){
+        return "redirect:/login";
+    }
 
 
 }

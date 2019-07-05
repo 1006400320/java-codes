@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--head部分-->
+<head th:include="layout :: htmlhead" th:with="title='撸喵miao'">
+</head>
+<style>
+    body{
+        background-repeat: no-repeat;
+        background-size:100% 100%;
+        background-attachment: fixed;
+    }
+</style>
+<body background="/img/backgroud.jpg" >
+<div class="layui-container" style="height: 100%;width: 100%">
+    <ul class="layui-nav">
+        <li class="layui-nav-item"><a href="">撸喵miao</a></li>
+        <li class="layui-nav-item layui-this">
+            <a href="javascript:;">产品</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">选项1</a></dd>
+                <dd><a href="">选项2</a></dd>
+                <dd><a href="">选项3</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">大数据</a></li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">解决方案</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">移动模块</a></dd>
+                <dd><a href="">后台模版</a></dd>
+                <dd class="layui-this"><a href="">选中项</a></dd>
+                <dd><a href="">电商平台</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">社区</a></li>
+    </ul>
+
+</div>
+<script type="text/javascript" src="/js/login.js"></script>
+</body>
+</html>

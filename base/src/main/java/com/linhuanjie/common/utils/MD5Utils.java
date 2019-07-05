@@ -1,4 +1,4 @@
-package com.linhuanjie.utils;
+package com.linhuanjie.common.utils;
 
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;

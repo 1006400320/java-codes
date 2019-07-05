@@ -28,7 +28,6 @@ class Main {
      * @throws NoSuchMethodException
      */
     public static void main(String[] args) throws Exception {
-        // TODO Auto-generated method stub
 
         //Demo1.  通过Java反射机制得到类的包名和类名
         Demo1();
@@ -309,7 +308,6 @@ class SuperMan extends Person implements ActionInterface {
 
     @Override
     public void walk(int m) {
-        // TODO Auto-generated method stub
         System.out.println("超人会走耶～～走了" + m + "米就走不动了！");
     }
 }
