@@ -3,13 +3,13 @@
 <!--head部分-->
 <head th:include="layout :: htmlhead" th:with="title='撸喵miao'">
 </head>
-<!--<style>
+<style>
     body{
         background-repeat: no-repeat;
         background-size:100% 100%;
         background-attachment: fixed;
     }
-</style>-->
+</style>
 <!--<body background="/img/backgroud.jpg" >-->
 <body>
 <div th:replace="fragments/head :: header"></div>
@@ -20,18 +20,9 @@
         <form class="layui-form" action="">
             <div>
                 <i class="layui-icon layui-icon-username admin-icon admin-icon-username"></i>
-                <input type="text" name="username" placeholder="请输入用户名"
+                <input type="text" name="username" placeholder="请输入用户名/邮箱"
                        autocomplete="off"
                        class="layui-input admin-input admin-input-username">
-            </div>
-            <div>
-                <i class="layui-icon layui-icon-release admin-icon admin-icon-password"></i>
-                <input type="text" name="verify"
-                       placeholder="请输入邮箱"
-                       autocomplete="off"
-                       class="layui-input admin-input admin-input-verify">
-                <img class="admin-captcha" src=""
-                     onclick="updateVerify()">
             </div>
             <div>
                 <i class="layui-icon layui-icon-password admin-icon admin-icon-password"></i>
@@ -40,12 +31,21 @@
                        autocomplete="off"
                        class="layui-input admin-input admin-input-password">
             </div>
-            <button class="layui-btn admin-button" lay-submit lay-filter="formDemo">注册</button>
+            <button class="layui-btn admin-button" lay-submit lay-filter="formDemo">登陆</button>
 
 
         </form>
     </div>
 </div>
 <script type="text/javascript" src="/js/login.js"></script>
+<script src="layui/layui.js"></script>
+<script>
+
+    function updateVerify() {
+
+    }
+
+
+</script>
 </body>
 </html>

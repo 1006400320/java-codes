@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 
 /**
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @createTime : 2019-07-05 21:50
  * @email: lhuanjie@qq.com
  */
-@RequestMapping
 @Controller
 public class IndexController {
 
@@ -29,6 +27,12 @@ public class IndexController {
     public String toRegister(){
         logger.info("toRegister");
         return "register";
+    }
+
+    @GetMapping(value = "/home")
+    public String toHome(){
+        logger.info("toHome");
+        return "home";
     }
 
 

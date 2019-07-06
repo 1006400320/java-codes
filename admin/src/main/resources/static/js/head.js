@@ -78,9 +78,9 @@ function updateUsePwd(){
 }
 
 function showQRCode(url){
-    var img = "<img src='/img/qrcode.jpg' />";
+    var img = "<img src='/img/ddxxm.jpg' />";
     layer.open({
-        type: 1,
+        type: 2,
         shade: false,
         title: false, //不显示标题
         area:['auto','auto'],
