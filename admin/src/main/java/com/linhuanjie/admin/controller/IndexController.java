@@ -25,5 +25,11 @@ public class IndexController {
         return "login";
     }
 
+    @GetMapping(value = "/register")
+    public String toRegister(){
+        logger.info("toRegister");
+        return "register";
+    }
+
 
 }
