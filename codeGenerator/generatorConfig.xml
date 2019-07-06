@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!-- 数据库配置文件
+    <properties resource="db.properties" />-->
+    <classPathEntry location="mysql-connector-java-8.0.15.jar"/>
+    <!--
+    context:生成一组对象的环境
+    id:必选，上下文id，用于在生成错误时提示
+    defaultModelType:指定生成对象的样式
+        1，conditional：类似hierarchical；
+        2，flat：所有内容（主键，blob）等全部生成在一个对象中；
+        3，hierarchical：主键生成一个XXKey对象(key class)，Blob等单独生成一个对象，其他简单属性在一个对象中(record class)
+    targetRuntime:
+        1，MyBatis3：默认的值，生成基于MyBatis3.x以上版本的内容，包括XXXBySample；
+        2，MyBatis3Simple：类似MyBatis3，只是不生成XXXBySample；
+    introspectedColumnImpl：类全限定名，用于扩展MBG
+    -->
+    <context id="context" defaultModelType="hierarchical" targetRuntime="MyBatis3">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表；
+        一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖
+        -->
+        <property name="autoDelimitKeywords" value="true"/>
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号 -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!--给实体类添加toString方法-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+        <!--数据model链式构建插件-->
+        <plugin type="com.cayzlh.plugins.mbg.ModelBuilderPlugin"/>
+
+
+        <!--
+          数据Model属性对应Column获取插件
+          项目中我们有时需要获取数据Model对应数据库字段的名称，一般直接根据数据Model的属性就可以猜出数据库对应column的名字，
+          可是有的时候当column使用了columnOverride或者columnRenamingRule时就需要去看数据库设计了，所以提供了这个插件获取model对应的数据库Column。
+
+              1. 配合Example Criteria 增强插件（ExampleEnhancedPlugin）使用，这个插件还提供了asc()和desc()方法配合Example的orderBy方法效果更佳。
+              2. 配合批量插入插件（BatchInsertPlugin）使用，batchInsertSelective(@Param("list") List list, @Param("selective") XXX.Column ... insertColumns)。
+      -->
+        <plugin type="com.cayzlh.plugins.mbg.ModelColumnPlugin"/>
+
+        <!--
+         批量插入插件
+         提供了批量插入batchInsert和batchInsertSelective方法，因为方法使用了使用了JDBC的getGenereatedKeys方法返回插入主键，所以只能在MYSQL和SQLServer下使用。
+         需配合数据Model属性对应Column获取插件（ModelColumnPlugin）插件使用，实现类似于insertSelective插入列！
+         PS:为了和Mybatis官方代码风格保持一致，1.0.5+版本把批量插入方法分开了，基于老版本1.0.5-版本生成的代码请继续使用“BatchInsertOldPlugin”不影响使用
+         PS:继续PS，本来想继续保留老版本代码，不影响老版本已经生成代码使用的，但是始终没有绕过BindingException，只能把代码移入BatchInsertOldPlugin类~~~~~
+     -->
+        <plugin type="com.cayzlh.plugins.mbg.BatchInsertPlugin"/>
+
+
+
+        <!-- 实现Serializable接口 -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+            <property name="addGWTInterface" value="false" />
+            <property name="suppressJavaInterface" value="false" />
+        </plugin>
+
+        <!--
+           Selective选择插入更新增强插件！请配在所有插件末尾以便最后执行
+
+           项目中往往需要指定某些字段进行插入或者更新，或者把某些字段进行设置null处理，
+           这种情况下原生xxxSelective方法往往不能达到需求，
+           因为它的判断条件是对象字段是否为null，这种情况下可使用该插件对xxxSelective方法进行增强。
+
+           warning:配置插件时请把插件配置在所有插件末尾最后执行，这样才能把上面提供的某些插件的Selective方法也同时增强！
+
+       -->
+        <plugin type="com.cayzlh.plugins.mbg.SelectiveEnhancedPlugin"/>
+
+        <!-- 注释生成规则-->
+        <commentGenerator type="com.cayzlh.plugins.mbg.utils.enhanced.TemplateCommentGenerator">
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+
+
+        <!-- TODO 数据库连接 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://39.105.56.62:3306/msy?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT%2B8"
+                        userId="root" password="123456">
+            <property name="useInformationSchema" value="true"></property>
+        </jdbcConnection>
+
+        <!-- TODO 数据库的生成配置 -->
+        <javaModelGenerator targetPackage="com.linhuanjie.admin.model" targetProject="../base/src/main/java">
+            <!--  for MyBatis3/MyBatis3Simple
+            自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter；
+         -->
+            <property name="constructorBased" value="false"/>
+
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="false"/>
+
+            <!-- for MyBatis3 / MyBatis3Simple
+                是否创建一个不可变的类，如果为true，
+                那么MBG会创建一个没有setter方法的类，取而代之的是类似constructorBased的类
+             -->
+            <property name="immutable" value="false"/>
+
+            <!-- 设置一个根对象，
+                如果设置了这个根对象，那么生成的keyClass或者recordClass会继承这个类；在Table的rootClass属性中可以覆盖该选项
+                注意：如果在key class或者record class中有root class相同的属性，MBG就不会重新生成这些属性了，包括：
+                    1，属性名相同，类型相同，有相同的getter/setter方法；
+
+            <property name="rootClass" value=""/>-->
+
+            <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
+            <property name="trimStrings" value="false"/>
+        </javaModelGenerator>
+
+
+        <!-- TODO mapper && dao-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="../admin/src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <javaClientGenerator targetPackage="com.linhuanjie.admin.dao" targetProject="../admin/src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- TODO 选择一个table来生成相关文件，可以有一个或多个table，必须要有table元素
+        选择的table会生成一下文件：
+        1，SQL map文件
+        2，生成一个主键类；
+        3，除了BLOB和主键的其他字段的类；
+        4，包含BLOB的类；
+        5，一个用户生成动态查询的条件类（selectByExample, deleteByExample），可选；
+        6，Mapper接口（可选）
+
+        tableName（必要）：要生成对象的表名；
+        注意：大小写敏感问题。正常情况下，MBG会自动的去识别数据库标识符的大小写敏感度，在一般情况下，MBG会
+            根据设置的schema，catalog或tablename去查询数据表，按照下面的流程：
+            1，如果schema，catalog或tablename中有空格，那么设置的是什么格式，就精确的使用指定的大小写格式去查询；
+            2，否则，如果数据库的标识符使用大写的，那么MBG自动把表名变成大写再查找；
+            3，否则，如果数据库的标识符使用小写的，那么MBG自动把表名变成小写再查找；
+            4，否则，使用指定的大小写格式查询；
+        另外的，如果在创建表的时候，使用的""把数据库对象规定大小写，就算数据库标识符是使用的大写，在这种情况下也会使用给定的大小写来创建表名；
+        这个时候，请设置delimitIdentifiers="true"即可保留大小写格式；
+
+        可选：
+        1，schema：数据库的schema；
+        2，catalog：数据库的catalog；
+        3，alias：为数据表设置的别名，如果设置了alias，那么生成的所有的SELECT SQL语句中，列名会变成：alias_actualColumnName
+        4，domainObjectName：生成的domain类的名字，如果不设置，直接使用表名作为domain类的名字；可以设置为somepck.domainName，那么会自动把domainName类再放到somepck包里面；
+        5，enableInsert（默认true）：指定是否生成insert语句；
+        6，enableSelectByPrimaryKey（默认true）：指定是否生成按照主键查询对象的语句（就是getById或get）；
+        7，enableSelectByExample（默认true）：MyBatis3Simple为false，指定是否生成动态查询语句；
+        8，enableUpdateByPrimaryKey（默认true）：指定是否生成按照主键修改对象的语句（即update)；
+        9，enableDeleteByPrimaryKey（默认true）：指定是否生成按照主键删除对象的语句（即delete）；
+        10，enableDeleteByExample（默认true）：MyBatis3Simple为false，指定是否生成动态删除语句；
+        11，enableCountByExample（默认true）：MyBatis3Simple为false，指定是否生成动态查询总条数语句（用于分页的总条数查询）；
+        12，enableUpdateByExample（默认true）：MyBatis3Simple为false，指定是否生成动态修改语句（只修改对象中不为空的属性）；
+        13，modelType：参考context元素的defaultModelType，相当于覆盖；
+        14，delimitIdentifiers：参考tableName的解释，注意，默认的delimitIdentifiers是双引号，如果类似MYSQL这样的数据库，使用的是`（反引号，那么还需要设置context的beginningDelimiter和endingDelimiter属性）
+        15，delimitAllColumns：设置是否所有生成的SQL中的列名都使用标识符引起来。默认为false，delimitIdentifiers参考context的属性
+
+        注意，table里面很多参数都是对javaModelGenerator，context等元素的默认属性的一个复写；
+     -->
+        <table tableName="miao_user" domainObjectName="MiaoUser"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+
+            <!-- 用来修改表中某个列的属性，MBG会使用修改后的列来生成domain的属性；
+            column:要重新设置的列名；
+            注意，一个table元素中可以有多个columnOverride元素哈~-->
+
+            <!-- <columnOverride column="username">
+                 - 使用property属性来指定列要生成的属性名称
+                 <property name="property" value="userName"/>-->
+
+            <!-- javaType用于指定生成的domain的属性类型，使用类型的全限定名
+            <property name="javaType" value=""/>
+             -->
+
+            <!-- jdbcType用于指定该列的JDBC类型
+            <property name="jdbcType" value=""/>
+             -->
+
+            <!-- typeHandler 用于指定该列使用到的TypeHandler，如果要指定，配置类型处理器的全限定名
+                注意，mybatis中，不会生成到mybatis-config.xml中的typeHandler
+                只会生成类似：where id = #{id,jdbcType=BIGINT,typeHandler=com._520it.mybatis.MyTypeHandler}的参数描述
+            <property name="jdbcType" value=""/>
+            -->
+
+            <!-- 参考table元素的delimitAllColumns配置，默认为false
+            <property name="delimitedColumnName" value=""/>
+             -->
+            <!--></columnOverride> -->
+
+            <!-- ignoreColumn设置一个MGB忽略的列，如果设置了改列，那么在生成的domain中，生成的SQL中，都不会有该列出现
+               column:指定要忽略的列的名字；
+               delimitedColumnName：参考table元素的delimitAllColumns配置，默认为false
+
+               注意，一个table元素中可以有多个ignoreColumn元素
+            <ignoreColumn column="deptId" delimitedColumnName=""/>
+            -->
+
+        </table>
+
+    </context>
+</generatorConfiguration>
