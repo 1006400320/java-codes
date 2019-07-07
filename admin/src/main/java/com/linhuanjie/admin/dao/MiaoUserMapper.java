@@ -41,6 +41,14 @@ public interface MiaoUserMapper {
     MiaoUser selectByPrimaryKey(MiaoUserKey key);
 
     /**
+     * 根据email查询返回数据
+     * @param email
+     * @return
+     */
+     MiaoUser selectByEmail(String email);
+
+
+    /**
      * Description:  根据主键更新数据, 可选择
      *
      * @param  record record

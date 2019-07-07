@@ -140,11 +140,12 @@ public class MiaoUserKey implements Serializable {
     public enum Column {
         userId("user_id"),
         userName("user_name"),
-        nickName("nick_name"),
         password("password"),
         email("email"),
         createTime("create_time"),
-        updateTime("update_time");
+        updateTime("update_time"),
+        roleId("role_id"),
+        userStatus("user_status");
 
         /**
          * Description:

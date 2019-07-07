@@ -1,8 +1,8 @@
 /**
  * 菜单
  * */
-//获取路径uri
-var pathUri=window.location.href;
+// TODO 获取路径uri
+/*var pathUri=window.location.href;
 $(function(){
     layui.use('element', function(){
         var element = layui.element;
@@ -20,7 +20,7 @@ $(function(){
             }
         });
     });
-})
+});*/
 var getMenus=function(data){
     //回显选中
     var ul=$("<ul class='layui-nav layui-nav-tree' lay-filter='test'></ul>");

@@ -5,13 +5,14 @@
 </head>
 <style>
     body{
-        background-repeat: no-repeat;
+        /*background-repeat: no-repeat;*/
+        background-repeat: repeat;
         background-size:100% 100%;
         background-attachment: fixed;
     }
 </style>
-<!--<body background="/img/backgroud.jpg" >-->
-<body>
+<body background="/img/backgroud.jpg" >
+<!--<body>-->
 <div th:replace="fragments/head :: header"></div>
 <!--<div class="layui-container" style="height: 100%;width: 100%"></div>-->
 <div id="layui-container">
@@ -20,7 +21,7 @@
         <form class="layui-form" action="">
             <div>
                 <i class="layui-icon layui-icon-username admin-icon admin-icon-username"></i>
-                <input type="text" name="username" placeholder="请输入用户名/邮箱"
+                <input type="text" name="userName" placeholder="请输入用户名/邮箱"
                        autocomplete="off"
                        class="layui-input admin-input admin-input-username">
             </div>
