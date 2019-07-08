@@ -2,7 +2,7 @@ package com.linhuanjie.admin.constant;
 
 /**
  * @author: linhuanjie
- * @description:
+ * @description: admin常量类
  * @createTime : 2019-07-07 10:24
  * @email: lhuanjie@qq.com
  */
@@ -23,4 +23,17 @@ public final class AdminConstant {
 
     //Mapper插件基础接口的完全限定名
 //    public static final String MAPPER_INTERFACE_REFERENCE = BASE_PACKAGE + ".core.Mapper";
+
+    /** 用户状态begin */
+    // 冻结状态
+    short USER_STATUS_LOCK = -1;
+    // 初始化状态
+    short USER_STATUS_INIT = 0;
+    // 激活状态
+    short USER_STATUS_ACTIVE = 1;
+
+    /** 用户状态end */
+
+
+
 }

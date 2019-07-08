@@ -3,7 +3,9 @@ package com.linhuanjie.admin.service;
 import com.linhuanjie.admin.model.MiaoUser;
 import com.linhuanjie.common.result.Result;
 import com.linhuanjie.common.service.Service;
+import org.springframework.http.HttpRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -13,5 +15,5 @@ import java.util.List;
  * @email: lhuanjie@qq.com
  */
 public interface UserService extends Service<MiaoUser> {
-    Result register(MiaoUser user);
+    Result register(MiaoUser user, HttpServletRequest request);
 }

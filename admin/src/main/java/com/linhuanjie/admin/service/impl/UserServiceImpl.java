@@ -1,5 +1,8 @@
 package com.linhuanjie.admin.service.impl;
 
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.crypto.SecureUtil;
+import com.linhuanjie.admin.constant.AdminConstant;
 import com.linhuanjie.admin.dao.MiaoUserMapper;
 import com.linhuanjie.admin.model.MiaoUser;
 import com.linhuanjie.admin.model.MiaoUserKey;
@@ -10,9 +13,12 @@ import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Condition;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -79,11 +85,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result register(MiaoUser user) {
+    public Result register(MiaoUser user, HttpServletRequest request) {
         MiaoUser miaoUser = mapper.selectByEmail(user.getEmail());
         if (miaoUser == null) {
             // 邮箱未注册
+            // 密码MD5加密
+            String passwordMd5 = SecureUtil.md5(user.getPassword());
+            user.setPassword(passwordMd5);
+
+            user.builder()
+                    .password(passwordMd5)
+                    .createTime(DateUtil.date())
+                    .updateTime(DateUtil.date())
+                    .userStatus()
+                    .build();
             int i = mapper.insertSelective(user);
+            HttpSession session = request.getSession();
+
+            // 在session中保存登录信息
+            session.setAttribute("miao_user",user.getEmail());
 
             return i>0 ? ResultGenerator.genSuccessResult() : ResultGenerator.genFailResult("喵呜~注册失败了");
         } else {

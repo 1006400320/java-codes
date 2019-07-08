@@ -9,10 +9,13 @@ import io.micrometer.core.instrument.util.JsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -32,11 +35,11 @@ public class UserController {
 
     @PostMapping("/register")
     @ResponseBody
-    public Result register(MiaoUser user) {
+    public Result register(MiaoUser user, HttpServletRequest request) {
         if (user == null) {
             return ResultGenerator.genFailResult("请输入用户信息");
         }
-        return userService.register(user);
+        return userService.register(user,request);
     }
 
 
