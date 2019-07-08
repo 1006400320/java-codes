@@ -1,7 +1,10 @@
 package com.linhuanjie.admin.service.impl;
 
+import cn.hutool.Hutool;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.digest.HMac;
+import cn.hutool.crypto.symmetric.AES;
 import com.linhuanjie.admin.constant.AdminConstant;
 import com.linhuanjie.admin.dao.MiaoUserMapper;
 import com.linhuanjie.admin.model.MiaoUser;
@@ -15,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import tk.mybatis.mapper.entity.Condition;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +35,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private MiaoUserMapper mapper;
 
@@ -100,13 +105,35 @@ public class UserServiceImpl implements UserService {
             HttpSession session = request.getSession();
 
             // 在session中保存登录信息
-            session.setAttribute("miao_user",user.getEmail());
+            session.setAttribute("miao_user", user.getUserName());
 
-            return i>0 ? ResultGenerator.genSuccessResult() : ResultGenerator.genFailResult("喵呜~注册失败了");
+            return i > 0 ? ResultGenerator.genSuccessResult() : ResultGenerator.genFailResult("喵呜~注册失败了");
         } else {
             // 邮箱已注册
-            return  ResultGenerator.genFailResult("喵呜~邮箱已经注册过了哦，直接去登录吧");
+            return ResultGenerator.genFailResult("喵呜~邮箱已经注册过了哦，直接去登录吧");
         }
+    }
+
+    @Override
+    public Result login(String keyword, String password, HttpServletRequest request) {
+        // 查询是否有该用户(邮箱)
+        MiaoUser user = mapper.selectByEmail(keyword);
+        if (user == null) {
+            user = mapper.selectByUserName(keyword);
+            return ResultGenerator.genFailResult("该邮箱还未注册，请注册后再登录~");
+        }
+
+        // todo 密码解密后校验是否正确
+//        AES aes = SecureUtil.aes(password.getBytes());
+//        if (passwordMd5.equals(user.getPassword())) {
+//            HttpSession session = request.getSession();
+//
+//            // 在session中保存登录信息
+//            session.setAttribute("miao_user", user.getUserName());
+//            return ResultGenerator.genSuccessResult();
+//        }
+
+        return ResultGenerator.genFailResult("喵呜，我也知道怎么了，要不刷新一下？");
     }
 
 

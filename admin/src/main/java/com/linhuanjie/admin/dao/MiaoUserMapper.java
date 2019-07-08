@@ -47,6 +47,12 @@ public interface MiaoUserMapper {
      */
      MiaoUser selectByEmail(String email);
 
+    /**
+     * 根据email查询返回数据
+     * @param userName
+     * @return
+     */
+     MiaoUser selectByUserName(String userName);
 
     /**
      * Description:  根据主键更新数据, 可选择

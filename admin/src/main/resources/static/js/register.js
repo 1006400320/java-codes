@@ -39,6 +39,8 @@ function register() {
         return;
     }
 
+    // todo 判断两次输入的密码是否一致
+
     $.ajax({
         url: "/user/register",
         type: "post",
@@ -53,7 +55,7 @@ function register() {
             console.log(data);
             if(data != null && data.code == 200){
                 // layer.alert("注册成功,即将跳往首页~", {icon: 6, title: '喵呜'});
-                layer.msg('注册成功！<span name="count" style="color: red;">3</span>秒后跳转到首页~', {
+                layer.msg('注册成功！<span name="count" style="color: red;">3</span>秒后跳转到登录页~', {
                     icon: 1,
                     title: '喵呜',
                     success: function (layero, index) {
@@ -64,8 +66,7 @@ function register() {
                         }, 1000)
                     }
                 }, function () {
-                    alert('跳转');
-                    location.href="/home";
+                    location.href="/login";
                 });
                 // todo 做邮箱验证
 

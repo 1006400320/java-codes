@@ -6,14 +6,12 @@ import com.linhuanjie.admin.service.UserService;
 import com.linhuanjie.common.result.Result;
 import com.linhuanjie.common.result.ResultGenerator;
 import io.micrometer.core.instrument.util.JsonUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -44,9 +42,11 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public String login() {
-
-        return "";
+    public Result login(String keyword,String password, HttpServletRequest request) {
+        if (StringUtils.isEmpty(keyword) || StringUtils.isEmpty(password)) {
+            return ResultGenerator.genFailResult("请输入用户信息");
+        }
+        return userService.login(keyword,password,request);
     }
 
 
