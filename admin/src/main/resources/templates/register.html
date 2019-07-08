@@ -10,17 +10,17 @@
         background-attachment: fixed;
     }
 </style>
-<!--<body background="/img/backgroud.jpg" >-->
-<body>
+<body background="/img/backgroud.jpg" >
+<!--<body>-->
 <div th:replace="fragments/head :: header"></div>
 <!--<div class="layui-container" style="height: 100%;width: 100%"></div>-->
 <div id="layui-container">
     <div class="admin-login-background">
 
-        <form class="layui-form"  id="useRegister">
+        <form class="layui-form">
             <div>
                 <i class="layui-icon layui-icon-username admin-icon"></i>
-                <input type="text" name="userName" placeholder="请输入用户名" id="userName"
+                <input type="text" name="userName" placeholder="请输入用户名" id="username"
                        autocomplete="off" class="layui-input admin-input admin-input-username">
             </div>
             <div>
@@ -29,8 +29,7 @@
                        placeholder="请输入邮箱"
                        autocomplete="off"
                        class="layui-input admin-input admin-input-verify">
-                <img class="admin-captcha" src=""
-                     onclick="updateVerify()">
+<!--                <span class="admin-captcha" id="verifyEmail" onclick="updateVerifyEmail()"></span>-->
             </div>
             <div>
                 <i class="layui-icon layui-icon-password admin-icon"></i>
@@ -39,15 +38,10 @@
                        autocomplete="off"
                        class="layui-input admin-input admin-input-password">
             </div>
-            <button class="layui-btn admin-button" onclick="register()">注册</button>
+            <button class="layui-btn admin-button" type="button" onclick="register()">注册</button>
         </form>
     </div>
 </div>
 <script type="text/javascript" src="/js/register.js"></script>
-<script>
-    function updateVerify() {
-
-    }
-</script>
 </body>
 </html>

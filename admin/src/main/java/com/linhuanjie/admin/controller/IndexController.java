@@ -5,6 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * @author: linhuanjie
@@ -30,8 +33,11 @@ public class IndexController {
     }
 
     @GetMapping(value = "/home")
-    public String toHome(){
+    public String toHome(HttpServletRequest request, HttpServletResponse response){
         logger.info("toHome");
+        String userSession = request.getSession().getAttribute("miao_user").toString();
+        request.setAttribute("userSession",userSession);
+        logger.info("userSession:{}",userSession);
         return "home";
     }
 

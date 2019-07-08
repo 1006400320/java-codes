@@ -92,13 +92,10 @@ public class UserServiceImpl implements UserService {
             // 密码MD5加密
             String passwordMd5 = SecureUtil.md5(user.getPassword());
             user.setPassword(passwordMd5);
+            user.setCreateTime(DateUtil.date());
+            user.setUpdateTime(DateUtil.date());
+            user.setUserStatus(AdminConstant.USER_STATUS_LOCK);
 
-            user.builder()
-                    .password(passwordMd5)
-                    .createTime(DateUtil.date())
-                    .updateTime(DateUtil.date())
-//                    .userStatus(AdminConstant.USER_STATUS_LOCK)
-                    .build();
             int i = mapper.insertSelective(user);
             HttpSession session = request.getSession();
 

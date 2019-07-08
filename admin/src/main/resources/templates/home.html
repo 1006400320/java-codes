@@ -15,8 +15,14 @@
             <div class="layui-row">
                 <div class="layui-col-xs9">
                     &nbsp;
-                    <h1 style="padding-top:50px;line-height:2.0;"><shiro:principal property="sysUserName"></shiro:principal>，欢迎登录
-                        <span style="font-weight: bold;font-size:28px;">QAQ</span></a></h1>
+<!--                    <h1 style="padding-top:50px;line-height:2.0;"><shiro:principal property="sysUserName"></shiro:principal>，欢迎登录-->
+<!--                        <span style="font-weight: bold;font-size:28px;">QAQ</span></a></h1>-->
+                    <h1 style="padding-top:50px;line-height:2.0;">
+                        欢迎 <span style="color: #00a2d4" th:text="${session.miao_user}"></span> 来到
+                        <span style="font-weight: bold;font-size:28px; color: #c16fc9">撸喵miao</span>
+                    </h1>
+                    <p th:text="${#httpServletRequest.getParameter('userSession')}"></p>
+
                 </div>
             </div>
         </div>
