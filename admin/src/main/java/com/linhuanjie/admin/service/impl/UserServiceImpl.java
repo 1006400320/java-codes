@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
                     .password(passwordMd5)
                     .createTime(DateUtil.date())
                     .updateTime(DateUtil.date())
-                    .userStatus()
+//                    .userStatus(AdminConstant.USER_STATUS_LOCK)
                     .build();
             int i = mapper.insertSelective(user);
             HttpSession session = request.getSession();
