@@ -21,25 +21,25 @@ $(function(){
         });
     });
 });*/
-var getMenus=function(data){
+var getMenus = function (data) {
     //回显选中
-    var ul=$("<ul class='layui-nav layui-nav-tree' lay-filter='test'></ul>");
-    for(var i=0;i < data.length;i++){
-        var node=data[i];
+    var ul = $("<ul class='layui-nav layui-nav-tree' lay-filter='test'></ul>");
+    for (var i = 0; i < data.length; i++) {
+        var node = data[i];
         console.log(node)
-        var li=$("<li class='layui-nav-item' flag='"+node.id+"'></li>");
-        var a=$("<a class='' href='javascript:;'>"+node.name+"</a>");
+        var li = $("<li class='layui-nav-item' flag='" + node.id + "'></li>");
+        var a = $("<a class='' href='javascript:;'>" + node.name + "</a>");
         li.append(a);
         //获取子节点
         var childArry = node.childrens;
         console.log(childArry);
-        if(childArry.length>0){
+        if (childArry.length > 0) {
             a.append("<span class='layui-nav-more'></span>");
-            var dl=$("<dl class='layui-nav-child'></dl>");
+            var dl = $("<dl class='layui-nav-child'></dl>");
             for (var y in childArry) {
-                var dd=$("<dd><a href='"+childArry[y].url+"'>"+childArry[y].name+"</a></dd>");
+                var dd = $("<dd><a href='" + childArry[y].url + "'>" + childArry[y].name + "</a></dd>");
                 //判断选中状态
-                if(pathUri.indexOf(childArry[y].url)>0){
+                if (pathUri.indexOf(childArry[y].url) > 0) {
                     li.addClass("layui-nav-itemed");
                     dd.addClass("layui-this")
                 }
@@ -64,30 +64,46 @@ function getParentArry(id, arry) {
 }
 
 
-
-function updateUsePwd(){
+function updateUsePwd() {
     layer.open({
-        type:1,
+        type: 1,
         title: "修改密码",
-        fixed:false,
-        resize :false,
+        fixed: false,
+        resize: false,
         shadeClose: true,
         area: ['450px'],
-        content:$('#pwdDiv')
+        content: $('#pwdDiv')
     });
 }
 
-function showQRCode(url){
-    var img = "<img src='/img/ddxxm.jpg' />";
-    layer.open({
-        type: 2,
-        shade: false,
-        title: false, //不显示标题
-        area:['auto','auto'],
-        area: [img.width + 'px', img.height+'px'],
-        content: img, //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
-        cancel: function () {
-            //layer.msg('图片查看结束！', { time: 5000, icon: 6 });
+function showQRCode(url) {
+    // var img = "<img src='/img/qrcode.jpg' />";
+    // layer.open({
+    //     type: 2,
+    //     shade: false,
+    //     title: false, //不显示标题
+    //     area:['auto','auto'],
+    //     area: [img.width + 'px', img.height+'px'],
+    //     content: img, //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+    //     cancel: function () {
+    //         //layer.msg('图片查看结束！', { time: 5000, icon: 6 });
+    //     }
+    // });
+    layer.photos({
+        photos: {
+            "title": "qrcode", //相册标题
+            "id": 123, //相册id
+            "start": 0, //初始显示的图片序号，默认0
+            "full": false,
+            "data": [   //相册包含的图片，数组格式
+                {
+                    "alt": "qrcode",
+                    "pid": 666, //图片id
+                    "src": "/img/qrcode.jpg", //原图地址
+                    "thumb": "/img/qrcode.jpg" //缩略图地址
+                }
+            ]
         }
+        , anim: 1 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
     });
 }
