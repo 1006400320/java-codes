@@ -1,7 +1,7 @@
 package com.linhuanjie.oom;
 
 import org.junit.Test;
-import sun.net.www.protocol.jar.URLJarFile;
+//import sun.net.www.protocol.jar.URLJarFile;
 
 import java.io.File;
 import java.lang.reflect.Modifier;
@@ -61,19 +61,19 @@ public class OutOfMemoryError {
      */
     @Test
     public void permGenOutOfMemoryError() throws Exception{
-        URLJarFile urlJarFile = new URLJarFile(new File("C:\\Program Files\\Java\\jdk1.7.0_71\\jre\\lib\\rt.jar"));
-        Enumeration<JarEntry> jarEntry = urlJarFile.entries();
-        for (JarEntry entry = null; jarEntry.hasMoreElements();entry = jarEntry.nextElement()) {
-            String clsName = String.valueOf(entry);
-            if (clsName != "null" && !clsName.contains("META-INF") && !clsName.contains("$")) {
-                String finalName = clsName.replace("/",".");
-                finalName = finalName.substring(0,finalName.indexOf(".class"));
-                Class<?> cls = getClass().getClassLoader().loadClass(finalName);
-                if (cls.getDeclaringClass() != null && cls.getDeclaringClass().getModifiers() == Modifier.PUBLIC) {
-                    cls.newInstance();
-                }
-            }
-        }
+//        URLJarFile urlJarFile = new URLJarFile(new File("C:\\Program Files\\Java\\jdk1.7.0_71\\jre\\lib\\rt.jar"));
+//        Enumeration<JarEntry> jarEntry = urlJarFile.entries();
+//        for (JarEntry entry = null; jarEntry.hasMoreElements();entry = jarEntry.nextElement()) {
+//            String clsName = String.valueOf(entry);
+//            if (clsName != "null" && !clsName.contains("META-INF") && !clsName.contains("$")) {
+//                String finalName = clsName.replace("/",".");
+//                finalName = finalName.substring(0,finalName.indexOf(".class"));
+//                Class<?> cls = getClass().getClassLoader().loadClass(finalName);
+//                if (cls.getDeclaringClass() != null && cls.getDeclaringClass().getModifiers() == Modifier.PUBLIC) {
+//                    cls.newInstance();
+//                }
+//            }
+//        }
     }
 
     /**

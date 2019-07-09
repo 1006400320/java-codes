@@ -16,7 +16,7 @@ public class AdminApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(AdminApplication.class, args);
-        logger.info("==========java-codes-admin服务启动成功！==========");
+        logger.info("=====================java-codes-admin服务启动成功！====================");
         logger.info("==========温馨提示：代码千万行，注释第一行，命名不规范，同事泪两行==========");
     }
 
