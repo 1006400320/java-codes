@@ -1,26 +1,27 @@
 /**
  * 菜单
  * */
-// TODO 获取路径uri
-/*var pathUri=window.location.href;
-$(function(){
-    layui.use('element', function(){
-        var element = layui.element;
-        // 左侧导航区域（可配合layui已有的垂直导航）
-        $.get("/permission/getUserPerms",function(data){
-            if(data!=null){
-                console.log(data.perm)
-                getMenus(data.perm);
-                element.render('nav');
-            }else{
-                layer.alert("权限不足，请联系管理员",function () {
-                    //退出
-                    window.location.href="/logout";
-                });
-            }
-        });
-    });
-});*/
+// TODO 侧边栏菜单
+//  获取路径uri
+// var pathUri=window.location.href;
+// $(function(){
+//     layui.use('element', function(){
+//         var element = layui.element;
+//         // 左侧导航区域（可配合layui已有的垂直导航）
+//         $.get("/permission/getUserPerms",function(data){
+//             if(data!=null){
+//                 console.log(data.perm)
+//                 getMenus(data.perm);
+//                 element.render('nav');
+//             }else{
+//                 layer.alert("权限不足，请联系管理员",function () {
+//                     //退出
+//                     window.location.href="/logout";
+//                 });
+//             }
+//         });
+//     });
+// });
 var getMenus = function (data) {
     //回显选中
     var ul = $("<ul class='layui-nav layui-nav-tree' lay-filter='test'></ul>");

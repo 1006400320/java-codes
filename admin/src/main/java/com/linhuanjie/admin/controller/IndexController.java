@@ -22,9 +22,14 @@ public class IndexController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping(value = "/login")
-    public String toLogin(){
-        logger.info("toLogin");
-        return "login";
+    public String toLogin(HttpServletRequest request){
+        Object miaoUser = request.getSession().getAttribute("miao_user");
+
+        if (miaoUser == null) {
+            return "login";
+        }
+
+        return "home";
     }
 
     @GetMapping(value = "/register")
@@ -38,7 +43,7 @@ public class IndexController {
         logger.info("toHome");
         Object userSession = request.getSession().getAttribute("miao_user");
         if(userSession == null){
-            return "home";
+            return "login";
         }
         request.setAttribute("userSession",userSession);
         logger.info("userSession:{}",userSession);
