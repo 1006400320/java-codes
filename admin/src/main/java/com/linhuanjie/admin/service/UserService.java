@@ -18,4 +18,5 @@ public interface UserService extends Service<MiaoUser> {
     Result register(MiaoUser user, HttpServletRequest request);
 
     Result login(String keyword, String password, HttpServletRequest request);
+
 }

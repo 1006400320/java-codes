@@ -19,8 +19,12 @@
             <li class="layui-nav-item"><a href="http://cqwebi.com.cn/">铲屎官攻略</a></li>
             <li class="layui-nav-item"><a onclick="showQRCode()">app下载</a></li>
 
-            <li class="layui-nav-item"><a href="/login">登陆</a></li>
-            <li class="layui-nav-item"><a href="/register">注册</a></li>
+<!--            <li th:if="${session.miao_user}" class="layui-nav-item"><a href="/user/info"><span style="color: #00a2d4" th:text="${session.miao_user}"></span></a></li>-->
+            <li th:if="${session.miao_user}" class="layui-nav-item"><a href="/"><span style="color: #00a2d4" th:text="${session.miao_user}"></span></a></li>
+            <li th:if="${session.miao_user}" class="layui-nav-item"><a href="/logout">退出</a></li>
+            <li th:unless="${session.miao_user}" class="layui-nav-item"><a href="/login">登陆</a></li>
+            <li th:unless="${session.miao_user}" class="layui-nav-item"><a href="/register">注册</a></li>
+
 
 <!--            <li class="layui-nav-item">-->
 <!--                <a href="javascript:;">-->

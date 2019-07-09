@@ -23,8 +23,7 @@
 // });
 function register() {
     var userName = $("#username").val();
-    if (userName == null || userName.trim() == '') {
-        layer.alert("请输入用户名~", {icon: 5, title: '喵呜'});
+    if (!verifyUserName(userName)) {
         return;
     }
 
@@ -39,7 +38,12 @@ function register() {
         return;
     }
 
-    // todo 判断两次输入的密码是否一致
+    // 判断两次输入的密码是否一致
+    var password2 = $("#password2").val();
+    if (password != password2) {
+        layer.alert("两次输入的密码不一致~", {icon: 5, title: '喵呜'});
+        return;
+    }
 
     $.ajax({
         url: "/user/register",
@@ -53,7 +57,7 @@ function register() {
         },
         success: function (data) {
             console.log(data);
-            if(data != null && data.code == 200){
+            if (data != null && data.code == 200) {
                 // layer.alert("注册成功,即将跳往首页~", {icon: 6, title: '喵呜'});
                 layer.msg('注册成功！<span name="count" style="color: red;">3</span>秒后跳转到登录页~', {
                     icon: 1,
@@ -62,11 +66,11 @@ function register() {
                         var countElem = layero.find('span[name="count"]');
                         var timer = setInterval(function () {
                             var countTemp = parseInt(countElem.text()) - 1;
-                            countTemp === 0 ? clearInterval(timer):countElem.text(countTemp);
+                            countTemp === 0 ? clearInterval(timer) : countElem.text(countTemp);
                         }, 1000)
                     }
                 }, function () {
-                    location.href="/login";
+                    location.href = "/login";
                 });
                 // todo 做邮箱验证
 
@@ -77,6 +81,21 @@ function register() {
     });
 
 }
+
+function verifyUserName(userName) {
+    if (userName == null || userName.trim() == '') {
+        layer.alert("请输入用户名~", {icon: 5, title: '喵呜'});
+        return;
+    }
+    if (userName.match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)) {
+        $("#username").val("");
+        $("#username").focus();
+        layer.alert("用户名不能为邮箱格式~", {icon: 5, title: '喵呜'});
+        return false;
+    }
+    return true;
+}
+
 
 function verifyEmail(email) {
     if (email == '' || $.trim(email).length == 0) {

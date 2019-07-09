@@ -2,6 +2,7 @@ package com.linhuanjie.admin.service.impl;
 
 import cn.hutool.Hutool;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.digest.HMac;
 import cn.hutool.crypto.symmetric.AES;
@@ -22,8 +23,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import tk.mybatis.mapper.entity.Condition;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author: linhuanjie
@@ -91,12 +94,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result register(MiaoUser user, HttpServletRequest request) {
-        MiaoUser miaoUser = mapper.selectByEmail(user.getEmail());
-        if (miaoUser == null) {
-            // 邮箱未注册
-            // 密码MD5加密
-            String passwordMd5 = SecureUtil.md5(user.getPassword());
-            user.setPassword(passwordMd5);
+        MiaoUser miaoUserByEmail = mapper.selectByEmail(user.getEmail());
+        MiaoUser miaoUserByUserName = mapper.selectByUserName(user.getUserName());
+        if (miaoUserByEmail == null && miaoUserByUserName == null) {
+            // 邮箱和账号 未被注册
+            // 密码md5加密
+            String key = user.getPassword();
+            String md5Password = SecureUtil.md5(key);
+
+            user.setPassword(md5Password);
             user.setCreateTime(DateUtil.date());
             user.setUpdateTime(DateUtil.date());
             user.setUserStatus(AdminConstant.USER_STATUS_LOCK);
@@ -109,8 +115,8 @@ public class UserServiceImpl implements UserService {
 
             return i > 0 ? ResultGenerator.genSuccessResult() : ResultGenerator.genFailResult("喵呜~注册失败了");
         } else {
-            // 邮箱已注册
-            return ResultGenerator.genFailResult("喵呜~邮箱已经注册过了哦，直接去登录吧");
+            // 邮箱或账号 已被注册
+            return ResultGenerator.genFailResult("喵呜~邮箱或账号已经注册过了哦，直接去登录吧");
         }
     }
 
@@ -120,22 +126,24 @@ public class UserServiceImpl implements UserService {
         MiaoUser user = mapper.selectByEmail(keyword);
         if (user == null) {
             user = mapper.selectByUserName(keyword);
-            return ResultGenerator.genFailResult("该邮箱还未注册，请注册后再登录~");
+            if (user == null) {
+                return ResultGenerator.genFailResult("请注册后再登录~");
+            }
         }
 
-        // todo 密码解密后校验是否正确
-//        AES aes = SecureUtil.aes(password.getBytes());
-//        if (passwordMd5.equals(user.getPassword())) {
-//            HttpSession session = request.getSession();
-//
-//            // 在session中保存登录信息
-//            session.setAttribute("miao_user", user.getUserName());
-//            return ResultGenerator.genSuccessResult();
-//        }
+        // 密码解密后校验是否正确
+        String md5Password = SecureUtil.md5(password);
 
-        return ResultGenerator.genFailResult("喵呜，我也知道怎么了，要不刷新一下？");
+        if (md5Password.equals(user.getPassword())) {
+            HttpSession session = request.getSession();
+
+            // 在session中保存登录信息
+            session.setAttribute("miao_user", user.getUserName());
+            return ResultGenerator.genSuccessResult();
+        }
+
+        return ResultGenerator.genFailResult("密码错误。。。");
     }
-
 
 }
 

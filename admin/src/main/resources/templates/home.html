@@ -2,9 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <!--head部分-->
-<head th:include="layout :: htmlhead" th:with="title='撸喵miao'">
-</head>
-<body class="layui-layout-body">
+<head th:include="layout :: htmlhead" th:with="title='撸喵miao'"></head>
+<style>
+    body{
+        /*background-repeat: no-repeat;*/
+        background-repeat: repeat;
+        background-size:100% 100%;
+        background-attachment: fixed;
+    }
+</style>
+<body background="/img/backgroud.jpg" class="layui-layout-body">
+<!--<body class="layui-layout-body">-->
 <div class="layui-layout layui-layout-admin">
     <!--头-->
     <div th:replace="fragments/head :: header"></div>
@@ -17,11 +25,11 @@
                     &nbsp;
 <!--                    <h1 style="padding-top:50px;line-height:2.0;"><shiro:principal property="sysUserName"></shiro:principal>，欢迎登录-->
 <!--                        <span style="font-weight: bold;font-size:28px;">QAQ</span></a></h1>-->
-                    <h1 style="padding-top:50px;line-height:2.0;">
+                    <!--<h1 style="padding-top:50px;line-height:2.0;">
                         欢迎 <span style="color: #00a2d4" th:text="${session.miao_user}"></span> 来到
                         <span style="font-weight: bold;font-size:28px; color: #c16fc9">撸喵miao</span>
                     </h1>
-                    <p th:text="${#httpServletRequest.getParameter('userSession')}"></p>
+                    <p th:text="${#httpServletRequest.getParameter('userSession')}"></p>-->
 
                 </div>
             </div>
