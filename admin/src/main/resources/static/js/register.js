@@ -46,7 +46,7 @@ function register() {
     }
 
     $.ajax({
-        url: "/user/register",
+        url: "/admin/user/register",
         type: "post",
         dataType: "json",
         async: false,
@@ -70,7 +70,7 @@ function register() {
                         }, 1000)
                     }
                 }, function () {
-                    location.href = "/login";
+                    location.href = "/admin/login";
                 });
                 // todo 做邮箱验证
 
@@ -102,12 +102,9 @@ function verifyEmail(email) {
         layer.alert("请输入邮箱~", {icon: 5, title: '喵呜'});
         return false;
     }
-    ///^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/
-    //return !email.match(/^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$/);
     if (!email.match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)) {
         $("input[name='email']").val("");
         $("input[name='email']").focus();
-        // $("#verifyEmail").val("");
         layer.alert("您输入的邮箱格式有误，请重新输入~", {icon: 5, title: '喵呜'});
         return false;
     }

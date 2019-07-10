@@ -100,8 +100,8 @@ function showQRCode(url) {
                 {
                     "alt": "qrcode",
                     "pid": 666, //图片id
-                    "src": "/img/qrcode.jpg", //原图地址
-                    "thumb": "/img/qrcode.jpg" //缩略图地址
+                    "src": "img/qrcode.jpg", //原图地址
+                    "thumb": "img/qrcode.jpg" //缩略图地址
                 }
             ]
         }

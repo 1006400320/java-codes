@@ -31,7 +31,7 @@ function login(){
         return;
     }
 
-    $.post("/user/login",
+    $.post("/admin/user/login",
         {
             keyword: keyword,
             password: password
@@ -51,7 +51,7 @@ function login(){
                         }, 1000)
                     }
                 }, function () {
-                    location.href="/home";
+                    location.href="/admin/home";
                 });
             } else {
                 layer.alert(data.message, {icon: 5, title: '喵呜'});
