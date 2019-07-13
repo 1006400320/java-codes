@@ -18,6 +18,12 @@
 //      })
 //  })
 
+$("#password").keydown(function(e) {
+    if (e.keyCode == 13) {
+        login();
+    }
+});
+
 function login(){
     var keyword = $("#keyword").val();
     if (keyword == null || keyword.trim() == '') {

@@ -21,6 +21,13 @@
 // layer.alert("您的账号已在别处登录；若不是您本人操作，请立即修改密码！",function(){
 //     window.location.href="/login";
 // });
+
+$("#password2").keydown(function(e) {
+    if (e.keyCode == 13) {
+        register();
+    }
+});
+
 function register() {
     var userName = $("#username").val();
     if (!verifyUserName(userName)) {
@@ -59,7 +66,7 @@ function register() {
             console.log(data);
             if (data != null && data.code == 200) {
                 // layer.alert("注册成功,即将跳往首页~", {icon: 6, title: '喵呜'});
-                layer.msg('注册成功！<span name="count" style="color: red;">3</span>秒后跳转到登录页~', {
+                layer.msg('注册成功！<span name="count" style="color: red;">3</span>秒后跳转到首页~', {
                     icon: 1,
                     title: '喵呜',
                     success: function (layero, index) {
