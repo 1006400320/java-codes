@@ -22,7 +22,11 @@
 //     window.location.href="/login";
 // });
 
-$("#password2").keydown(function(e) {
+$(function(){
+    $(".layui-side").hide();
+});
+
+$("body").keydown(function(e) {
     if (e.keyCode == 13) {
         register();
     }

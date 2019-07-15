@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<!--head部分-->
+<head th:include="layout :: htmlhead" th:with="title='撸喵miao'"></head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+
+    <!--主体区域-->
+    <div class="layui-body">
+        <table class="layui-hide" id="test"></table>
+    </div>
+
+    <!--底部-->
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+<script  th:inline="none">
+    layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            ,url:'goods/list/'
+            ,cols: [[
+                {field:'id', width:80, title: 'ID', sort: true}
+                ,{field:'username', width:80, title: '用户名'}
+                ,{field:'sex', width:80, title: '性别', sort: true}
+                ,{field:'city', width:80, title: '城市'}
+                ,{field:'sign', title: '签名', minWidth: 150}
+                ,{field:'experience', width:80, title: '积分', sort: true}
+                ,{field:'score', width:80, title: '评分', sort: true}
+                ,{field:'classify', width:80, title: '职业'}
+                ,{field:'wealth', width:135, title: '财富', sort: true}
+            ]]
+            ,page: true
+        });
+    });
+</script>
+</body>
+</html>

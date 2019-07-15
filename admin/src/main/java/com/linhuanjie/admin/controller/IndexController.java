@@ -60,4 +60,11 @@ public class IndexController {
         request.getSession().removeAttribute("miao_user");
         return "login";
     }
+
+
+    @GetMapping(value = "/goodsList")
+    public String toGoodsList(){
+        logger.info("toGoodsList");
+        return "goodsList";
+    }
 }
