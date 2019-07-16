@@ -18,8 +18,17 @@
 //      })
 //  })
 
-$("#password").keydown(function(e) {
-    if (e.keyCode == 13) {
+// $("#password").keydown(function(e) {
+//     if (e.keyCode == 13) {
+//         login();
+//     }
+// });
+$(function(){
+    $(".layui-side").hide();
+});
+
+$("body").keydown(function(event){
+    if(event.keyCode==13){
         login();
     }
 });
@@ -45,7 +54,6 @@ function login(){
         function(data){
             console.log(data);
             if(data != null && data.code == 200){
-                // layer.alert("注册成功,即将跳往首页~", {icon: 6, title: '喵呜'});
                 layer.msg('登录成功！<span name="count" style="color: red;">3</span>秒后跳转到首页~', {
                     icon: 1,
                     title: '喵呜',
