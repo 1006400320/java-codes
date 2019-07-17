@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class IndexController {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping(value = "/login")
     public String toLogin(HttpServletRequest request){
@@ -34,19 +34,19 @@ public class IndexController {
 
     @GetMapping(value = "/register")
     public String toRegister(){
-        logger.info("toRegister");
+        LOGGER.info("toRegister");
         return "register";
     }
 
     @GetMapping(value = "/home")
     public String toHome(HttpServletRequest request, HttpServletResponse response){
-        logger.info("toHome");
+        LOGGER.info("toHome");
         Object userSession = request.getSession().getAttribute("miao_user");
         if(userSession == null){
             return "login";
         }
         request.setAttribute("userSession",userSession);
-        logger.info("userSession:{}",userSession);
+        LOGGER.info("userSession:{}",userSession);
         return "home";
     }
 
@@ -64,7 +64,7 @@ public class IndexController {
 
     @GetMapping(value = "/goodsList")
     public String toGoodsList(){
-        logger.info("toGoodsList");
+        LOGGER.info("toGoodsList");
         return "goodsList";
     }
 }

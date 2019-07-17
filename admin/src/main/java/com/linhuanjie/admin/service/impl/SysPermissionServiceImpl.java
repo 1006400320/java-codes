@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class SysPermissionServiceImpl implements SysPermissionService {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private SysPermissionMapper sysPermissionMapper;

@@ -37,7 +37,7 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private MiaoUserMapper miaoUserMapper;

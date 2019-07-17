@@ -12,7 +12,6 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @MapperScan(basePackages = "com.linhuanjie.admin.dao")
 public class AdminApplication extends SpringBootServletInitializer {
-    /** logger */
     private static final Logger logger = LoggerFactory.getLogger(AdminApplication.class);
 
     public static void main(String[] args) {
