@@ -19,4 +19,5 @@ public interface UserService extends Service<MiaoUser> {
 
     Result login(String keyword, String password, HttpServletRequest request);
 
+    MiaoUser findByUserName(String userName);
 }

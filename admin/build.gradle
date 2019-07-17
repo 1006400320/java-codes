@@ -3,4 +3,5 @@ war.enabled = true
 dependencies {
     compile project(':base')
     implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+    implementation('org.apache.shiro:shiro-spring-boot-starter:1.4.0')
 }

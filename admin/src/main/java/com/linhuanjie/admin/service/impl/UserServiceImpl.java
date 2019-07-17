@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private MiaoUserMapper mapper;
+    private MiaoUserMapper miaoUserMapper;
 
     @Override
     public void save(MiaoUser model) {
@@ -94,8 +94,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result register(MiaoUser user, HttpServletRequest request) {
-        MiaoUser miaoUserByEmail = mapper.selectByEmail(user.getEmail());
-        MiaoUser miaoUserByUserName = mapper.selectByUserName(user.getUserName());
+        MiaoUser miaoUserByEmail = miaoUserMapper.selectByEmail(user.getEmail());
+        MiaoUser miaoUserByUserName = miaoUserMapper.selectByUserName(user.getUserName());
         if (miaoUserByEmail == null && miaoUserByUserName == null) {
             // 邮箱和账号 未被注册
             // 密码md5加密
@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService {
             user.setUpdateTime(DateUtil.date());
             user.setUserStatus(AdminConstant.USER_STATUS_LOCK);
 
-            int i = mapper.insertSelective(user);
+            int i = miaoUserMapper.insertSelective(user);
             HttpSession session = request.getSession();
 
             // 在session中保存登录信息
@@ -123,9 +123,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public Result login(String keyword, String password, HttpServletRequest request) {
         // 查询是否有该用户(邮箱)
-        MiaoUser user = mapper.selectByEmail(keyword);
+        MiaoUser user = miaoUserMapper.selectByEmail(keyword);
         if (user == null) {
-            user = mapper.selectByUserName(keyword);
+            user = miaoUserMapper.selectByUserName(keyword);
             if (user == null) {
                 return ResultGenerator.genFailResult("请注册后再登录~");
             }
@@ -143,6 +143,11 @@ public class UserServiceImpl implements UserService {
         }
 
         return ResultGenerator.genFailResult("密码错误。。。");
+    }
+
+    @Override
+    public MiaoUser findByUserName(String userName){
+        return miaoUserMapper.selectByUserName(userName);
     }
 
 }

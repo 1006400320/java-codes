@@ -93,6 +93,7 @@ function showQRCode(url) {
     layer.photos({
         photos: {
             "title": "qrcode", //相册标题
+            "area": ['100px', '100px'],
             "id": 123, //相册id
             "start": 0, //初始显示的图片序号，默认0
             "full": false,
