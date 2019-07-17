@@ -84,14 +84,14 @@
 
 
 
-        <!-- TODO 数据库连接 -->
+        <!-- TODO 1、数据库连接 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="jdbc:mysql://39.105.56.62:3306/msy?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT%2B8"
                         userId="root" password="123456">
             <property name="useInformationSchema" value="true"></property>
         </jdbcConnection>
 
-        <!-- TODO 数据库的生成配置 -->
+        <!-- TODO 2、数据库的生成配置 -->
         <javaModelGenerator targetPackage="com.linhuanjie.admin.model" targetProject="../base/src/main/java">
             <!--  for MyBatis3/MyBatis3Simple
             自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter；
@@ -119,7 +119,7 @@
         </javaModelGenerator>
 
 
-        <!-- TODO mapper && dao-->
+        <!-- TODO 3、mapper && dao-->
         <sqlMapGenerator targetPackage="mapper" targetProject="../admin/src/main/resources">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
@@ -127,7 +127,7 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-        <!-- TODO 选择一个table来生成相关文件，可以有一个或多个table，必须要有table元素
+        <!-- TODO 4、选择一个table来生成相关文件，可以有一个或多个table，必须要有table元素
         选择的table会生成一下文件：
         1，SQL map文件
         2，生成一个主键类；

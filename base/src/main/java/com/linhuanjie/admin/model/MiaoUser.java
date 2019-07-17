@@ -74,11 +74,11 @@ public class MiaoUser extends MiaoUserKey implements Serializable {
      *   角色id
      *
      * Column:
-     *   miao_user.role_id
+     *   miao_user.salt
      *
      * @mbg.generated
      */
-    private Integer roleId;
+    private String salt;
 
     /**
      * Description:
@@ -229,26 +229,26 @@ public class MiaoUser extends MiaoUserKey implements Serializable {
 
     /**
      * Description:
-     *  返回 miao_user.role_id 的值
+     *  返回 miao_user.salt 的值
      *
-     * @return 字段 miao_user.role_id 的值
+     * @return 字段 miao_user.salt 的值
      *
      * @mbg.generated
      */
-    public Integer getRoleId() {
-        return roleId;
+    public String getSalt() {
+        return salt;
     }
 
     /**
      * Description:
-     *  设置 miao_user.role_id 的值.
+     *  设置 miao_user.salt 的值.
      *
-     * @param roleId 字段 miao_user.role_id 的值.
+     * @param salt 字段 miao_user.salt 的值.
      *
      * @mbg.generated
      */
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     /**
@@ -292,7 +292,7 @@ public class MiaoUser extends MiaoUserKey implements Serializable {
         sb.append(", email=").append(email);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
-        sb.append(", roleId=").append(roleId);
+        sb.append(", salt=").append(salt);
         sb.append(", userStatus=").append(userStatus);
         sb.append("]");
         return sb.toString();
@@ -450,14 +450,14 @@ public class MiaoUser extends MiaoUserKey implements Serializable {
 
         /**
          * Description:
-         *  设置 miao_user.role_id 的值.
+         *  设置 miao_user.salt 的值.
          *
-         * @param roleId 字段 miao_user.role_id 的值.
+         * @param salt 字段 miao_user.salt 的值.
          *
          * @mbg.generated
          */
-        public Builder roleId(Integer roleId) {
-            obj.setRoleId(roleId);
+        public Builder salt(String salt) {
+            obj.setSalt(salt);
             return this;
         }
 
@@ -498,7 +498,7 @@ public class MiaoUser extends MiaoUserKey implements Serializable {
         email("email"),
         createTime("create_time"),
         updateTime("update_time"),
-        roleId("role_id"),
+        salt("salt"),
         userStatus("user_status");
 
         /**

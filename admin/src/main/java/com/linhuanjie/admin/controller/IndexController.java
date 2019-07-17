@@ -1,10 +1,12 @@
 package com.linhuanjie.admin.controller;
 
+import com.linhuanjie.admin.model.MiaoUser;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +21,20 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class IndexController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
+
+    /**
+     * 首页，并将登录用户的全名返回前台
+     * @param model
+     * @return
+     */
+    @GetMapping(value={"/","/common/index","/index"})
+    public String index(Model model){
+
+        MiaoUser user = (MiaoUser) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("userName", user.getUserName());
+        return "index";
+    }
 
     @GetMapping(value = "/login")
     public String toLogin(HttpServletRequest request){

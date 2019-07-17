@@ -144,7 +144,7 @@ public class MiaoUserKey implements Serializable {
         email("email"),
         createTime("create_time"),
         updateTime("update_time"),
-        roleId("role_id"),
+        salt("salt"),
         userStatus("user_status");
 
         /**
