@@ -4,13 +4,19 @@ import com.linhuanjie.admin.shiro.UserRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.apache.shiro.mgt.SecurityManager;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@Configuration
 public class ShiroConfig {
+    private final static Logger logger = LoggerFactory.getLogger(ShiroConfig.class);
+
     /**
      * 凭证匹配器
      *
@@ -63,18 +69,30 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setSuccessUrl("/");
-        shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/error");
 
         //注意此处使用的是LinkedHashMap，是有顺序的，shiro会按从上到下的顺序匹配验证，匹配了就不再继续验证
         //所以上面的url要苛刻，宽松的url要放在下面，尤其是"/**"要放到最下面，如果放前面的话其后的验证规则就没作用了。
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/static/**", "anon");
+        filterChainDefinitionMap.put("/css/*", "anon");
+        filterChainDefinitionMap.put("/js/**", "anon");
+        filterChainDefinitionMap.put("/img/**", "anon");
+        filterChainDefinitionMap.put("/layui/**", "anon");
+        filterChainDefinitionMap.put("/register", "anon");
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/captcha.jpg", "anon");
         filterChainDefinitionMap.put("/favicon.ico", "anon");
         filterChainDefinitionMap.put("/**", "authc");
 
+        // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问【放行】-->
+        filterChainDefinitionMap.put("/**", "authc");
+        filterChainDefinitionMap.put("/*/*", "authc");
+        filterChainDefinitionMap.put("/*/*/*", "authc");
+        filterChainDefinitionMap.put("/*/*/*/**", "authc");
+
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+        logger.info("Shiro过滤器注入成功");
         return shiroFilterFactoryBean;
     }
 }

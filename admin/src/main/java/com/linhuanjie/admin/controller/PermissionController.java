@@ -19,7 +19,7 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "permission")
 public class PermissionController {
-    private static final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(PermissionController.class);
 
 
     @GetMapping("getUserPerms")

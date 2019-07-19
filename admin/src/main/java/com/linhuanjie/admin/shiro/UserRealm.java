@@ -1,7 +1,6 @@
 package com.linhuanjie.admin.shiro;
 
 
-import com.linhuanjie.admin.AdminApplication;
 import com.linhuanjie.admin.model.MiaoUser;
 import com.linhuanjie.admin.service.SysPermissionService;
 import com.linhuanjie.admin.service.UserService;

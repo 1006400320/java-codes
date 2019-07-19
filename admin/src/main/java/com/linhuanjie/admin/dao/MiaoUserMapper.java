@@ -57,4 +57,19 @@ public interface MiaoUserMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(MiaoUser record);
+
+    /**
+     * 根据email查询返回数据
+     * @param email
+     * @return
+     */
+    MiaoUser selectByEmail(String email);
+
+    /**
+     * 根据email查询返回数据
+     * @param userName
+     * @return
+     */
+    MiaoUser selectByUserName(String userName);
+
 }

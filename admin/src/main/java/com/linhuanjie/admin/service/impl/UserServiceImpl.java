@@ -37,7 +37,7 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private static final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private MiaoUserMapper miaoUserMapper;
@@ -146,7 +146,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public MiaoUser findByUserName(String userName){
+    public MiaoUser findByUserName(String userName) {
         return miaoUserMapper.selectByUserName(userName);
     }
 
