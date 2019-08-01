@@ -26,7 +26,7 @@ public class UserRealm extends AuthorizingRealm {
 
 
     /**
-     * 授权
+     * 授权验证
      * @param principals
      * @return
      */
@@ -43,7 +43,7 @@ public class UserRealm extends AuthorizingRealm {
     }
 
     /**
-     * 认证
+     * 登录验证
      * @param authenticationToken
      * @return
      * @throws AuthenticationException
@@ -53,8 +53,13 @@ public class UserRealm extends AuthorizingRealm {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         MiaoUser user = userService.findByUserName(token.getUsername());
         if (user == null) {
-            return null;
+            throw new UnknownAccountException("账号或密码不正确");
         }
+        // 验证密码
+//        if (!user.getPassword().equals(new String(token.getPassword()))) {
+//            throw new UnknownAccountException("账号或密码不正确");
+//        }
+
         LOGGER.info("doGetAuthenticationInfo");
         return new SimpleAuthenticationInfo(user, user.getPassword().toCharArray(), ByteSource.Util.bytes(user.getSalt()), getName());
     }

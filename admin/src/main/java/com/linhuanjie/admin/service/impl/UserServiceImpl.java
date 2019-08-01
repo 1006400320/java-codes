@@ -1,32 +1,26 @@
 package com.linhuanjie.admin.service.impl;
 
-import cn.hutool.Hutool;
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.SecureUtil;
-import cn.hutool.crypto.digest.HMac;
-import cn.hutool.crypto.symmetric.AES;
 import com.linhuanjie.admin.constant.AdminConstant;
 import com.linhuanjie.admin.dao.MiaoUserMapper;
 import com.linhuanjie.admin.model.MiaoUser;
-import com.linhuanjie.admin.model.MiaoUserKey;
 import com.linhuanjie.admin.service.UserService;
 import com.linhuanjie.common.result.Result;
 import com.linhuanjie.common.result.ResultGenerator;
 import org.apache.ibatis.exceptions.TooManyResultsException;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import tk.mybatis.mapper.entity.Condition;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author: linhuanjie
@@ -94,6 +88,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result register(MiaoUser user, HttpServletRequest request) {
+        /*
+        第一版
         MiaoUser miaoUserByEmail = miaoUserMapper.selectByEmail(user.getEmail());
         MiaoUser miaoUserByUserName = miaoUserMapper.selectByUserName(user.getUserName());
         if (miaoUserByEmail == null && miaoUserByUserName == null) {
@@ -117,7 +113,37 @@ public class UserServiceImpl implements UserService {
         } else {
             // 邮箱或账号 已被注册
             return ResultGenerator.genFailResult("喵呜~邮箱或账号已经注册过了哦，直接去登录吧");
+        }*/
+
+        // Shiro版
+        MiaoUser userByUserName = miaoUserMapper.selectByUserName(user.getUserName());
+        if (userByUserName != null) {
+            // 账号已注册过
+            return ResultGenerator.genFailResult("喵呜~账号已经注册过了，直接去登录吧");
         }
+
+        // 盐值
+        String salt = String.valueOf(RandomUtil.randomInt(1, 6));
+
+        /*
+         * MD5加密：
+         * 使用SimpleHash类对原始密码进行加密。
+         * 第一个参数代表使用MD5方式加密
+         * 第二个参数为原始密码
+         * 第三个参数为盐值，即用户名
+         * 第四个参数为加密次数
+         * 最后用toHex()方法将加密后的密码转成String
+         * */
+        String newPs = new SimpleHash("md5", user.getPassword(), ByteSource.Util.bytes(salt), 1).toHex();
+        user.setPassword(newPs);
+        user.setSalt(salt);
+        user.setCreateTime(DateUtil.date());
+        user.setUpdateTime(DateUtil.date());
+        user.setUserStatus(AdminConstant.USER_STATUS_LOCK);
+
+        int i = miaoUserMapper.insertSelective(user);
+
+        return i > 0 ? ResultGenerator.genSuccessResult() : ResultGenerator.genFailResult("喵呜~注册失败了");
     }
 
     @Override

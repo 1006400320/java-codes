@@ -18,17 +18,17 @@ public class ShiroConfig {
     private final static Logger logger = LoggerFactory.getLogger(ShiroConfig.class);
 
     /**
-     * 凭证匹配器
+     * 安全管理器
+     * 注：使用shiro-spring-boot-starter 1.4时，返回类型是SecurityManager会报错，直接引用shiro-spring则不报错
      *
      * @return
      */
     @Bean
-    public HashedCredentialsMatcher hashedCredentialsMatcher() {
-        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-        //md5加密1次
-        hashedCredentialsMatcher.setHashAlgorithmName("md5");
-        hashedCredentialsMatcher.setHashIterations(1);
-        return hashedCredentialsMatcher;
+    public DefaultWebSecurityManager securityManager() {
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        securityManager.setRealm(userRealm());
+        securityManager.setRememberMeManager(null);
+        return securityManager;
     }
 
     /**
@@ -44,16 +44,17 @@ public class ShiroConfig {
     }
 
     /**
-     * 安全管理器
-     * 注：使用shiro-spring-boot-starter 1.4时，返回类型是SecurityManager会报错，直接引用shiro-spring则不报错
+     * 凭证匹配器
      *
      * @return
      */
     @Bean
-    public DefaultWebSecurityManager securityManager() {
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(userRealm());
-        return securityManager;
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+        //md5加密1次
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");
+        hashedCredentialsMatcher.setHashIterations(1);
+        return hashedCredentialsMatcher;
     }
 
 
@@ -79,11 +80,12 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/img/**", "anon");
         filterChainDefinitionMap.put("/layui/**", "anon");
-        filterChainDefinitionMap.put("/register", "anon");
-        filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/captcha.jpg", "anon");
         filterChainDefinitionMap.put("/favicon.ico", "anon");
-        filterChainDefinitionMap.put("/**", "authc");
+        filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/user/login", "anon");
+        filterChainDefinitionMap.put("/register", "anon");
+        filterChainDefinitionMap.put("/user/register", "anon");
 
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问【放行】-->
         filterChainDefinitionMap.put("/**", "authc");
@@ -95,4 +97,14 @@ public class ShiroConfig {
         logger.info("Shiro过滤器注入成功");
         return shiroFilterFactoryBean;
     }
+
+
+
+
+
+
+
+
+
+
 }

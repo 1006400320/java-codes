@@ -39,7 +39,7 @@ public class UserController {
     @PostMapping("/register")
     @ResponseBody
     public Result register(MiaoUser user, HttpServletRequest request) {
-        if (user == null) {
+        if (user == null || StringUtils.isEmpty(user.getUserName()) || StringUtils.isEmpty(user.getPassword())) {
             return ResultGenerator.genFailResult("请输入用户信息");
         }
         return userService.register(user,request);
@@ -61,11 +61,12 @@ public class UserController {
 //            return ResultGenerator.genFailResult("请输入用户信息");
 //        }
 //        return userService.login(keyword,password,request);
-        // shiro 版
-        UsernamePasswordToken token = new UsernamePasswordToken(keyword,password); // todo rememberMe
 
         // 获取当前的Subject
         Subject subject = SecurityUtils.getSubject();
+
+        // shiro 版
+        UsernamePasswordToken token = new UsernamePasswordToken(keyword,password); // todo rememberMe
 
         try {
             // 在调用了login方法后,SecurityManager会收到AuthenticationToken,并将其发送给已配置的Realm执行必须的认证检查
@@ -77,8 +78,8 @@ public class UserController {
             e.printStackTrace();
         }
 
+        return ResultGenerator.genFailResult("登录失败");
 
-        return null;
     }
 
 
