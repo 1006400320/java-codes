@@ -8,7 +8,8 @@ todo
 -  商品配置页面
 -  商品动态加载
 
-  
+- HikariCP
+- http://blog.sqber.com/articles/HikariCP-Simple-Demo.html  
 
 
 功能：
