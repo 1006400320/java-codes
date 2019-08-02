@@ -1,6 +1,6 @@
-package com.linhuanjie.admin.config;
+package com.linhuanjie.admin.system.config;
 
-import com.linhuanjie.admin.shiro.UserRealm;
+import com.linhuanjie.admin.system.shiro.UserRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;

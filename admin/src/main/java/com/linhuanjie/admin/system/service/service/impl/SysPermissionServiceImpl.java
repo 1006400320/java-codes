@@ -1,11 +1,9 @@
-package com.linhuanjie.admin.service.impl;
+package com.linhuanjie.admin.system.service.service.impl;
 
-import com.linhuanjie.admin.dao.MiaoUserMapper;
-import com.linhuanjie.admin.dao.SysPermissionMapper;
-import com.linhuanjie.admin.model.MiaoUser;
+import com.linhuanjie.admin.system.dao.MiaoUserMapper;
+import com.linhuanjie.admin.system.dao.SysPermissionMapper;
 import com.linhuanjie.admin.model.MiaoUserKey;
-import com.linhuanjie.admin.model.SysPermissionKey;
-import com.linhuanjie.admin.service.SysPermissionService;
+import com.linhuanjie.admin.system.service.service.SysPermissionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,9 @@
-package com.linhuanjie.admin.shiro;
+package com.linhuanjie.admin.system.shiro;
 
 
 import com.linhuanjie.admin.model.MiaoUser;
-import com.linhuanjie.admin.service.SysPermissionService;
-import com.linhuanjie.admin.service.UserService;
+import com.linhuanjie.admin.system.service.service.SysPermissionService;
+import com.linhuanjie.admin.system.service.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;

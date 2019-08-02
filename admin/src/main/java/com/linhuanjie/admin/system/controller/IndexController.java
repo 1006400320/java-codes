@@ -1,4 +1,4 @@
-package com.linhuanjie.admin.controller;
+package com.linhuanjie.admin.system.controller;
 
 import com.linhuanjie.admin.model.MiaoUser;
 import org.apache.shiro.SecurityUtils;

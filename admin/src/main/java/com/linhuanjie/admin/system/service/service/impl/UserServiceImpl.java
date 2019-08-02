@@ -1,12 +1,12 @@
-package com.linhuanjie.admin.service.impl;
+package com.linhuanjie.admin.system.service.service.impl;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.linhuanjie.admin.constant.AdminConstant;
-import com.linhuanjie.admin.dao.MiaoUserMapper;
+import com.linhuanjie.admin.system.dao.MiaoUserMapper;
 import com.linhuanjie.admin.model.MiaoUser;
-import com.linhuanjie.admin.service.UserService;
+import com.linhuanjie.admin.system.service.service.UserService;
 import com.linhuanjie.common.result.Result;
 import com.linhuanjie.common.result.ResultGenerator;
 import org.apache.ibatis.exceptions.TooManyResultsException;

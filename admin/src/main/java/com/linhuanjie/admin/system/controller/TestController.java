@@ -1,4 +1,4 @@
-package com.linhuanjie.admin.controller;
+package com.linhuanjie.admin.system.controller;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;

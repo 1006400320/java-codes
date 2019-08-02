@@ -1,11 +1,9 @@
-package com.linhuanjie.admin.dao;
+package com.linhuanjie.admin.system.dao;
 
-import com.linhuanjie.admin.model.SysPermission;
-import com.linhuanjie.admin.model.SysPermissionKey;
+import com.linhuanjie.admin.model.MiaoUser;
+import com.linhuanjie.admin.model.MiaoUserKey;
 
-import java.util.List;
-
-public interface SysPermissionMapper {
+public interface MiaoUserMapper {
     /**
      * Description:  根据主键删除
      *
@@ -13,7 +11,7 @@ public interface SysPermissionMapper {
      * @return deleteByPrimaryKey 的结果.
      * @mbg.generated
      */
-    int deleteByPrimaryKey(SysPermissionKey key);
+    int deleteByPrimaryKey(MiaoUserKey key);
 
     /**
      * Description:  插入一条记录
@@ -22,7 +20,7 @@ public interface SysPermissionMapper {
      * @return insert 的结果.
      * @mbg.generated
      */
-    int insert(SysPermission record);
+    int insert(MiaoUser record);
 
     /**
      * Description:  插入一条记录, 实现选择入库
@@ -31,7 +29,7 @@ public interface SysPermissionMapper {
      * @return insertSelective 的结果.
      * @mbg.generated
      */
-    int insertSelective(SysPermission record);
+    int insertSelective(MiaoUser record);
 
     /**
      * Description:  根据主键查询返回数据
@@ -40,9 +38,7 @@ public interface SysPermissionMapper {
      * @return selectByPrimaryKey 的结果.
      * @mbg.generated
      */
-    SysPermission selectByPrimaryKey(SysPermissionKey key);
-
-
+    MiaoUser selectByPrimaryKey(MiaoUserKey key);
 
     /**
      * Description:  根据主键更新数据, 可选择
@@ -51,7 +47,7 @@ public interface SysPermissionMapper {
      * @return updateByPrimaryKeySelective 的结果.
      * @mbg.generated
      */
-    int updateByPrimaryKeySelective(SysPermission record);
+    int updateByPrimaryKeySelective(MiaoUser record);
 
     /**
      * Description:  根据主键更新数据
@@ -60,5 +56,20 @@ public interface SysPermissionMapper {
      * @return updateByPrimaryKey 的结果.
      * @mbg.generated
      */
-    int updateByPrimaryKey(SysPermission record);
+    int updateByPrimaryKey(MiaoUser record);
+
+    /**
+     * 根据email查询返回数据
+     * @param email
+     * @return
+     */
+    MiaoUser selectByEmail(String email);
+
+    /**
+     * 根据email查询返回数据
+     * @param userName
+     * @return
+     */
+    MiaoUser selectByUserName(String userName);
+
 }
