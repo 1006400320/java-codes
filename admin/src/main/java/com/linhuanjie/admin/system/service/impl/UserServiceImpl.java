@@ -1,16 +1,19 @@
-package com.linhuanjie.admin.system.service.service.impl;
+package com.linhuanjie.admin.system.service.impl;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.linhuanjie.admin.constant.AdminConstant;
-import com.linhuanjie.admin.system.dao.MiaoUserMapper;
 import com.linhuanjie.admin.model.MiaoUser;
-import com.linhuanjie.admin.system.service.service.UserService;
+import com.linhuanjie.admin.system.dao.MiaoUserMapper;
+import com.linhuanjie.admin.system.service.UserService;
 import com.linhuanjie.common.result.Result;
 import com.linhuanjie.common.result.ResultGenerator;
 import org.apache.ibatis.exceptions.TooManyResultsException;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -134,7 +137,7 @@ public class UserServiceImpl implements UserService {
          * 第四个参数为加密次数
          * 最后用toHex()方法将加密后的密码转成String
          * */
-        String newPs = new SimpleHash("md5", user.getPassword(), ByteSource.Util.bytes(salt), 1).toHex();
+        String newPs = new SimpleHash("MD5", user.getPassword(), ByteSource.Util.bytes(salt), 1).toHex();
         user.setPassword(newPs);
         user.setSalt(salt);
         user.setCreateTime(DateUtil.date());
@@ -147,7 +150,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result login(String keyword, String password, HttpServletRequest request) {
+    public Result login(String username, String password, HttpServletRequest request) {
+        /*
+        // 第一版
         // 查询是否有该用户(邮箱)
         MiaoUser user = miaoUserMapper.selectByEmail(keyword);
         if (user == null) {
@@ -168,7 +173,22 @@ public class UserServiceImpl implements UserService {
             return ResultGenerator.genSuccessResult();
         }
 
-        return ResultGenerator.genFailResult("密码错误。。。");
+        return ResultGenerator.genFailResult("密码错误。。。");*/
+        UsernamePasswordToken token = new UsernamePasswordToken(username,password); // TODO remeberMe
+
+        //获取当前的Subject
+        Subject currentUser = SecurityUtils.getSubject();
+        try {
+            // 在调用了login方法后,SecurityManager会收到AuthenticationToken,并将其发送给已配置的Realm执行必须的认证检查
+            // 每个Realm都能在必要时对提交的AuthenticationTokens作出反应
+            // 所以这一步在调用login(token)方法时,它会走到ShiroRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
+            currentUser.login(token);
+            return ResultGenerator.genSuccessResult();
+        } catch (Exception e) {
+            logger.error("登录失败，用户名[{}]", username, e);
+            token.clear();
+            return ResultGenerator.genFailResult("密码错误。。。");
+        }
     }
 
     @Override

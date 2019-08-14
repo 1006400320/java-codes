@@ -1,5 +1,9 @@
 package com.linhuanjie.common.utils;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
+
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -15,6 +19,10 @@ import java.security.NoSuchAlgorithmException;
 public class MD5Utils implements Serializable {
 
     private static final long serialVersionUID = -5865271082310922964L;
+
+    private static final String ALGORITH_NAME = "md5";
+
+    private static final int HASH_ITERATIONS = 4;
 
     public static String MD5(String s) {
         char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -69,5 +77,11 @@ public class MD5Utils implements Serializable {
 
         s = new String(str);
         return s;
+    }
+
+    public static String encrypt(String username, String password) {
+        String source = StringUtils.lowerCase(username);
+        password = StringUtils.lowerCase(password);
+        return new SimpleHash(ALGORITH_NAME, password, ByteSource.Util.bytes(source), HASH_ITERATIONS).toHex();
     }
 }

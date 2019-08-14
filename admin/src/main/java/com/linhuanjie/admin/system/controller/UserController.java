@@ -1,7 +1,7 @@
 package com.linhuanjie.admin.system.controller;
 
 import com.linhuanjie.admin.model.MiaoUser;
-import com.linhuanjie.admin.system.service.service.UserService;
+import com.linhuanjie.admin.system.service.UserService;
 import com.linhuanjie.common.result.Result;
 import com.linhuanjie.common.result.ResultGenerator;
 import org.apache.commons.lang3.StringUtils;
@@ -69,7 +69,9 @@ public class UserController {
             // 每个Realm都能在必要时对提交的AuthenticationTokens作出反应
             // 所以这一步在调用login(token)方法时,它会走到xxRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
             subject.login(token);
-            return ResultGenerator.genSuccessResult("登录成功");
+            if(subject.isAuthenticated() == true) {
+                return ResultGenerator.genSuccessResult("登录成功");
+            }
         } catch (AuthenticationException e) {
             e.printStackTrace();
         }

@@ -1,4 +1,4 @@
-package com.linhuanjie.admin.system.service.service;
+package com.linhuanjie.admin.system.service;
 
 import java.util.List;
 

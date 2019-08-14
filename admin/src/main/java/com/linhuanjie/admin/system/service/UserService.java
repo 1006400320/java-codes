@@ -1,12 +1,10 @@
-package com.linhuanjie.admin.system.service.service;
+package com.linhuanjie.admin.system.service;
 
 import com.linhuanjie.admin.model.MiaoUser;
 import com.linhuanjie.common.result.Result;
 import com.linhuanjie.common.service.Service;
-import org.springframework.http.HttpRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * @author: linhuanjie
