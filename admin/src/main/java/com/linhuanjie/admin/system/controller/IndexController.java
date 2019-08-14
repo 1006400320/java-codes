@@ -56,12 +56,6 @@ public class IndexController {
     @GetMapping(value = "/home")
     public String toHome(HttpServletRequest request, HttpServletResponse response){
         LOGGER.info("toHome");
-        Object userSession = request.getSession().getAttribute("miao_user");
-        if(userSession == null){
-            return "login";
-        }
-        request.setAttribute("userSession",userSession);
-        LOGGER.info("userSession:{}",userSession);
         return "home";
     }
 
