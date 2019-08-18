@@ -12,7 +12,7 @@ server:
 
 # 公共配置与profiles选择无关
 mybatis:
-#  typeAliasesPackage: com.lhj.shirodemo.dao.entity
+  typeAliasesPackage: com.linhuanjie.shirodemo.dao.entity
   mapperLocations: classpath:mapper/*.xml
 
 commonDS:
