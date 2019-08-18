@@ -19,10 +19,6 @@ public class TestDemo {
 //        for (int i = 0; i < 50; i++) {
 //            System.out.print(RandomUtil.randomInt(1,6)+"||");
 //        }
-//        
-        String test = MD5Utils.encrypt("test", "123");
-        System.out.println("test = " + test);
-        // 92fde850d824c2ba9b563cb6fa4078c3
-
+//
     }
 }

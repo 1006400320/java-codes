@@ -1,8 +1,5 @@
 package com.linhuanjie.common.utils;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.crypto.hash.SimpleHash;
-import org.apache.shiro.util.ByteSource;
 
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
@@ -79,9 +76,5 @@ public class MD5Utils implements Serializable {
         return s;
     }
 
-    public static String encrypt(String username, String password) {
-        String source = StringUtils.lowerCase(username);
-        password = StringUtils.lowerCase(password);
-        return new SimpleHash(ALGORITH_NAME, password, ByteSource.Util.bytes(source), HASH_ITERATIONS).toHex();
-    }
+
 }

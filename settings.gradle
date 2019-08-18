@@ -3,9 +3,11 @@ rootProject.name = 'java-codes'
 include 'base'
 include 'demos'
 include 'admin'
+include 'shiro-demo-1'
 
 
 
 project(':base').projectDir = "$rootDir/base" as File
 project(':demos').projectDir = "$rootDir/demos" as File
 project(':admin').projectDir = "$rootDir/admin" as File
+project(':shiro-demo-1').projectDir = "$rootDir/shiro-demo-1" as File
