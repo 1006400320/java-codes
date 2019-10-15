@@ -1,6 +1,9 @@
 package com.linhuanjie.common.utils;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -14,6 +17,7 @@ import java.security.NoSuchAlgorithmException;
  * description: MD5加密
  */
 public class MD5Utils implements Serializable {
+    private static final Logger logger = LoggerFactory.getLogger(MD5Utils.class);
 
     private static final long serialVersionUID = -5865271082310922964L;
 
@@ -76,5 +80,35 @@ public class MD5Utils implements Serializable {
         return s;
     }
 
+    /**
+     * 将指定字符串进行MD5加密
+     * @param input
+     * @return
+     */
+    public static String getMd5(String input){
+        byte[] out = {};
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(input.getBytes("UTF-8"));
+            out = md.digest();
+        } catch (NoSuchAlgorithmException e) {
+            logger.error(e.getMessage(),e);
+        } catch (UnsupportedEncodingException e) {
+            logger.error(e.getMessage(),e);
+        }
+        return toHexString(out);
+    }
 
+    /**
+     * 转换成16进制
+     * @param out
+     * @return
+     */
+    private static String toHexString(byte[] out) {
+        StringBuffer buf = new StringBuffer();
+        for(byte b:out){
+            buf.append(String.format("%02X", b));
+        }
+        return buf.toString();
+    }
 }

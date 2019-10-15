@@ -95,6 +95,7 @@ allprojects {
         compile group: 'com.github.pagehelper', name: 'pagehelper', version: '4.2.1'
         compile group: 'tk.mybatis', name: 'mapper', version: '3.4.3'
         compile group: 'cn.hutool', name: 'hutool-all', version: '4.5.16'
+        compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '[7.0.0, 7.0.99]'
 
     }
 
