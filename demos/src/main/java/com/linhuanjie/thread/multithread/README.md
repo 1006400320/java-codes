@@ -3,6 +3,7 @@
 #### Lock 锁
  - lock()
  - unlock()
+ - lockInterruptibly()
  - trylock():尝试获取锁，如果可以获取到则锁住
  
 
