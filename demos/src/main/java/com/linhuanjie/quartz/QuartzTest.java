@@ -22,7 +22,9 @@ public class QuartzTest {
 
             // 创建jobDetail实例，绑定Job实现类
             // 指明job的名称，所在组的名称，以及绑定job类
-            JobDetail job = JobBuilder.newJob(HelloQuartz.class).withIdentity("JobName", "JobGroupName").build();
+            JobDetail job = JobBuilder.newJob(HelloQuartz.class)
+                    .withIdentity("JobName", "JobGroupName")
+                    .build();
 
             // 定义调度触发规则
 
