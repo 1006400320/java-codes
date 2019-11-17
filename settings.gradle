@@ -4,6 +4,7 @@ include 'base'
 include 'demos'
 include 'admin'
 include 'shiro-demo-1'
+include 'mq'
 
 
 
@@ -11,3 +12,5 @@ project(':base').projectDir = "$rootDir/base" as File
 project(':demos').projectDir = "$rootDir/demos" as File
 project(':admin').projectDir = "$rootDir/admin" as File
 project(':shiro-demo-1').projectDir = "$rootDir/shiro-demo-1" as File
+project(':mq').projectDir = "$rootDir/mq" as File
+
