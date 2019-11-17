@@ -70,6 +70,8 @@ public class WriterWithoutHead {
 //            Arrays.stream(split).distinct().collect(Collectors.toList()).forEach(s -> System.out.println(s));
 
             data.stream().forEach(strings -> System.out.println(strings));
+            long count = data.stream().count();
+            System.out.println("count = " + count);
 
             writer.write0(data, sheet1);
             writer.finish();
