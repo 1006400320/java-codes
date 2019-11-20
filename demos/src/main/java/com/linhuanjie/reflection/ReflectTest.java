@@ -1,4 +1,4 @@
-package com.linhuanjie.reflect;
+package com.linhuanjie.reflection;
 
 import java.lang.reflect.*;
 
