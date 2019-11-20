@@ -29,6 +29,7 @@
 父子线程交换数据
 
 #### TransmittableThreadLocal 
-TransmittableThreadLocal 是Alibaba开源的、用于解决 “在使用**线程池**等会缓存线程的组件情况下传递ThreadLocal” 问题的 InheritableThreadLocal 扩展。若希望 TransmittableThreadLocal 在线程池与主线程间传递，需配合 TtlRunnable 和 TtlCallable 使用。
+TransmittableThreadLocal 是Alibaba开源的、用于解决 “在使用**线程池**等会缓存线程的组件情况下传递ThreadLocal” 问题的 InheritableThreadLocal 扩展。
+若希望 TransmittableThreadLocal 在线程池与主线程间传递，需配合 TtlRunnable 和 TtlCallable 使用。
 
 
