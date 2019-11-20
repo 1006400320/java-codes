@@ -31,7 +31,63 @@ public class LockExample {
      */
     public static void main(String[] args) throws InterruptedException {
 //        buyMilkTea();
-		handleOrder(); //需手动关闭
+//		handleOrder(); //需手动关闭
+
+        ReentrantLock lock = new ReentrantLock();
+      /*  new Thread(() -> {
+            if (lock.tryLock()) {
+                System.out.println(Thread.currentThread().getName() + ":哈哈，我已经获取到锁了");
+                try {
+                    Thread.sleep(10 * 1000);
+                    lock.unlock();
+                    System.out.println(Thread.currentThread().getName() + ":用完锁了，还你吧");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                System.out.println(Thread.currentThread().getName() + ":没抢到锁，嘤嘤嘤");
+            }
+        }).start();
+        new Thread(() -> {
+            if (lock.tryLock()) {
+                System.out.println(Thread.currentThread().getName() + ":哈哈，我已经获取到锁了");
+                try {
+                    Thread.sleep(10 * 1000);
+                    lock.unlock();
+                    System.out.println(Thread.currentThread().getName() + ":用完锁了，还你吧");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                System.out.println(Thread.currentThread().getName() + ":没抢到锁，嘤嘤嘤");
+            }
+        }).start();*/
+
+        new Thread(() -> {
+            lock.lock();
+            System.out.println(Thread.currentThread().getName() + ":哈哈，我已经获取到锁了");
+            try {
+                Thread.sleep(10 * 1000);
+                lock.unlock();
+                System.out.println(Thread.currentThread().getName() + ":用完锁了，还你吧");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+        new Thread(() -> {
+            lock.lock();
+            System.out.println(Thread.currentThread().getName() + ":哈哈，我已经获取到锁了");
+            try {
+                Thread.sleep(10 * 1000);
+                lock.unlock();
+                System.out.println(Thread.currentThread().getName() + ":用完锁了，还你吧");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
     }
 
     public void tryToBuyMilkTea() throws InterruptedException {
