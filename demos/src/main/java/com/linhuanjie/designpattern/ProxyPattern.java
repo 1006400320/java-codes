@@ -1,8 +1,15 @@
 package com.linhuanjie.designpattern;
 
 /**
- * 代理模式
+ * 代理模式 -- 静态代理
  */
+public class ProxyPattern {
+    public static void main(String[] args) {
+//        ISubject subject = new ProxySubject(new RealSubject());
+        ISubject subject = Factory.getInstance();
+        subject.save();
+    }
+}
 
 interface ISubject{
     public abstract void save();
@@ -37,10 +44,3 @@ class Factory{
 
 }
 
-public class ProxyPattern {
-    public static void main(String[] args) {
-//        ISubject subject = new ProxySubject(new RealSubject());
-        ISubject subject = Factory.getInstance();
-        subject.save();
-    }
-}
