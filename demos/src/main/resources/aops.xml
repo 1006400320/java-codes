@@ -1,0 +1,8 @@
+<aops>
+   	<aop>  
+		<!-- this xml for com.linhuanjie.designpattern.proxy.myaop.Main-->
+   		<method>washHand</method><!-- washHand 、 bath -->
+   		<type>before</type>
+   		<method>eat</method>
+   	</aop>
+</aops>
