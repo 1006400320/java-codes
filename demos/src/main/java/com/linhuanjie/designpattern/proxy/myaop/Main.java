@@ -3,8 +3,10 @@ package com.linhuanjie.designpattern.proxy.myaop;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
-
-
+/**
+ *  动态代理实现简单的aop模式
+ *  https://www.icourse163.org/learn/ECNU-1206500807?tid=1206823217#/learn/content?type=detail&id=1212876684&cid=1216362111
+ */
 public class Main {
 
 	
