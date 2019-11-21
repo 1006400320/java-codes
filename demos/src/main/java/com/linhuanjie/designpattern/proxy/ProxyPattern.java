@@ -1,4 +1,4 @@
-package com.linhuanjie.designpattern;
+package com.linhuanjie.designpattern.proxy;
 
 /**
  * 代理模式 -- 静态代理
