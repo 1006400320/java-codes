@@ -8,6 +8,8 @@ import java.util.Set;
  * @Email : lhuanjie@qq.com
  * @Description :
 *                原文：https://www.cnblogs.com/relucent/p/4955340.html
+ *
+ *               生成的id:    659084090187710469
  *               Twitter_Snowflake<br>
  *               SnowFlake的结构如下(每部分用-分开):<br>
  *               0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000 <br>
