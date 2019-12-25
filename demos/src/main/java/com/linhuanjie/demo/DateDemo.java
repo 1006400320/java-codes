@@ -4,13 +4,12 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAdjuster;
 
 import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
 
 /**
  * @Author : linhuanjie
- * @Description :
+ * @Description :     jdk8 时间LocalDateTime
  *                              原文： https://juejin.im/post/5d7787625188252388753eae
  *                              localdatatime是没有时区概念的 。如果服务器是utc时间 返回做本地化的时候需要注意一下 。
  * @CreateTime : 2019-12-24 18:17
@@ -18,8 +17,6 @@ import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
 public class DateDemo {
 
     public static void main(String[] args) {
-//        LocalDateTime time = new LocalDateTime();
-
         // --------------- LocalDate 只会获取年月日 start --------------- //
         System.out.println(" --------------- LocalDate 只会获取年月日 start ---------------");
         // 获取当前年月日
