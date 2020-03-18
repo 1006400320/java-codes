@@ -25,7 +25,7 @@ public class StreamDemo {
 
         // 删除空字符串
         List<String> filtered = deleteEmptyStringsUsingJava7(strings);
-        System.out.println("筛选后的列表: " + filtered);
+        System.out.println("删除空字符串后的列表: " + filtered);
 
         // 删除空字符串，并使用逗号把它们合并起来
         String mergedString = getMergedStringUsingJava7(strings,", ");
@@ -51,6 +51,7 @@ public class StreamDemo {
             System.out.println(random.nextInt());
         }
 
+        System.out.println("------------------------------");
         System.out.println("使用 Java 8: ");
         System.out.println("列表: " +strings);
 
@@ -61,23 +62,23 @@ public class StreamDemo {
         System.out.println("字符串长度为 3 的数量为: " + count);
 
         filtered = strings.stream().filter(string ->!string.isEmpty()).collect(Collectors.toList());
-        System.out.println("筛选后的列表: " + filtered);
+        System.out.println("删除空字符串后的列表: " + filtered);
 
         mergedString = strings.stream().filter(string ->!string.isEmpty()).collect(Collectors.joining(", "));
         System.out.println("合并字符串: " + mergedString);
 
         squaresList = numbers.stream().map( i ->i*i).distinct().collect(Collectors.toList());
         System.out.println("Squares List: " + squaresList);
-        System.out.println("列表: " +integers);
 
+        System.out.println("列表: " +integers);
         IntSummaryStatistics stats = integers.stream().mapToInt((x) ->x).summaryStatistics();
 
         System.out.println("列表中最大的数 : " + stats.getMax());
         System.out.println("列表中最小的数 : " + stats.getMin());
         System.out.println("所有数之和 : " + stats.getSum());
         System.out.println("平均数 : " + stats.getAverage());
-        System.out.println("随机数: ");
 
+        System.out.println("随机数: ");
         random.ints().limit(10).sorted().forEach(System.out::println);
 
         // 并行处理

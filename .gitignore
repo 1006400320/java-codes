@@ -33,3 +33,6 @@ out/
 /gradlew.bat
 /logs/
 /.gradle/
+/demos/*.xlsx
+/*.xlsx
+/demos/.gradle/

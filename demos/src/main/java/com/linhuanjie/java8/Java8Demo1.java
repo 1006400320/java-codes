@@ -1,9 +1,9 @@
 package com.linhuanjie.java8;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import org.junit.Test;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author: linhuanjie
@@ -52,4 +52,64 @@ public class Java8Demo1 {
     }
 
 
+    /**
+     * filter 过滤
+     */
+    @Test
+    public void test(){
+
+        List<Student> students = new ArrayList<>();
+
+        students.add(new Student(3,"张三",90));
+        students.add(new Student(2,"李四",60));
+        students.add(new Student(3,"王五",30));
+        students.add(new Student(4,"赵六",85));
+
+        int studentId = 3;
+        students.stream().filter(o -> o.getId() == studentId).collect(Collectors.toList()).forEach(student -> System.out.println(student));
+        Student student = students.stream().filter(s -> s.getId() == studentId).findAny().orElse(null);
+
+        System.out.println(student);
+
+    }
+
+    class Student{
+        private int id;
+        private String name;
+        private int score;
+
+        public int getId() {
+            return id;
+        }
+        public void setId(int id) {
+            this.id = id;
+        }
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+        public int getScore() {
+            return score;
+        }
+        public void setScore(int score) {
+            this.score = score;
+        }
+
+        public Student(int id, String name, int score) {
+            this.id = id;
+            this.name = name;
+            this.score = score;
+        }
+
+        @Override
+        public String toString() {
+            return "Student{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", score=" + score +
+                    '}';
+        }
+    }
 }
