@@ -77,7 +77,7 @@ public class QiniuUtil {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		createBucket(myAccessKey, mySecretKey,myBucket,"z1");
+		createBucket(myAccessKey, mySecretKey,myBucket,"z0");
 	}
 
 	/**
