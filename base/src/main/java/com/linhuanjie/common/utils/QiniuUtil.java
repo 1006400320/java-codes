@@ -1,11 +1,15 @@
 package com.linhuanjie.common.utils;
 
+import cn.hutool.core.util.ReUtil;
+import com.linhuanjie.common.constant.RegexConstant;
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
 import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,23 +19,87 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class QiniuUtil {
 
+	private final static String myAccessKey = "7RrZcSn97vJaWiu-2g40IZ8dZszuQz4-H596iqRF";
+	private final static String mySecretKey = "9TMc6YkqU4DX_VKhS08d9qjSyh8A18PdA9YXTifU";
+	private final static String myBucket = "linhj";
+
 	private final static UploadManager uploadManager = new UploadManager();
 	private static final Logger log = LoggerFactory.getLogger(QiniuUtil.class);
-	
-	public static String upload(byte[] bytes, String fileName) {
-		
-		Auth auth = Auth.create("aXn3u9xg6r_9qNAtY2l1LHPuAgVyspSX19Q093Rx", "5SVa1yw2gHygBRni-D-x8UrsuKskOa5qFMIneDXS");
 
-		String accessToken = auth.uploadToken("woniutrip");
-		String suffix = "";
-		if (StringUtils.isNotBlank(fileName)) {
+	/**
+	 * 创建bucket
+	 * @param accessKey 七牛云个人中心的key
+	 * @param secretKey  个人中心密码
+	 * @param bucketName  空间名称
+	 * @param storageArea 存储区域 （z0 华东， z1 华北， z2 华南， na0 北美， as0 东南亚）
+	 */
+	public static void createBucket(String accessKey,String secretKey,String bucketName,String storageArea) {
+		Auth auth = Auth.create(accessKey,secretKey);
+		String path = "/mkbucketv2/" + encode(bucketName.getBytes()) + "/region/"+ storageArea +"\n";
+		String access_token = auth.sign(path);
+		System.out.println(access_token);
+
+		String url = "http://rs.qiniu.com/mkbucketv2/" + encode(bucketName.getBytes()) + "/region/" + storageArea;
+
+		OkHttpClient client = new OkHttpClient();
+		Request request = new Request.Builder().url(url).addHeader("Content-Type", "application/x-www-form-urlencoded")
+				.addHeader("Authorization", "QBox " + access_token).build();
+		okhttp3.Response re = null;
+		try {
+			re = client.newCall(request).execute();
+			if (re.isSuccessful() == true) {
+				System.out.println(re.code());
+				System.out.println(re.toString());
+			} else {
+				System.out.println(re.code());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 编码
+	 *
+	 * @param bstr
+	 * @return String
+	 */
+	public static String encode(byte[] bstr) {
+		return new sun.misc.BASE64Encoder().encode(bstr);
+	}
+
+	/**
+	 * 测试
+	 *
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		createBucket(myAccessKey, mySecretKey,myBucket,"z1");
+	}
+
+	/**
+	 * 上传图片
+	 * @param bytes 字节数组
+	 * @param fileName 文件名称
+	 * @return
+	 */
+	public static String upload(byte[] bytes, String fileName) {
+		if (StringUtils.isBlank(fileName)){
+			return "";
+		}
+
+		Auth auth = Auth.create(myAccessKey, mySecretKey);
+		String accessToken = auth.uploadToken(myBucket);
+
+		boolean isPicName = ReUtil.isMatch(RegexConstant.PIC, fileName);
+		String suffix = "jpg";
+		if (isPicName) {
 			suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
 		}
+
 		String key = MD5Utils.getMd5(fileName + System.currentTimeMillis()).toLowerCase() + "." + suffix;
 
 		try {
@@ -59,51 +127,8 @@ public class QiniuUtil {
 			}
 			throw new RuntimeException("图片上传至七牛失败：<br>response=" + resInfo + ",bodyString=" + bodyString);
 		}
-		return "http://cdn-ly.cdnmama.com/" + key;
+		return "q6x5zf8im.bkt.clouddn.com" + key;
 	}
-	
-	/*public static String upload(String file64) {
-		
-		//未明原因，有些请求会带header
-		if(file64.startsWith("data:image/png;base64,")) file64 = file64.replace("data:image/png;base64,", "");
-		
-		Auth auth = Auth.create("aXn3u9xg6r_9qNAtY2l1LHPuAgVyspSX19Q093Rx", "5SVa1yw2gHygBRni-D-x8UrsuKskOa5qFMIneDXS");
-		String accessToken = auth.uploadToken("woniutrip");
-		
-		if(StringUs.isBlank(file64)){
-			throw new RuntimeException("接受图片异常");
-		}
-		
-		String img = "";
-	    try{
-	        CloseableHttpClient httpclient = HttpClients.createDefault();
-	        
-	        HttpPost post = new HttpPost("http://upload.qiniu.com/putb64/-1");
-	        post.addHeader("Content-Type", "application/octet-stream");
-	        post.addHeader("Authorization", "UpToken " + accessToken);
-	        post.setEntity(new StringEntity(file64));
-	        
-	        CloseableHttpResponse response = httpclient.execute(post);
-	        
-	        String responseBody = EntityUtils.toString(response.getEntity(), "UTF-8");
-	        
-	        JSONObject json = JSONObject.parseObject(responseBody);
-	        
-	        String key = json.getString("key");
-	        
-	        if(StringUs.isNotBlank(key)){
-	        	img = AdminConstant.QINIU_PREFIX + key;
-	        }else{
-	        	throw new RuntimeException("【base64图片上传至七牛失败】responseBody=" + responseBody);
-	        }
-	        
-	        response.close();//释放资源
-	    }catch(Exception e){
-	        throw new RuntimeException("【base64图片上传至七牛失败】", e);
-	    }
-	    
-    	return img;
-	}*/
 	
 	/**
 	 * 上传图片至七牛
@@ -184,82 +209,8 @@ public class QiniuUtil {
         return "http://cdn-ly.cdnmama.com/" + fileName;
     }
 
-	public static void main(String[] args) throws InterruptedException {
-//		Auth auth = Auth.create("aXn3u9xg6r_9qNAtY2l1LHPuAgVyspSX19Q093Rx", "5SVa1yw2gHygBRni-D-x8UrsuKskOa5qFMIneDXS");
-//
-//		String accessToken = auth.uploadToken("woniutrip");
-//		BucketManager bucketMgr = new BucketManager(auth);
-//		//指定需要删除的文件，和文件所在的存储空间
-//		String bucketName = "woniutrip";
-//		String  key = "mFA1tH.png";
-//		try {
-//			bucketMgr.delete(bucketName, key);
-//		}catch (Exception e){
-//			e.printStackTrace();
-//		}
-//		System.out.println("结束了");
-
-
-		// 商品详细介绍图片。。。90704
-		String tempImgs = "";
-
-        Long start = System.currentTimeMillis();
-        List<String> successDel = new ArrayList<>();
-        List<String> failDel = new ArrayList<>();
-        String[] imgs = tempImgs.split(",");
-        for (String img : imgs) {
-            Thread.sleep(1000);
-            if(QiniuUtil.deleteImg(img)){
-                successDel.add(img);
-            } else {
-                failDel.add(img);
-            }
-        }
-        System.out.println("successDel:" + StringUtils.join(successDel, ",") + "共" + imgs.length + "条，耗时："+ (System.currentTimeMillis()-start) + "ms");
-        System.out.println("failDel:" + StringUtils.join(failDel, ","));
-
-//		CountDownLatch begin = new CountDownLatch(1);
-//		CountDownLatch end = new CountDownLatch(10);
-
-		/*Long start = System.currentTimeMillis();
-		final List<String> successDel = new ArrayList<>();
-		final List<String> failDel = new ArrayList<>();
-		String[] imgs = tempImgs.split(",");
-		for (final String img : imgs) {
-			ExecutorService executorService = Executors.newFixedThreadPool(10);
-			executorService.execute(new Runnable() {
-				@Override
-				public void run() {
-					if(QiniuUtil.deleteImg(img)){
-						successDel.add(img);
-					} else {
-						failDel.add(img);
-					}
-				}
-			});
-
-			begin.countDown();
-			try{
-				//等待
-				end.await();
-			}catch (InterruptedException e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}finally{
-				System.out.println("successDel:" + StringUtils.join(successDel, ",") + "共" + imgs.length + "条，耗时："+ (System.currentTimeMillis()-start) + "ms");
-				System.out.println("failDel:" + StringUtils.join(failDel, ","));
-			}
-			executorService.shutdown();
-		}
-*/
-
-
-	}
-
 	// 删除七牛上的图片
 	public static Boolean deleteImg(String imgUrl){
-
-
 		Boolean result = false;
 		Auth auth = Auth.create("aXn3u9xg6r_9qNAtY2l1LHPuAgVyspSX19Q093Rx", "5SVa1yw2gHygBRni-D-x8UrsuKskOa5qFMIneDXS");
 
