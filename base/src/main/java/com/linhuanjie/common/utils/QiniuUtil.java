@@ -20,6 +20,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * 七牛工具类
+ */
 public class QiniuUtil {
 
 	private final static String myAccessKey = "7RrZcSn97vJaWiu-2g40IZ8dZszuQz4-H596iqRF";
@@ -127,6 +130,7 @@ public class QiniuUtil {
 			}
 			throw new RuntimeException("图片上传至七牛失败：<br>response=" + resInfo + ",bodyString=" + bodyString);
 		}
+		// todo 这里返回的地址并不能访问。。。但是图片确实上传到七牛上了
 		return "q6x5zf8im.bkt.clouddn.com" + key;
 	}
 	
