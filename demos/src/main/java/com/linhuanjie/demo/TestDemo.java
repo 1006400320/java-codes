@@ -1,7 +1,5 @@
 package com.linhuanjie.demo;
 
-import com.google.common.hash.Funnels;
-
 /**
  * @author: linhuanjie
  * @description:
@@ -9,7 +7,7 @@ import com.google.common.hash.Funnels;
  * @email: lhuanjie@qq.com
  */
 public class TestDemo {
-    public static void main(String[] args) {
+  /*  public static void main(String[] args) {
             // create
 //            CuckooFilter<Integer> filter = new CuckooFilter.Builder<>(Funnels.integerFunnel(), 2000000).build();
 //            // insert
@@ -34,13 +32,61 @@ public class TestDemo {
 //                System.out.println("Delete Success!");
 //            }
 
-
-            Integer a = 1;
-            Integer b = 2;
-            System.out.println(a.compareTo(b));
+    }*/
 
 
-
+   /* interface Language {
+        void print(String s);
     }
 
+    static class Java implements Language{
+        @Override
+        public void print(String x) {
+            System.out.println("System.out.print(\""+ x +"\")");
+        }
+    }
+
+    static class Coder {
+        private Language lang = new Java();
+
+        public void helloWorld() {
+            lang.print("hello world");
+        }
+    }
+
+    public static void main(String[] args) {
+        Coder coder = new Coder();
+        coder.helloWorld();
+    }
+*/
+
+    interface Language {
+        void print(String s);
+    }
+
+    static class Java implements Language{
+        @Override
+        public void print(String x) {
+            System.out.println("System.out.print(\""+ x +"\")");
+        }
+    }
+
+    static class Coder {
+        private Language lang;
+
+        public void setLang(Language lang) {
+            this.lang = lang;
+        }
+
+        public void helloWorld() {
+            lang.print("hello world");
+        }
+    }
+
+    public static void main(String[] args) {
+        Coder coder = new Coder();
+        Language java = new Java();
+        coder.setLang(java);
+        coder.helloWorld();
+    }
 }
