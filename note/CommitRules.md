@@ -15,15 +15,15 @@
 - deps: 升级依赖
 
 #### emoji规范
-- :tada:	初次提交
-- :sparkles:	引入新功能
-- :bug:	修复 bug
-- :fire:	移除代码或文件
-- :zap:	提升性能
-- :pencil:	撰写文档
-- :lipstick:	更新 UI 和样式文件
-- :white_check_mark:	增加测试
-- :construction:	工作进行中
-- :wrench:	修改配置文件
+- :tada:	               初次提交
+- :sparkles:	           引入新功能
+- :bug:                    修复 bug
+- :fire:	                   移除代码或文件
+- :zap:	                   提升性能
+- :pencil:	               撰写文档
+- :lipstick:	           更新 UI 和样式文件
+- :white_check_mark:	 增加测试
+- :construction:	   工作进行中
+- :wrench:	           修改配置文件
 
 
