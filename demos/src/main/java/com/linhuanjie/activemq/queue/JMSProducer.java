@@ -12,14 +12,9 @@ import javax.jms.*;
  */
 public class JMSProducer {
 
-//    private static final String USERNAME = ActiveMQConnection.DEFAULT_USER;
-//    private static final String PASSWORD = ActiveMQConnection.DEFAULT_PASSWORD;
-    //    private static final String BROKERURL = ActiveMQConnection.DEFAULT_BROKER_URL;
     private static final String USERNAME = "lymamacnactcp";
     private static final String PASSWORD = "7c0fb8ce1ef8cbd4db55664126a26ff8";
     private static final String BROKER_URL = "tcp://49.234.41.101:61616";
-    // 发送的消息数量
-    private static final int SENDNUM = 10;
 
     public static void main(String[] args) throws Exception {
         // 1. 创建连接工厂
@@ -54,10 +49,6 @@ public class JMSProducer {
         // 9. 释放资源
         session.close();
         connection.close();
-
-
     }
-
-
 
 }
