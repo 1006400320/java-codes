@@ -1,6 +1,5 @@
 package com.linhuanjie.activemq.queue;
 
-import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
@@ -13,67 +12,52 @@ import javax.jms.*;
  */
 public class JMSProducer {
 
-    private static final String USERNAME = ActiveMQConnection.DEFAULT_USER;
-    private static final String PASSWORD = ActiveMQConnection.DEFAULT_PASSWORD;
-    private static final String BROKERURL = ActiveMQConnection.DEFAULT_BROKER_URL;
+//    private static final String USERNAME = ActiveMQConnection.DEFAULT_USER;
+//    private static final String PASSWORD = ActiveMQConnection.DEFAULT_PASSWORD;
+    //    private static final String BROKERURL = ActiveMQConnection.DEFAULT_BROKER_URL;
+    private static final String USERNAME = "lymamacnactcp";
+    private static final String PASSWORD = "7c0fb8ce1ef8cbd4db55664126a26ff8";
+    private static final String BROKER_URL = "tcp://49.234.41.101:61616";
     // 发送的消息数量
     private static final int SENDNUM = 10;
 
-    public static void main(String[] args) {
-        // 连接工厂
-        ConnectionFactory connectionFactory;
-        // 连接
-        Connection connection = null;
-        // 会话，接受或者发送消息的线程
-        Session session;
-        // 消息的目的地
-        Destination destination;
-        // 消息生产者
-        MessageProducer producer;
+    public static void main(String[] args) throws Exception {
+        // 1. 创建连接工厂
+        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKER_URL);
+        // 2. 创建连接
+        Connection connection = connectionFactory.createConnection();
 
-        connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD,BROKERURL);
-        try {
-            // 通过连接工厂创建连接
-            connection = connectionFactory.createConnection();
-            // 启动连接
-            connection.start();
-            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            // 创建消息队列
-            destination = session.createQueue("MyFirstQueue");
-            // 创建消息生产者
-            producer = session.createProducer(destination);
-            sendMessage(session,producer);
+        // 3. 打开连接
+        connection.start();
 
+        /**
+         * 4.创建session
+         * transacted : 是否开启事务
+         * acknowledgeMode: 消息确认机制
+         */
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally{
-            if(connection!=null){
-                try {
-                    connection.close();
-                } catch (JMSException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        // 5.创建目标地址（Queue:点对点消息；Topic:发布订阅消息 ）
+        Queue destination = session.createQueue("testQueue");
+
+        // 6. 创建消息生产者
+        MessageProducer producer = session.createProducer(destination);
+
+        // 7. 创建消息
+        TextMessage textMessage = session.createTextMessage("test message...");
+
+        // 8. 发送消息
+        producer.send(textMessage);
+
+        System.out.println("send message done...");
+
+        // 9. 释放资源
+        session.close();
+        connection.close();
 
 
     }
 
-    /**
-     * 发送消息
-     * @param session
-     * @param producer
-     * @throws Exception
-     */
-    public static void sendMessage(Session session,MessageProducer producer) throws Exception{
-        for(int i=1;i<=JMSProducer.SENDNUM;i++) {
-            TextMessage message = session.createTextMessage("MyFirstQueue-ActiveMQ-send..."+i);
-            System.out.println("send:"+"MyFirstQueue-ActiveMQ-send..."+i);
-            producer.send(message);
-        }
-
-    }
 
 
 }
