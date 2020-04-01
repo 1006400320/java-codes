@@ -1,0 +1,34 @@
+server:
+  port: 9001 # 端口
+spring:
+  application:
+    name: demo # 服务名称
+# springboot 与 activemq 整合配置
+  activemq:
+    broker-url: tcp://49.234.41.101:61616 #连接地址
+    user: lymamacnactcp
+    password: 7c0fb8ce1ef8cbd4db55664126a26ff8
+
+# 指定发送模式 （点对点：false，发布订阅：true）
+  jms:
+    pub-sub-domain: false
+
+# 数据库配置
+#  datasource:
+#    url: jdbc:mysql://49.234.41.101:33306/mall?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+#    driver-class-name: com.mysql.jdbc.Driver
+#    username: root
+#    password: 1234Andy
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    initial-size: 1
+#    minIdle: 3
+#    maxActive: 20
+#    maxWait: 60000
+#    filters: stat,wall,slf4j
+
+
+
+# 自定义变量
+activemq:
+  queue-name: queue_name
+  topic-name: topic_name

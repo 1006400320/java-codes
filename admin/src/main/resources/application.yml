@@ -22,7 +22,7 @@ spring:
     maxWait: 60000
     filters: stat,wall,slf4j
   application:
-    name: admin
+    name: admin # 服务名称
   jackson:
     default-property-inclusion: non_null
     date-format: yyyy-MM-dd HH:mm:ss
