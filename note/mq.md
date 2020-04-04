@@ -208,11 +208,67 @@ ActionMQ的事务主要偏向在生产者的应用。
    3. 测试发送方法 Demo --> [SpringBootProducer.java: Lines 178-184](../demos/src/test/java/com/linhuanjie/demos/activemq/SpringBootProducer.java#L178-L184)
 
 ##  消费者事务
-
+SpringBoot 默认会开启消费者事务
 消费完信息，执行 `session.commit();` Demo --> [ActiveMQListener.java: Lines 10-79](../demos/src/main/java/com/linhuanjie/activemq/ActiveMQListener.java#L10-L79)
 
+# 消息确认机制
+JMS消息只有在被确认之后，才认为已经被成功地消费了。  
+消息的确认通常包含三个阶段:
+1. 消费者接收消息
+2. 消费者处理消息
+3. 消息被确认
 
+**如果开启了事务，则事务被提交时，就会自动确认**
+没开启事务时，消息何时被确认，则取决于创建会话时的**应答模式** （acknowledgement mode）
 
+值 | 描述
+:-: | :-:
+Session.AUTO_ACKNOWLEDGE | 当客户成功的从receive方法返回的时候，或者从MessageListener.onMessage方法成功返回的时候，会话自动确认客户收到的消息
+Session.CLIENT_ACKNOWLEDGE | 客户通过消息的acknowledge方法确认消息。需要注意的是，在这种模式中，确认是在会话层上进行：确认一个被消费的消息将自动确认所有已被会话消费的消息。例如，如果一个消息消费者消费了10个消息，然后确认第5个消息，那么所有10个消息都被确认。（SpringBoot整合 ActiveMQ 时，Session.CLIENT_ACKNOWLEDGE会失效，应填4）
+Session.DUPS_ACKNOWLEDGE | 该选择只是会话迟钝确认消息的提交。如果JMS provider失败，那么可能会导致一些重复的消息。如果是重复的消息，那么JMS provider必须把消息头的JMSRedelivered字段设置为true
+
+## SpringBoot环境开启 client_acknowledge 手动确认
+配置类：
+```java
+@Configuration
+public class ActiveMqConfig {
+    @Bean(name = "jmsQueryListenerFactory")
+    public DefaultJmsListenerContainerFactory
+    jmsListenerContainerFactory(ConnectionFactory connectionFactory) {
+        DefaultJmsListenerContainerFactory factory = new
+                DefaultJmsListenerContainerFactory();
+        factory.setConnectionFactory(connectionFactory);
+        factory.setSessionTransacted(false); // 不开启事务操作
+        factory.setSessionAcknowledgeMode(4); //手动确认
+        return factory;
+    }
+}
+```
+消费者：
+```java
+/**
+ * 消息消费者
+ */
+@Component
+public class Consumer {
+    /**
+     * 接收消息的方法
+     */
+    @JmsListener(destination = "${activemq.name}", containerFactory = "jmsQueryListenerFactory")
+    public void receiveMessage(TextMessage textMessage) {
+        try {
+            System.out.println("消息内容：" + textMessage.getText() + ",是否重发："
+                    + textMessage.getJMSRedelivered());
+            textMessage.acknowledge(); // 确认收到消息，一旦消息确认，消息不会重新发送
+            throw new RuntimeException("test");
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+# 消息投递方式
 
 
 > 参考：http://yun.itheima.com/course/636.html

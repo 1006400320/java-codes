@@ -16,12 +16,15 @@ import java.io.FileOutputStream;
 @Component
 public class ActiveMQListener {
 
-    @JmsListener(destination = "${activemq.queue-name}")
+    @JmsListener(destination = "${activemq.queue-name}", containerFactory = "jmsQueryListenerFactory")
     public void receiveMessage(Message message, Session session) throws JMSException {
         try {
             if (message instanceof TextMessage) {
                 TextMessage textMessage = (TextMessage) message;
                 System.out.println("textMessage.getText() = " + textMessage.getText());
+
+                // 手动应答
+//                textMessage.acknowledge();
             }
 
             if (message instanceof ObjectMessage) {
