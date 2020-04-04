@@ -80,6 +80,7 @@ Producer（消息生产者）：消息生产者由Session创建，并用于将�
 Consumer（消息消费者）：消息消费者由Session创建，用于接收被发送到Destination的消息。  
 两种类型：**QueueReceiver**和**TopicSubscriber**。  
 可分别通过session的**createReceiver**(Queue)或**createSubscriber**(Topic)来创建。  
+可分别通过session的**createReceiver**(Queue)或**createSubscriber**(Topic)来创建。  
 当然，也可以session的**creatDurableSubscriber**方法来创建**持久化**的订阅者。
 
 
@@ -130,7 +131,8 @@ xxxMessage | 类型
 MapMessage | 一套名称-值对
 StreamMessage | Java原始值的数据流
 
-Demo --> [SpringBootProducer.java: Lines 18-135](../demos/src/test/java/com/linhuanjie/demos/activemq/SpringBootProducer.java#L18-L135)
+生成者Demo --> [SpringBootProducer.java: Lines 18-135](../demos/src/test/java/com/linhuanjie/demos/activemq/SpringBootProducer.java#L18-L135)  
+监听者Demo --> [SpringBootListener.java: Lines 11-67](../demos/src/main/java/com/linhuanjie/activemq/SpringBootListener.java#L11-L67)
 
 ###  3. 消息属性
 我们可以给消息设置自定义属性，这些属性主要是提供给应用程序的。  
@@ -190,12 +192,22 @@ spring:
 
 ### 4. 重启activemq
 
-# 消息事务 TODO
+# 消息事务
 
+消息事务，是保证消息传递**原子性**的一个重要特征，和JDBC的事务特征类似。
 
+一个事务性发送，其中一组消息要么能够全部保证到达服务器，要么都不到达服务器。  
+生产者、消费者与消息服务器之间都支持事务性；  
+ActionMQ的事务主要偏向在生产者的应用。
 
+##  生产者事务
+1. 原生JMS事务 Demo --> [SpringBootProducer.java: Lines 138-176](../demos/src/test/java/com/linhuanjie/demos/activemq/SpringBootProducer.java#L138-L176)
+2. Spring的JmsTransactionManager功能
+   1. 添加JMS事务管理器  Demo --> [ActiveMQConfig.java: Lines 10-28](../demos/src/main/java/com/linhuanjie/activemq/ActiveMQConfig.java#L10-L28)
+   2. 生产者业务类 Demo --> [MessageService.java: Lines 24-32](../demos/src/main/java/com/linhuanjie/activemq/MessageService.java#L24-L32)
+   3. 测试发送方法 Demo --> [SpringBootProducer.java: Lines 178-184](../demos/src/test/java/com/linhuanjie/demos/activemq/SpringBootProducer.java#L178-L184)
 
-
+##  消费者事务
 
 
 

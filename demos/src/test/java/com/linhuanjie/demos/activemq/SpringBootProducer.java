@@ -1,7 +1,8 @@
 package com.linhuanjie.demos.activemq;
 
 import com.linhuanjie.DemoApplication;
-import com.linhuanjie.activemq.MQDTO;
+import com.linhuanjie.activemq.MessageService;
+import com.linhuanjie.activemq.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class SpringBootProducer {
 
     @Autowired
     private JmsTemplate jmsTemplate;
+
+    @Autowired
+    private MessageService messageService;
 
     @Test
     public void ptpSender() {
@@ -74,7 +78,7 @@ public class SpringBootProducer {
     @Test
     public void objectMessage() {
         jmsTemplate.send(name, session -> {
-            MQDTO user = new MQDTO("小明", "123456");
+            User user = new User("小明", "123456");
             ObjectMessage objectMessage = session.createObjectMessage(user);
             return objectMessage;
 
@@ -91,7 +95,7 @@ public class SpringBootProducer {
             BytesMessage bytesMessage = session.createBytesMessage();
 
             //1.读取文件
-            File file = new File("d:/activemq/spring.jpg");
+            File file = new File("h:/tmp/c0aaa827a2db4df4738986b2832c1188.jpg");
 
             //2.构建文件输入流
             try {
@@ -129,6 +133,54 @@ public class SpringBootProducer {
             return streamMessage;
         });
 
+    }
+
+    /**
+     * 发送 事务消息 (方式一：原生JMS事务)
+     */
+    @Test
+    public void sendMessageTx() {
+
+        // 创建连接工厂
+        ConnectionFactory connectionFactory = jmsTemplate.getConnectionFactory();
+        Session session = null;
+        try {
+            // 创建连接
+            Connection connection = connectionFactory.createConnection();
+            // 开启事务
+            session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
+            // 不开启事务
+//            session = connection.createSession();
+
+            MessageProducer producer = session.createProducer(session.createQueue(name));
+            for (int i = 0; i < 10; i++) {
+                // 中途报错，没执行 session.commit()， 则前面发送的消息回滚
+                if (i == 4) {
+                    int a = 1 / 0;
+                }
+                TextMessage textMessage = session.createTextMessage("send tx message.." + i);
+                producer.send(textMessage);
+            }
+
+            //注意：一旦开启事务发送，那么就必须使用commit方法进行事务提交，否则消息无法到达MQ服务器
+            session.commit();
+
+        } catch (JMSException e) {
+            try {
+                session.rollback();
+            } catch (JMSException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 发送 事务消息 (方式二：Spring的JmsTransactionManager功能 @Transaction)
+     */
+    @Test
+    public void sendMessageTxPlus() {
+        messageService.sendMessage();
     }
 
 

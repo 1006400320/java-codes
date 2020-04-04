@@ -28,20 +28,20 @@ public class GoodsController {
         resultMap.put("msg", "");
         resultMap.put("count", 1000);
 
-        List goodsList = new ArrayList<>();
+        List<GoodsVO> goodsList = new ArrayList<>();
         GoodsVO vo = null;
         for (int i = 0; i < 30; i++) {
             vo = new GoodsVO();
-            vo.setId(1000 + i);
-            vo.setUsername("user" + i);
-            vo.setSex("女");
-            vo.setCity("广州" + i);
-            vo.setSign("签名" + i);
-            vo.setExperience("255");
-            vo.setLogins("24");
-            vo.setWealth("6298078");
-            vo.setClassify("作家");
-            vo.setScore("99");
+//            vo.setId(1000 + i);
+//            vo.setUsername("user" + i);
+//            vo.setSex("女");
+//            vo.setCity("广州" + i);
+//            vo.setSign("签名" + i);
+//            vo.setExperience("255");
+//            vo.setLogins("24");
+//            vo.setWealth("6298078");
+//            vo.setClassify("作家");
+//            vo.setScore("99");
 
             goodsList.add(vo);
         }

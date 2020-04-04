@@ -11,7 +11,7 @@
 - @SneakyThrows： 等同于try/catch 捕获异常
 - @NonNull： 如果给参数加个这个注解 参数为null会抛出空指针异常
 - @Value： 注解和@Data类似，区别在于它会把所有成员变量默认定义为private final修饰，并且不会生成set方法。
-
+- @ToString(exclude = {"id","name"})： 自定义toString方法，排除某些字段
 
 > [原文链接](https://blog.csdn.net/u011308294/java/article/details/78627560)  
 > [官方文档](https://projectlombok.org/features/all)  
