@@ -97,7 +97,7 @@ allprojects {
         compile group: 'cn.hutool', name: 'hutool-all', version: '4.5.16'
         compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '[7.0.0, 7.0.99]'
         compile group: 'com.google.zxing', name: 'core', version: '3.3.3'
-
+        compile 'org.springframework.boot:spring-boot-starter-activemq'
     }
 
     sourceSets {

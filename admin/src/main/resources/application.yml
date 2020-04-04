@@ -37,6 +37,17 @@ spring:
     host: 127.0.0.1
     port: 6379
 
+  # springboot 与 activemq 整合配置
+  activemq:
+    broker-url: tcp://49.234.41.101:61616 #连接地址
+    user: lymamacnactcp
+    password: 7c0fb8ce1ef8cbd4db55664126a26ff8
+    packages:
+      trust-all: true  # 监听ObjectMessage，反序列化时需配置为 true
+  # 指定发送模式 （点对点：false，发布订阅：true）
+  jms:
+    pub-sub-domain: false
+
 logging:
   file: ./logs/log.log
   level:

@@ -1,6 +1,5 @@
 dependencies {
     compile project(':base')
-    compile 'org.springframework.boot:spring-boot-starter-activemq'
     compile 'com.qiniu:qiniu-java-sdk:7.2.27'
     compile group: 'com.alibaba', name: 'transmittable-thread-local', version: '2.10.0'
 }

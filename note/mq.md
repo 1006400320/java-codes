@@ -132,7 +132,7 @@ MapMessage | 一套名称-值对
 StreamMessage | Java原始值的数据流
 
 生成者Demo --> [SpringBootProducer.java: Lines 18-135](../demos/src/test/java/com/linhuanjie/demos/activemq/SpringBootProducer.java#L18-L135)  
-监听者Demo --> [SpringBootListener.java: Lines 11-67](../demos/src/main/java/com/linhuanjie/activemq/SpringBootListener.java#L11-L67)
+监听者Demo --> [SpringBootListener.java: Lines 11-67](../demos/src/main/java/com/linhuanjie/activemq/ActiveMQListener.java#L11-L67)
 
 ###  3. 消息属性
 我们可以给消息设置自定义属性，这些属性主要是提供给应用程序的。  
@@ -209,6 +209,7 @@ ActionMQ的事务主要偏向在生产者的应用。
 
 ##  消费者事务
 
+消费完信息，执行 `session.commit();` Demo --> [ActiveMQListener.java: Lines 10-79](../demos/src/main/java/com/linhuanjie/activemq/ActiveMQListener.java#L10-L79)
 
 
 
