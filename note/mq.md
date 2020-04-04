@@ -269,6 +269,207 @@ public class Consumer {
 ```
 
 # 消息投递方式
+## 异步投递
+
+###  1、异步投递 vs 同步投递同步发送：
+
+消息生产者使用持久（Persistent）传递模式发送消息的时候，Producer.send() 方法会被阻塞，直到broker 发送一个确认消息给生产者(ProducerAck)，这个确认消息暗示broker已经成功接收到消息并把消息保存到二级存储中。
+- 异步发送:  
+如果应用程序能够容忍一些消息的丢失，那么可以使用异步发送。异步发送不会在受到broker的确认之前一直阻塞 Producer.send方法。
+想要使用异步，在brokerURL中增加 `jms.alwaysSyncSend=false&jms.useAsyncSend=true`属性
+> 1）如果设置了alwaysSyncSend=true系统将会忽略useAsyncSend设置的值都采用同步  
+> 2）当alwaysSyncSend=false时，“NON_PERSISTENT”(非持久化)、事务中的消息将使用“异步发送”  
+> 3）当alwaysSyncSend=false时，如果指定了useAsyncSend=true，“PERSISTENT”类型的消息使用异步发
+        送。如果useAsyncSend=false，“PERSISTENT”类型的消息使用同步发送。
+
+总结： 默认情况(`alwaysSyncSend=false,useAsyncSend=false`)，非持久化消息、事务内的消息均采用
+异步发送；对于持久化消息采用同步发送！！！
+
+### 2、配置异步投递的方式
+```java
+@Configuration
+public class ActiveConfig {
+    /**
+     * 配置用于异步发送的非持久化JmsTemplate
+     */
+    @Autowired
+    @Bean
+    public JmsTemplate asynJmsTemplate(PooledConnectionFactory pooledConnectionFactory) {
+        JmsTemplate template = new JmsTemplate(pooledConnectionFactory);
+        template.setExplicitQosEnabled(true);
+        template.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+        return template;
+    }
+
+    /**
+     * 配置用于同步发送的持久化JmsTemplate
+     */
+    @Autowired
+    @Bean
+    public JmsTemplate synJmsTemplate(PooledConnectionFactory
+                                              pooledConnectionFactory) {
+        JmsTemplate template = new JmsTemplate(pooledConnectionFactory);
+        return template;
+    }
+}
+```
+
+### 3、异步投递如何确认发送成功？
+
+异步投递丢失消息的场景是：生产者设置 UseAsyncSend=true，使用 producer.send（msg）持续发送消息。  
+由于消息不阻塞，生产者会认为所有 send 的消息均被成功发送至 MQ。如果 MQ 突然宕机，此时生产者端内存中尚未被发送至 MQ 的消息都会丢失。  
+这时，可以给异步投递方法接收回调，以确认消息是否发送成功
+```java
+    /**
+     * 异步投递，回调函数
+     *
+     * @return
+     */
+    @RequestMapping("/send")
+    @ResponseBody
+    public String sendQueue() {
+        Connection connection = null;
+        Session session = null;
+        ActiveMQMessageProducer producer = null;
+        // 获取连接工厂
+        ConnectionFactory connectionFactory =
+                jmsMessagingTemplate.getConnectionFactory();
+        try {
+            connection = connectionFactory.createConnection();
+            session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
+            Queue queue = session.createQueue(name);
+            int count = 10;
+            producer = session.createProducer(queue);
+            producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+            long start = System.currentTimeMillis();
+            for (int i = 0; i < count; i++) {
+                //创建需要发送的消息
+                TextMessage textMessage = session.createTextMessage("Hello");
+                //设置消息唯一ID
+                String msgid = UUID.randomUUID().toString();
+                textMessage.setJMSMessageID(msgid);
+                producer.send(textMessage, new AsyncCallback() {
+                    @Override
+                    public void onSuccess() {
+                        // 使用msgid标识来进行消息发送成功的处理
+                        System.out.println(msgid + " 消息发送成功");
+                    }
+
+                    @Override
+                    public void onException(JMSException exception) {
+                        // 使用msgid表示进行消息发送失败的处理
+                        System.out.println(msgid + " 消息发送失败");
+                        exception.printStackTrace();
+                    }
+                });
+            }
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "ok";
+    }
+```
+
+## 延迟投递
+
+生产者提供两个发送消息的方法，一个是即时发送消息，一个是延时发送消息。
+###  1、修改activemq.xml
+添加 `broker` 标签添加 `schedulerSupport="true"`
+```
+<broker xmlns="http://activemq.apache.org/schema/core"  ...  schedulerSupport="true" >
+    xxx
+</broker>
+```
+###  2、在代码中设置延迟时长
+```java
+    /**
+     * 延时投递
+     * @return
+     */
+    @Test
+    public String sendQueue() {
+        Connection connection = null;
+        Session session = null;
+        ActiveMQMessageProducer producer = null;
+        // 获取连接工厂
+        ConnectionFactory connectionFactory =
+                jmsMessagingTemplate.getConnectionFactory();
+        try {
+            connection = connectionFactory.createConnection();
+            session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
+            Queue queue = session.createQueue(name);
+            int count = 10;
+            producer = (ActiveMQMessageProducer) session.createProducer(queue);
+            producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+            //创建需要发送的消息
+            TextMessage textMessage = session.createTextMessage("Hello");
+            //设置延时时长(延时10秒)
+            textMessage.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY,
+                    10000);
+            producer.send(textMessage);
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "ok";
+    }
+```
+
+## 定时投递
+
+###  1、启动类添加定时注解
+```java
+    @SpringBootApplication
+    @EnableScheduling // 开启定时功能
+    public class MyActiveMQApplication {
+        public static void main(String[] args) {
+            SpringApplication.run(MyActiveMQApplication.class,args);
+        }
+    }
+```
+
+### 2、在生产者添加@Scheduled设置定时
+
+```java
+    /**
+     *消息生产者
+     */
+    @Component
+    public class ProducerController3 {
+        @Value("${activemq.name}")
+        private String name;
+        @Autowired
+        private JmsMessagingTemplate jmsMessagingTemplate;
+
+        /**
+         * 延时投递
+         */
+        //每隔3秒定投
+        @Scheduled(fixedDelay = 3000)
+        public void sendQueue() {
+            jmsMessagingTemplate.convertAndSend(name, "消息ID:" +
+                    UUID.randomUUID().toString().substring(0, 6));
+            System.out.println("消息发送成功...");
+        }
+    }
+```
+
+# 死信队列
+`DLQ-Dead Letter Queue`，死信队列，用来保存处理失败或者过期的消息  
+出现以下情况时，消息会被重发：
+- 事务回滚（A transacted session is used and rollback() is called.）
+- 事务提交前，会话关闭（A transacted session is closed before commit is called.）
+- 手动应答模式下，没有应答时（A session is using CLIENT_ACKNOWLEDGE and Session.recover() is called.）
+
+当一个消息被重发超过6(缺省为6次)次数时，会给broker发送一个"Poison ack"，这个消息被认为是`a poison pill`，这时broker会将这个消息发送到死信队列，以便后续处理。  
+注意两点：
+1. 缺省持久消息过期，会被送到DLQ，**非持久消息不会送到DLQ**
+2. 缺省的死信队列是ActiveMQ.DLQ，如果没有特别指定，死信都会被发送到这个队列。
+
+可以通过配置文件(activemq.xml)来调整死信发送策略。
+Demo --> [ActiveMQConfig.java: Lines 23-43](../demos/src/main/java/com/linhuanjie/activemq/ActiveMQConfig.java#L23-L43)
+
 
 
 > 参考：http://yun.itheima.com/course/636.html

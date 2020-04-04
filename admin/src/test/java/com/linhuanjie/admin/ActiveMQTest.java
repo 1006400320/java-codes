@@ -21,7 +21,7 @@ public class ActiveMQTest {
     private JmsMessagingTemplate jmsMessagingTemplate;
 
     @Test
-    public void testSendMessage(){
+    public void testSendMessage() {
         jmsMessagingTemplate.convertAndSend("queue_name", "consumer_tx");
     }
 
