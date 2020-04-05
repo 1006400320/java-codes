@@ -460,7 +460,7 @@ public class ActiveConfig {
 出现以下情况时，消息会被重发：
 - 事务回滚（A transacted session is used and rollback() is called.）
 - 事务提交前，会话关闭（A transacted session is closed before commit is called.）
-- 手动应答模式下，没有应答时（A session is using CLIENT_ACKNOWLEDGE and Session.recover() is called.）
+- 手动应答模式下，调用Session.recover() （A session is using CLIENT_ACKNOWLEDGE and Session.recover() is called.）
 
 当一个消息被重发超过6(缺省为6次)次数时，会给broker发送一个"Poison ack"，这个消息被认为是`a poison pill`，这时broker会将这个消息发送到死信队列，以便后续处理。  
 注意两点：
@@ -470,6 +470,23 @@ public class ActiveConfig {
 可以通过配置文件(activemq.xml)来调整死信发送策略。
 Demo --> [ActiveMQConfig.java: Lines 23-43](../demos/src/main/java/com/linhuanjie/activemq/ActiveMQConfig.java#L23-L43)
 
+# ActiveMQ企业面试经典问题
+## ActiveMQ 宕机了怎么办？
+可以使用集群，来保证高可用
+ActiveMQ 主从集群方案：Zookeeper集群 + Replicated LevelDB + ActiveMQ 集群
+
+## 如何防止消费方消息重复消费 ？（消费方幂等问题）
+解决思路：
+1. 如果消费方是做数据库操作，那么可以把消息的ID作为表的唯一主键（或唯一索引），这样重复消费消息是，就会发生主键冲突，避免产生脏数据。
+2. 如果消费方不是做数据库操作，那么可以借助第三方应用，如Redis来记录消费记录。消费完，将消息的ID作为key存入redis，每次消费前，先查询redis有没有该消息的消费记录。
+
+## 如何防止消息丢失？
+1. 在消息生产者和消费者使用事务
+2. 在消费方采用手动消息确认（ACK）
+3. 消息持久化，例如JDBC或日志
+
+## 什么是死信队列？
+[死信队列](#死信队列)
 
 
 > 参考：http://yun.itheima.com/course/636.html
