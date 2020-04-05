@@ -1,14 +1,19 @@
-### 记录一些java笔记 or Demo
+### 记录一些java笔记
 
 
-
-Hello World!
+明日复明日，明日何其多
 
 ### todo
-- [ ]  注解 
-- [ ] RestTemplate
+- [ ] [markdown语法](note/Markdown.md)
+- [x]  [注解](note/annotation.md#注解)
+- [x] [RestTemplate](demos/src/main/java/com/linhuanjie/spring/RestTemplateDemo.java#L7-L26)
+- [x] [mq](note/mq.md#mqmessage-queue应用场景)
+- [ ] 了解下  SimpleCache
+- [ ] springcloud
+- [ ] es
 
 
-[如何为开发项目编写规范的README文件（windows），此文详解](https://www.cnblogs.com/wj-1314/p/8547763.html)
+
+
 
 
