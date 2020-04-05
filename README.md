@@ -1,7 +1,6 @@
 ### 记录一些java笔记
 
-
-明日复明日，明日何其多
+> 明日复明日，明日何其多
 
 ### todo
 - [ ] [markdown语法](note/Markdown.md)
