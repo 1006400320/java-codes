@@ -8,7 +8,8 @@
 - [ ]  [常用Spring注解](demos/src/main/java/com/linhuanjie/spring/SpringAnnotation.md)
 - [x] [RestTemplate](demos/src/main/java/com/linhuanjie/spring/RestTemplateDemo.java#L7-L26)
 - [x] [mq](note/ActiveMQ.md#mqmessage-queue应用场景)
-- [ ] Guava Cache
+- [ ] [Guava](demos/src/main/java/com/linhuanjie/guava/README.md)
+  - [ ] Cache
 - [ ] 了解下  SimpleCache
 - [ ] springcloud
 - [ ] es
