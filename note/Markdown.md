@@ -64,8 +64,12 @@ name | age | sex | address | phone
 李四 | 81| 女 | 冰岛 | 112 
 
 #### 流程图、时序图、甘特图
+##### mermaid 画图
+[mermaid官网文档](https://mermaid-js.github.io/mermaid/#/flowchart)  
+<span style="color:red">tips: vscode可以装插件 `Markdown Preview Mermaid Support` 方便查看 `mermaid` 画的图</span>
 ##### 1. 横向流程图源码格式：
 ```mermaid
+%% graph LR 横向
 graph LR
 A[方形] -->B(圆角)
     B --> C{条件a}
@@ -77,13 +81,13 @@ A[方形] -->B(圆角)
 ##### 2. 竖向流程图源码格式：
 
 ```mermaid
+%% graph TD 竖向
 graph TD
 A[方形] --> B(圆角)
     B --> C{条件a}
     C --> |a=1| D[结果1]
     C --> |a=2| E[结果2]
     F[竖向流程图]
-    
 ```
 ##### 3. 标准流程图源码格式：
 
