@@ -49,10 +49,47 @@
 - **newSingleThreadExecutor** 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。
 
 ### ThreadPoolExecutor 创建线程池
-ThreadPoolExecutor executorService = new ThreadPoolExecutor(coreSize, poolSize, 0L,
-                TimeUnit.MICROSECONDS, new LinkedBlockingQueue<>(200));
+> 原文：[线程池ThreadPoolExecutor源码分析](https://www.yuque.com/docs/share/8a3b5182-7330-459d-805f-e32b7f009a14?#)
+```java
+ThreadPoolExecutor executorService = new ThreadPoolExecutor(coreSize, poolSize, 0L,TimeUnit.MICROSECONDS, new LinkedBlockingQueue<>(200));
+```
+####  线程池内定义了五种运行状态，
+ 分别是：
+- RUNNING：处于RUNNING状态的线程池能接受新提交的任务，并且也能处理阻塞队列中的任务。
+- SHUTDOWN：处于SHUTDOWN状态的线程池，不再接受新提交的任务，但却可以继续处理阻塞队列中已保存的任务。
+- STOP：处于STOP状态，线程池不能接受新任务，也不处理队列中的任务，正在处理任务的线程会被中断。
+- TIDYING：如果所有的任务都已终止，workerCount 为0，线程池进入该状态后会调用terminated（）方法进入TERMINATED状态。
+- TERMINATED：TIDYING状态下，线程池执行完terminated钩子方法后进入此状态，此时线程池已完全终止。
+
+#### ThreadPoolExecutor 构造方法:
+- corePoolSize：核心线程数量，当有新任务在execute() 方法提交时，会根据以下进行判断：
+  1. 如果线程池内线程数量少于 corePoolSize ，则创建新建线程处理提交的任务，即使是线程池内其他线程时空闲状态；
+  2. 如果线程池内线程数量大于等于 corePoolSize 且小于 maximumPoolSize, 线程池不会再继续创建新的线程，只有当workQueue满时才创建新的线程去处理任务；
+  3. 如果设置的corePoolSize 和 maximumPoolSize相同，则创建的线程池的大小是固定的，这时如果有新任务提交，若workQueue未满，则将请求放入workQueue中，等待有空闲的线程去从workQueue中取任务并处理；
+  4. 如果workQueue已经满了，则线程池创建新的线程处理提交的任务，直至运行的线程数量大于等于maximumPoolSize，则通过handler所指定的策略来处理任务；
+- maximumPoolSize：线程池中允许存活的最大线程数量。
+- keepAliveTime：线程池维护线程所允许的空闲时间。当线程池中存活的线程数量大于 corePoolSize 时，此时如果没有新任务提交，线程池内的线程会等待，直至等待时间超过keepAliveTime，线程池会销毁大于corePoolSize 数量的线程。
+- unit： 时间单位
+- workQueue：等待执行的任务所存放的阻塞队列。可选用多种阻塞队列：
+    > 线程池的线程数大于或等于基本大小(poolSize >= corePoolSize) 且任务队列未满时，  
+    > 就将新提交的任务提交到阻塞队列排队，等候处理workQueue.offer(command)；
+   - LinkedBlockingQueue：基于链表的阻塞队列。一般选用此队列作为无界队列，默认情况下，队列容量是 Integer 的最大值。在不指定队列容量的情况下，线程池中能够创建的最大线程数就是corePoolSize。当线程池中所有的线程都是RUNNING 状态时，新提交的任务会放入等待队列中。
+    - ArrayBlockingQueue：基于数组的阻塞队列。初始化该队列时必须传入初始容量，使用该队列可以使用线程池的最大线程数量maximumPoolSize。
+    - SynchronousQueue：
+    - PriorityBlockingQueue：
+- threadFactory：默认使用Executors.defaultThreadFactory() 方法创建新线程。该方法创建线程时，新线程具有相同的 NORM_PRIOP == 5 优先级并且该线程非守护线程，同时也设置了线程的名称。
+- handler：线程池的拒绝策略。如果阻塞队列满了并且没有空闲的线程，此时继续提交任务，线程池就需要采取以下4种策略处理该任务。
+    - AbortPolicy：默认策略，直接抛出异常；
+    - CallerRunsPolicy：用调用者所在的线程来执行任务；
+    - DiscardOldestPolicy：丢弃阻塞队列中靠前的任务，并执行当前任务；
+    - DiscardPolicy：直接丢弃任务；
+    - 我们也可以实现自己的拒绝策略，例如记录日志等等，实现RejectedExecutionHandler 接口即可。
+- allowCoreThreadTimeout：核心线程超时控制标志位，用于标识 keepAliveTime 是否作用于核心线程上。
+
+
 
 #### execute和submit的区别
+
 
 参考文章： [内核级线程（KLT）和用户级线程（ULT）](https://blog.csdn.net/vinter_he/article/details/79788743)
 
