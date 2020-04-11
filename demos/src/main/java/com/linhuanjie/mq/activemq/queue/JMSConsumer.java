@@ -1,4 +1,4 @@
-package com.linhuanjie.activemq.queue;
+package com.linhuanjie.mq.activemq.queue;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 

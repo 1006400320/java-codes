@@ -1,4 +1,4 @@
-package com.linhuanjie.activemq;
+package com.linhuanjie.mq.activemq;
 
 import java.io.Serializable;
 

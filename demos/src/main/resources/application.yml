@@ -33,3 +33,5 @@ spring:
 activemq:
   queue-name: queue_name
   topic-name: topic_name
+rocketmq:
+  namesrv-addr: 192.168.88.128:9876;192.168.88.200:9876

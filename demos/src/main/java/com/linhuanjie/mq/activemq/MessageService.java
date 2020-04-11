@@ -1,4 +1,4 @@
-package com.linhuanjie.activemq;
+package com.linhuanjie.mq.activemq;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

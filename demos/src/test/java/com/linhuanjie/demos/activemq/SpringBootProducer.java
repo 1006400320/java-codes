@@ -1,8 +1,8 @@
 package com.linhuanjie.demos.activemq;
 
 import com.linhuanjie.DemoApplication;
-import com.linhuanjie.activemq.MessageService;
-import com.linhuanjie.activemq.User;
+import com.linhuanjie.mq.activemq.MessageService;
+import com.linhuanjie.mq.activemq.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

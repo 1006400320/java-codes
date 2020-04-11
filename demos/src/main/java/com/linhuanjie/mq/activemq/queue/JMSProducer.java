@@ -1,4 +1,4 @@
-package com.linhuanjie.activemq.topic;
+package com.linhuanjie.mq.activemq.queue;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
@@ -6,7 +6,7 @@ import javax.jms.*;
 
 /**
  * @author: linhuanjie
- * @description: ActiveMQ发布者（发布者-订阅者）
+ * @description: ActiveMQ生产者（一对一）
  * @createTime : 2019-05-19 10:50
  * @email: lhuanjie@qq.com
  */
@@ -33,13 +33,13 @@ public class JMSProducer {
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
         // 5.创建目标地址（Queue:点对点消息；Topic:发布订阅消息 ）
-        Topic topic = session.createTopic("testTopic");
+        Queue destination = session.createQueue("testQueue");
 
         // 6. 创建消息生产者
-        MessageProducer producer = session.createProducer(topic);
+        MessageProducer producer = session.createProducer(destination);
 
         // 7. 创建消息
-        TextMessage textMessage = session.createTextMessage("test topic message...");
+        TextMessage textMessage = session.createTextMessage("test message...");
 
         // 8. 发送消息
         producer.send(textMessage);
