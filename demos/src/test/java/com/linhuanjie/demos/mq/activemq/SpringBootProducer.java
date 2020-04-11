@@ -1,4 +1,4 @@
-package com.linhuanjie.demos.activemq;
+package com.linhuanjie.demos.mq.activemq;
 
 import com.linhuanjie.DemoApplication;
 import com.linhuanjie.mq.activemq.MessageService;

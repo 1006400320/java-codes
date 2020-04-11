@@ -131,8 +131,8 @@ xxxMessage | 类型
 MapMessage | 一套名称-值对
 StreamMessage | Java原始值的数据流
 
-生成者Demo --> [SpringBootProducer.java: Lines 18-135](../demos/src/test/java/com/linhuanjie/demos/activemq/SpringBootProducer.java#L18-L135)  
-监听者Demo --> [SpringBootListener.java: Lines 11-67](../demos/src/main/java/com/linhuanjie/activemq/ActiveMQListener.java#L11-L67)
+生成者Demo --> [SpringBootProducer.java: Lines 18-135](../../demos/src/test/java/com/linhuanjie/demos/mq/activemq/SpringBootProducer.java#L18-L135)  
+监听者Demo --> [ActiveMQListener.java: Lines 11-67](../../demos/src/main/java/com/linhuanjie/mq/activemq/ActiveMQListener.java#L11-L67)
 
 ###  3. 消息属性
 我们可以给消息设置自定义属性，这些属性主要是提供给应用程序的。  
@@ -141,7 +141,7 @@ JMS服务提供者可以选择性的提供部分标准属性。
 ```java
 message.setStringProperty("Property",Property); //自定义属性
 ```
-Demo --> [SpringBootProducer.java: Line 127](../demos/src/test/java/com/linhuanjie/demos/activemq/SpringBootProducer.java#L127)
+Demo --> [SpringBootProducer.java: Line 127](../../demos/src/test/java/com/linhuanjie/demos/mq/activemq/SpringBootProducer.java#L127)
 
 # 消息持久化
 
@@ -201,15 +201,15 @@ spring:
 ActionMQ的事务主要偏向在生产者的应用。
 
 ##  生产者事务
-1. 原生JMS事务 Demo --> [SpringBootProducer.java: Lines 138-176](../demos/src/test/java/com/linhuanjie/demos/activemq/SpringBootProducer.java#L138-L176)
+1. 原生JMS事务 Demo --> [SpringBootProducer.java: Lines 138-176](../../demos/src/test/java/com/linhuanjie/demos/mq/activemq/SpringBootProducer.java#L138-L176)
 2. Spring的JmsTransactionManager功能
-   1. 添加JMS事务管理器  Demo --> [ActiveMQConfig.java: Lines 10-28](../demos/src/main/java/com/linhuanjie/activemq/ActiveMQConfig.java#L10-L28)
-   2. 生产者业务类 Demo --> [MessageService.java: Lines 24-32](../demos/src/main/java/com/linhuanjie/activemq/MessageService.java#L24-L32)
-   3. 测试发送方法 Demo --> [SpringBootProducer.java: Lines 178-184](../demos/src/test/java/com/linhuanjie/demos/activemq/SpringBootProducer.java#L178-L184)
+   1. 添加JMS事务管理器  Demo --> [ActiveMQConfig.java: Lines 10-28](../../demos/src/main/java/com/linhuanjie/mq/activemq/ActiveMQConfig.java#L10-L28)
+   2. 生产者业务类 Demo --> [MessageService.java: Lines 24-32](../../demos/src/main/java/com/linhuanjie/mq/activemq/MessageService.java#L24-L32)
+   3. 测试发送方法 Demo --> [SpringBootProducer.java: Lines 178-184](../../demos/src/test/java/com/linhuanjie/demos/mq/activemq/SpringBootProducer.java#L178-L184)
 
 ##  消费者事务
 SpringBoot 默认会开启消费者事务
-消费完信息，执行 `session.commit();` Demo --> [ActiveMQListener.java: Lines 10-79](../demos/src/main/java/com/linhuanjie/activemq/ActiveMQListener.java#L10-L79)
+消费完信息，执行 `session.commit();` Demo --> [ActiveMQListener.java: Lines 10-79](../../demos/src/main/java/com/linhuanjie/mq/activemq/ActiveMQListener.java#L10-L79)
 
 # 消息确认机制
 JMS消息只有在被确认之后，才认为已经被成功地消费了。  
@@ -468,7 +468,7 @@ public class ActiveConfig {
 2. 缺省的死信队列是ActiveMQ.DLQ，如果没有特别指定，死信都会被发送到这个队列。
 
 可以通过配置文件(activemq.xml)来调整死信发送策略。
-Demo --> [ActiveMQConfig.java: Lines 23-43](../demos/src/main/java/com/linhuanjie/activemq/ActiveMQConfig.java#L23-L43)
+Demo --> [ActiveMQConfig.java: Lines 23-43](../../demos/src/main/java/com/linhuanjie/mq/activemq/ActiveMQConfig.java#L23-L43)
 
 # ActiveMQ企业面试经典问题
 ## ActiveMQ 宕机了怎么办？

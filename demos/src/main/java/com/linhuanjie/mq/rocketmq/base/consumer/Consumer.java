@@ -14,11 +14,13 @@ import java.util.List;
  */
 public class Consumer {
 
+    private static String namesrvAddr = "192.168.88.128:9876;192.168.88.200:9876";
+
     public static void main(String[] args) throws Exception {
         //1.创建消费者Consumer，制定消费者组名
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("group1");
         //2.指定Nameserver地址
-        consumer.setNamesrvAddr("192.168.25.135:9876;192.168.25.138:9876");
+        consumer.setNamesrvAddr(namesrvAddr);
         //3.订阅主题Topic和Tag
         consumer.subscribe("base", "*");
 

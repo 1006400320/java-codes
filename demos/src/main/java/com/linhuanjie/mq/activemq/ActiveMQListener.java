@@ -10,7 +10,7 @@ import java.io.FileOutputStream;
 /**
  * @Author : linhuanjie
  * @Email : lhuanjie@qq.com
- * @Description : SpringBoot 整合 activeMQ 的消费者，生成者 --> com.linhuanjie.demos.activemq.SpringBootProducer
+ * @Description : SpringBoot 整合 activeMQ 的消费者，生成者 --> com.linhuanjie.demos.mq.activemq.SpringBootProducer
  * @CreateTime : 2020.04.01 23:42
  **/
 @Component

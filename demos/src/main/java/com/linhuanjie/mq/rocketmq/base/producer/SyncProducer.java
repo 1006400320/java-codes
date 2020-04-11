@@ -13,11 +13,13 @@ import java.util.concurrent.TimeUnit;
  */
 public class SyncProducer {
 
+    private static String namesrvAddr = "192.168.88.128:9876;192.168.88.200:9876";
+
     public static void main(String[] args) throws Exception {
         //1.创建消息生产者producer，并制定生产者组名
         DefaultMQProducer producer = new DefaultMQProducer("group1");
         //2.指定Nameserver地址
-        producer.setNamesrvAddr("192.168.62.140:9876;192.168.62.141:9876");
+        producer.setNamesrvAddr(namesrvAddr);
         //3.启动producer
         producer.start();
 

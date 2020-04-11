@@ -4,7 +4,6 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,8 +13,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class AsyncProducer {
 
-    @Value("${rocketmq.namesrv-addr}")
-    private String namesrvAddr;
+    private static String namesrvAddr = "192.168.88.128:9876;192.168.88.200:9876";
 
     public static void main(String[] args) throws Exception {
         //1.创建消息生产者producer，并制定生产者组名
@@ -39,6 +37,7 @@ public class AsyncProducer {
                  * 发送成功回调函数
                  * @param sendResult
                  */
+                @Override
                 public void onSuccess(SendResult sendResult) {
                     System.out.println("发送结果：" + sendResult);
                 }
@@ -47,6 +46,7 @@ public class AsyncProducer {
                  * 发送失败回调函数
                  * @param e
                  */
+                @Override
                 public void onException(Throwable e) {
                     System.out.println("发送异常：" + e);
                 }
