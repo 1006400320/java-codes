@@ -13,6 +13,10 @@ spring:
 # 指定发送模式 （点对点：false，发布订阅：true）
   jms:
     pub-sub-domain: false
+rocketmq:
+  name-server: 49.234.41.101:9876
+  producer:
+    group: my-group   # 发送者组名
 
 # 数据库配置
 #  datasource:
@@ -33,5 +37,3 @@ spring:
 activemq:
   queue-name: queue_name
   topic-name: topic_name
-rocketmq:
-  namesrv-addr: 192.168.88.128:9876;192.168.88.200:9876

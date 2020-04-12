@@ -13,6 +13,10 @@
 - @Value： 注解和@Data类似，区别在于它会把所有成员变量默认定义为private final修饰，并且不会生成set方法。
 - @ToString(exclude = {"id","name"})： 自定义toString方法，排除某些字段
 
+idea使用lombok需如下配置：  
+检查Annotation Processors -> Enable annotation processing 是否勾选
+![idea](http://ww1.sinaimg.cn/large/005CzYvJgy1gdq7u1zsphj30u70ju75x.jpg)
+
 > [原文链接](https://blog.csdn.net/u011308294/java/article/details/78627560)  
 > [官方文档](https://projectlombok.org/features/all)  
 > [lombok注解介绍](http://blog.csdn.net/sunsfan/article/details/53542374)  

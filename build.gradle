@@ -75,11 +75,13 @@ allprojects {
         implementation 'org.springframework.boot:spring-boot-starter-actuator'
         implementation 'org.springframework.boot:spring-boot-starter-web'
         providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+        compile group: 'org.apache.rocketmq', name: 'rocketmq-spring-boot-starter', version: '2.0.3'
+        compile 'org.springframework.boot:spring-boot-starter-activemq'
 
 //        implementation('org.springframework.cloud:spring-cloud-starter-openfeign')
 //        implementation('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')
         runtimeOnly 'mysql:mysql-connector-java:8.0.15'
-        compileOnly 'org.projectlombok:lombok:1.18.8'
+        compile 'org.projectlombok:lombok:1.18.8'
         compile 'org.apache.commons:commons-pool2:2.5.0'
         compile 'com.google.collections:google-collections:1.0'
         compile 'com.google.code.gson:gson:2.8.5'
@@ -97,7 +99,6 @@ allprojects {
         compile group: 'cn.hutool', name: 'hutool-all', version: '4.5.16'
         compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '[7.0.0, 7.0.99]'
         compile group: 'com.google.zxing', name: 'core', version: '3.3.3'
-        compile 'org.springframework.boot:spring-boot-starter-activemq'
         compile group: 'org.apache.rocketmq', name: 'rocketmq-client', version: '4.7.0'
     }
 
