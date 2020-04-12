@@ -40,7 +40,7 @@ rocketmq.config.namesrvAddr=you_host:9876;
 mvn clean package -Dmaven.test.skip=true
 
 # 启动rocketmq-console
-java -jar rocketmq-console-ng-1.0.0.jar
+nohup java -jar rocketmq-console-ng-1.0.0.jar &
 
 ```
 

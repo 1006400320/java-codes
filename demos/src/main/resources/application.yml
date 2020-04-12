@@ -14,9 +14,10 @@ spring:
   jms:
     pub-sub-domain: false
 rocketmq:
-  name-server: 49.234.41.101:9876
-  producer:
-    group: my-group   # 发送者组名
+  name-server: 192.168.88.128:9876
+  group: my-group   # 发送者组名
+  topic: SpringBoot-RocketMQ
+
 
 # 数据库配置
 #  datasource:
@@ -30,7 +31,6 @@ rocketmq:
 #    maxActive: 20
 #    maxWait: 60000
 #    filters: stat,wall,slf4j
-
 
 
 # 自定义变量
