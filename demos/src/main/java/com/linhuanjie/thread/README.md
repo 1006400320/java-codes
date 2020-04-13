@@ -25,8 +25,7 @@
 - 运行状态（Running）
 - 阻塞状态（Blocked）
 - 死亡状态
-![线程生命周期](../imgs/线程生命周期.png)
-
+![线程生命周期.png](http://ww1.sinaimg.cn/large/005CzYvJgy1gds5hd1ggwj30uh0mcjxy.jpg)
 ### new Thread的弊端如下：
 
 1. 每次new Thread新建对象性能差。 
