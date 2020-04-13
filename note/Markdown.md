@@ -66,7 +66,9 @@ name | age | sex | address | phone
 #### 流程图、时序图、甘特图
 ##### mermaid 画图
 [mermaid官网文档](https://mermaid-js.github.io/mermaid/#/flowchart)  
-<span style="color:red">tips: vscode可以装插件 `Markdown Preview Mermaid Support` 方便查看 `mermaid` 画的图</span>
+> <span style="color:red">tips: vscode可以装插件 `Markdown Preview Mermaid Support` 方便查看 `mermaid` 画的图</span>
+> 1. 修改设置：
+![markdown_mermaid_setting.png](http://ww1.sinaimg.cn/large/005CzYvJgy1gds0n4t0xlj30mk0cpaci.jpg)
 ##### 1. 横向流程图源码格式：
 ```mermaid
 %% graph LR 横向
