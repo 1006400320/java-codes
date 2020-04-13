@@ -51,6 +51,12 @@
 - 查看防火墙的状态 firewall-cmd --state
 - 禁止firewall开机启动 systemctl disable firewalld.service
 
+### 虚拟机网络
+```shell script
+
+vim /etc/sysconfig/network-scripts/ifcfg-eth0
+```
+
 ### java环境变量
 ```bash
 #java environment
@@ -65,11 +71,12 @@ export PATH=$PATH:${JAVA_HOME}/bin
 
 
 
-###  curl ly.mama.cn/main/index
+###  curl
+curl ly.mama.cn/main/index
 
 ### 传输文件
-上传   rz   receive zmodem
-下载   sz	send zmoden
+- 上传   rz   receive zmodem
+- 下载   sz	send zmoden
 
 ###  强制杀死进程
 kill -9 pid
