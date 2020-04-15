@@ -3,20 +3,21 @@
 > 明日复明日，明日何其多
 
 ### todo
-- [ ] [markdown语法](note/Markdown.md)
+- [x] [markdown语法](note/Markdown.md)
 - [x]  [注解](note/java/annotation.md#注解)
-- [ ]  [常用Spring注解](demos/src/main/java/com/linhuanjie/spring/SpringAnnotation.md)
+- [ ]  [常用Spring注解](note/java/SpringAnnotation.md)
 - [x] [RestTemplate](demos/src/main/java/com/linhuanjie/spring/RestTemplateDemo.java#L7-L26)
 - [x] mq
   - [x] [ActiveMQ](note/mq/ActiveMQ.md#mqmessage-queue应用场景)
   - [ ] rocketmq
   - [ ] rabbitmq
   - [ ] kafka
-- [ ] [Guava](demos/src/main/java/com/linhuanjie/guava/README.md)
-  - [ ] Cache
+- [x] [Guava](demos/src/main/java/com/linhuanjie/guava/README.md)
+  - [x] Cache
 - [ ] 了解下  SimpleCache
 - [ ] springcloud
-- [ ] es
+- [ ] elasticsearch
+- [ ] Arthas
 
 ### 心流
 Question：为什么集中精力做一件事情的时候容易“忘我”？（比如编程，玩游戏）  
