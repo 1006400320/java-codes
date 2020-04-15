@@ -1,4 +1,4 @@
-# GUAVA
+
 
 (Google Guava官方教程)(https://wizardforcel.gitbooks.io/guava-tutorial/content/1.html)
 > Guava工程包含了若干被Google的 Java项目广泛依赖 的核心库，  
@@ -8,14 +8,20 @@
 
 
 
-##  缓存（Caches）
+#  缓存（Caches）
 Guava Cache：本地缓存实现，支持多种缓存过期策略
 
 
 
+# 集合
 
+## Map
+```java
 
+// 创建预期大小为7的HashMap
+HashMap map = Maps.newHashMapWithExpectedSize(7);
 
+```
 
 
 
