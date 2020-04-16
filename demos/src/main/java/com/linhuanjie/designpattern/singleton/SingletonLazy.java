@@ -3,7 +3,8 @@ package com.linhuanjie.designpattern.singleton;
 /**
  * 单例模式(懒汉式)
  */
-class SingletonLazy {
+public class SingletonLazy {
+
     private static SingletonLazy singletonLazy;
 
     private SingletonLazy() {
@@ -15,10 +16,7 @@ class SingletonLazy {
         }
         return singletonLazy;
     }
-}
 
-
-public class SingletonPatternLazy {
     public static void main(String[] args) {
         SingletonLazy s = SingletonLazy.getInstance();
         SingletonLazy s1 = SingletonLazy.getInstance();
