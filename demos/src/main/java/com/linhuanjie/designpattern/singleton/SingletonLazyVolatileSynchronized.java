@@ -21,7 +21,7 @@ public class SingletonLazyVolatileSynchronized {
 
     public static SingletonLazyVolatileSynchronized getInstance() {
         if (singleton == null) {
-            synchronized (SingletonLazyVolatileSynchronized.class){
+            synchronized (SingletonLazyVolatileSynchronized.class) {
                 if (singleton == null) {
                     System.out.println("啊，我被实例化了~");
                     singleton = new SingletonLazyVolatileSynchronized();
@@ -39,18 +39,13 @@ public class SingletonLazyVolatileSynchronized {
                 200,
                 10,
                 TimeUnit.SECONDS,
-                new LinkedBlockingQueue<Runnable>(300));
+                new LinkedBlockingQueue<>(300));
 
         for (int i = 0; i < 100; i++) {
-
             int finalI = i;
-            executor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    SingletonLazyVolatileSynchronized instance1 = SingletonLazyVolatileSynchronized.getInstance();
-                    System.out.println("instance" + finalI + "，线程【" + Thread.currentThread().getName() + "】:" + instance1);
-
-                }
+            executor.execute(() -> {
+                SingletonLazyVolatileSynchronized instance1 = SingletonLazyVolatileSynchronized.getInstance();
+                System.out.println("instance" + finalI + "，线程【" + Thread.currentThread().getName() + "】:" + instance1);
             });
         }
 
