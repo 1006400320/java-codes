@@ -1,4 +1,4 @@
-package com.linhuanjie.designpattern;
+package com.linhuanjie.designpattern.singleton;
 
 /**
  * 单例模式(饿汉式)

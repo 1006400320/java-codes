@@ -62,7 +62,7 @@ allprojects {
         mavenLocal()
         maven { url "https://repo.spring.io/milestone" }
         maven { url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/" }
-        maven { url "http://repo.maven.apache.org/maven2" }
+//        maven { url "http://repo.maven.apache.org/maven2" }
         mavenCentral()
     }
 

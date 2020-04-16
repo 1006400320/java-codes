@@ -13,7 +13,7 @@ public class TestDemo {
         s.print();
 
         System.out.println("===============================");
-        Class clazz = Class.forName("com.lhj.Person");
+        Class clazz = Class.forName("com.linhuanjie.javase.Person");
         Person p1 = (Person) clazz.newInstance();
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
