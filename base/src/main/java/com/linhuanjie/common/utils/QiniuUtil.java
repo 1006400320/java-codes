@@ -1,5 +1,6 @@
 package com.linhuanjie.common.utils;
 
+import cn.hutool.core.codec.Base64Encoder;
 import cn.hutool.core.util.ReUtil;
 import com.linhuanjie.common.constant.RegexConstant;
 import com.qiniu.common.QiniuException;
@@ -41,11 +42,11 @@ public class QiniuUtil {
 	 */
 	public static void createBucket(String accessKey,String secretKey,String bucketName,String storageArea) {
 		Auth auth = Auth.create(accessKey,secretKey);
-		String path = "/mkbucketv2/" + encode(bucketName.getBytes()) + "/region/"+ storageArea +"\n";
+		String path = "/mkbucketv2/" + Base64Encoder.encode(bucketName.getBytes()) + "/region/"+ storageArea +"\n";
 		String access_token = auth.sign(path);
 		System.out.println(access_token);
 
-		String url = "http://rs.qiniu.com/mkbucketv2/" + encode(bucketName.getBytes()) + "/region/" + storageArea;
+		String url = "http://rs.qiniu.com/mkbucketv2/" + Base64Encoder.encode(bucketName.getBytes()) + "/region/" + storageArea;
 
 		OkHttpClient client = new OkHttpClient();
 		Request request = new Request.Builder().url(url).addHeader("Content-Type", "application/x-www-form-urlencoded")
@@ -62,16 +63,6 @@ public class QiniuUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * 编码
-	 *
-	 * @param bstr
-	 * @return String
-	 */
-	public static String encode(byte[] bstr) {
-		return new sun.misc.BASE64Encoder().encode(bstr);
 	}
 
 	/**

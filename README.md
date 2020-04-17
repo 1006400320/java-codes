@@ -5,7 +5,7 @@
 ### todo
 - [x] [markdown语法](note/Markdown.md)
 - [x]  [注解](note/java/annotation.md#注解)
-- [ ]  [常用Spring注解](note/java/SpringAnnotation.md)
+  - [ ]  [常用Spring注解](note/java/SpringAnnotation.md)
 - [x] [RestTemplate](demos/src/main/java/com/linhuanjie/spring/RestTemplateDemo.java#L7-L26)
 - [x] mq
   - [x] [ActiveMQ](note/mq/ActiveMQ.md#mqmessage-queue应用场景)
@@ -15,6 +15,13 @@
 - [x] [Guava](demos/src/main/java/com/linhuanjie/guava/README.md)
   - [x] Cache
 - [ ] 了解下  SimpleCache
+- [ ] 设计模式
+  - [x] [六大设计原则](note/java/设计模式/六大设计原则.md)
+  - [x] [单例模式](note/java/设计模式/单例模式.md)
+  - [x] [简单工厂模式](note/java/设计模式/简单工厂模式.md)
+  - [x] [工厂方法模式](note/java/设计模式/工厂方法模式.md)
+  - [x] [抽象工厂模式](note/java/设计模式/抽象工厂模式.md)
+  - [x] [工厂模式总结](note/java/设计模式/工厂模式总结.md)
 - [ ] springcloud
 - [ ] elasticsearch
 - [ ] Arthas
