@@ -1,9 +1,9 @@
-package com.linhuanjie.designpattern;
+package com.linhuanjie.designpattern.factory;
 
 /**
  * @Author : linhuanjie
  * @Email : lhuanjie@qq.com
- * @Description :
+ * @Description : 简单工厂模式
  * @CreateTime : 2020/4/16 17:49
  **/
 public class SimpleFactoryDemo {
