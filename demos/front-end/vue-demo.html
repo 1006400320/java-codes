@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--这里是vue的js，只有这个需要自己导入自己的-->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+    <script src="plugin/vue_v2.6.11.js"></script>
+
+    <!-- element-ui-2.13.1 -->
+    <link rel="stylesheet" href="plugin/element-ui-2.13.1/index.css">
+    <script src="plugin/element-ui-2.13.1/index.js"></script>
+
+
+    <!-- &lt;!&ndash;饿了么团队对于Vue封装的插件，这里体现的是分页&ndash;&gt;
+     &lt;!&ndash; 引入样式 &ndash;&gt;
+     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+     &lt;!&ndash; 引入组件库 &ndash;&gt;
+     <script src="https://unpkg.com/element-ui/lib/index.js"></script>-->
+    <style>
+        .el-row {
+            margin-bottom: 20px;
+        &:last-child {
+             margin-bottom: 0;
+         }
+        }
+        .el-col {
+            border-radius: 4px;
+        }
+        .bg-purple-dark {
+            background: #99a9bf;
+        }
+        .bg-purple {
+            background: #d3dce6;
+        }
+        .bg-purple-light {
+            background: #e5e9f2;
+        }
+        .grid-content {
+            border-radius: 4px;
+            min-height: 36px;
+        }
+        .row-bg {
+            padding: 10px 0;
+            background-color: #f9fafc;
+        }
+    </style>
+</head>
+<body>
+<!--简单使用分页组件，具体和后端整合使用还需配置数据交互-->
+<!--具体数据整合使用请看，前后端分离项目goods-->
+<div id="page">
+    <el-row>
+        <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
+    </el-row>
+    <el-row>
+        <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
+        <el-col :span="12"><div class="grid-content bg-purple-light"></div></el-col>
+    </el-row>
+    <el-row>
+        <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+        <el-col :span="8"><div class="grid-content bg-purple-light"></div></el-col>
+        <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+    </el-row>
+    <el-row>
+        <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+        <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
+        <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+        <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
+    </el-row>
+    <el-row>
+        <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+        <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
+        <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+        <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
+        <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+        <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
+    </el-row>
+    <el-pagination
+            background
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-sizes="[10, 20, 30, 40]"
+            :page-size="pageSize"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="total">
+    </el-pagination>
+</div>
+
+<script type="text/javascript">
+    var data = {
+        total: 400,
+        pageSize: 100,
+        currentPage: 1
+    };
+    var vue = new Vue({
+        el: "#page",
+        data: data,
+        methods: {
+            handleSizeChange(value) {
+                this.pageSize = value;
+            },
+            handleCurrentChange(value) {
+                this.currentPage = value;
+            }
+
+        }
+
+    });
+
+
+</script>
+
+</body>
+</html>
