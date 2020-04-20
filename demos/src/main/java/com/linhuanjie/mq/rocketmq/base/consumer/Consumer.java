@@ -10,7 +10,7 @@ import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 import java.util.List;
 
 /**
- * 消息的接受者
+ * 消息的接收者
  */
 public class Consumer {
 

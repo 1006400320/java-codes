@@ -12,6 +12,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * 不配置数据库则加上这个   SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
  */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
+//@EnableDubboConfiguration
 public class DemoApplication extends SpringBootServletInitializer {
     private static final Logger logger = LoggerFactory.getLogger(DemoApplication.class);
 

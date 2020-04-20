@@ -17,6 +17,9 @@ idea使用lombok需如下配置：
 检查Annotation Processors -> Enable annotation processing 是否勾选
 ![idea](http://ww1.sinaimg.cn/large/005CzYvJgy1gdq7u1zsphj30u70ju75x.jpg)
 
+[lombok 原理&简单实现](https://www.tuicool.com/articles/y6rUz2V)
+
+
 > [原文链接](https://blog.csdn.net/u011308294/java/article/details/78627560)  
 > [官方文档](https://projectlombok.org/features/all)  
 > [lombok注解介绍](http://blog.csdn.net/sunsfan/article/details/53542374)  

@@ -87,7 +87,7 @@ ThreadPoolExecutor executorService = new ThreadPoolExecutor(coreSize, poolSize, 
 
 
 
-#### execute和submit的区别
+#### todo execute和submit的区别
 
 
 参考文章： [内核级线程（KLT）和用户级线程（ULT）](https://blog.csdn.net/vinter_he/article/details/79788743)

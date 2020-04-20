@@ -25,6 +25,7 @@
 - [ ] springcloud
 - [ ] elasticsearch
 - [ ] Arthas
+- [ ] [RocketMQ-源码分析](note/mq/RocketMQ-03.md#2-源码分析)
 
 ### 心流
 Question：为什么集中精力做一件事情的时候容易“忘我”？（比如编程，玩游戏）  
