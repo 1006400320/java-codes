@@ -29,8 +29,7 @@ public class TestDemo {
 
     public static void main(String[] args) {
         TestDemo demo = new TestDemo();
-        demo.finalStr = "QAQ";
-        System.out.println();
+        System.out.println("QAQ");
     }
     
 }
