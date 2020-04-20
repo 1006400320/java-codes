@@ -16,8 +16,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  **/
 public class SimpleCache<K, V> implements Serializable {
 
-
-    private static final long serialVersionUID = -1369570373857282539L;
+    private static final long serialVersionUID = -1546747738695071438L;
 
     /** 池 */
     private final Map<K, V> cache = new WeakHashMap<>();
