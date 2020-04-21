@@ -1,20 +1,35 @@
-### 记录一些java笔记
-
+### 好记性不如烂笔头    --  鲁迅
+![鲁迅.jpg](http://ww1.sinaimg.cn/large/005CzYvJgy1ge1php2eplj3073073t8s.jpg)
 > 明日复明日，明日何其多
 
-### todo
+
 - [x] [markdown语法](note/Markdown.md)
-- [x]  [注解](note/java/annotation.md#注解)
+
+- [x] [注解](note/java/annotation.md#注解)
+
   - [ ]  [常用Spring注解](note/java/SpringAnnotation.md)
+
+- [ ] 布隆过滤器
+
 - [x] [RestTemplate](demos/src/main/java/com/linhuanjie/spring/RestTemplateDemo.java#L7-L26)
+
 - [x] mq
   - [x] [ActiveMQ](note/mq/ActiveMQ.md#mqmessage-queue应用场景)
-  - [ ] rocketmq
+  - [ ] [rocketmq](note/mq/RocketMQ-01.md)
+    - [ ] [RocketMQ-源码分析](note/mq/RocketMQ-03.md#2-源码分析)
   - [ ] rabbitmq
   - [ ] kafka
+
+- [ ] 数据库
+  - [ ] mybatis-plus
+
 - [x] [Guava](demos/src/main/java/com/linhuanjie/guava/README.md)
   - [x] Cache
-- [ ] 了解下  SimpleCache
+
+- [ ] 缓存
+    - [ ] ConcurrentHashMap
+    - [ ] [SimpleCache](base/src/main/java/com/linhuanjie/common/utils/SimpleCache.java#L10-L118)
+
 - [ ] 设计模式
   - [x] [六大设计原则](note/java/设计模式/六大设计原则.md)
   - [x] [单例模式](note/java/设计模式/单例模式.md)
@@ -22,10 +37,18 @@
   - [x] [工厂方法模式](note/java/设计模式/工厂方法模式.md)
   - [x] [抽象工厂模式](note/java/设计模式/抽象工厂模式.md)
   - [x] [工厂模式总结](note/java/设计模式/工厂模式总结.md)
+  - [x] [原型模式](note/java/设计模式/原型模式.md)
+  - [x] [建造者模式](note/java/设计模式/建造者模式.md)
+  - [ ] [适配器模式](note/java/设计模式/适配器模式.md)
+  - [ ] [桥接模式](note/java/设计模式/桥接模式.md)
+  - [ ] [原型模式]()
+  - [ ] [原型模式]()
+
 - [ ] springcloud
+
 - [ ] elasticsearch
+
 - [ ] Arthas
-- [ ] [RocketMQ-源码分析](note/mq/RocketMQ-03.md#2-源码分析)
 
 ### 心流
 Question：为什么集中精力做一件事情的时候容易“忘我”？（比如编程，玩游戏）  
