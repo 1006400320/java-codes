@@ -21,6 +21,7 @@
   - [ ] kafka
 
 - [ ] 数据库
+  - [ ] [Mysql实战45讲](note/java/MySQL45讲/README.md)
   - [ ] mybatis-plus
 
 - [x] [Guava](demos/src/main/java/com/linhuanjie/guava/README.md)
