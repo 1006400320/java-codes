@@ -60,7 +60,7 @@ Transient 关键字的作用是控制变量的序列化，在变量声明前加�
 ![](https://www.ibm.com/developerworks/cn/java/j-lo-serial/image005.gif)
 
 
-> 参考： [java类中serialversionuid 作用 是什么?举个例子说明](https://www.cnblogs.com/duanxz/p/3511695.html)](https://www.cnblogs.com/duanxz/p/3511695.html)
+> 参考： [java类中serialversionuid 作用 是什么?举个例子说明](https://www.cnblogs.com/duanxz/p/3511695.html)
 
 
 
