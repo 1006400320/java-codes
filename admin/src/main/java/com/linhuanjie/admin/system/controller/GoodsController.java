@@ -20,7 +20,7 @@ import java.util.Map;
 @RequestMapping(value = "/goods")
 public class GoodsController {
 
-    @GetMapping("/list")
+    @GetMapping(value = "/list", produces = "application/json")
     public  Map<String, Object> goodsList() {
 
         Map<String, Object> resultMap = new HashMap<>();

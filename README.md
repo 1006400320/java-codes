@@ -2,12 +2,15 @@
 ![鲁迅.jpg](http://ww1.sinaimg.cn/large/005CzYvJgy1ge1php2eplj3073073t8s.jpg)
 > 明日复明日，明日何其多
 
-
+- [ ] JavaSE
+  - [ ] 集合
 - [x] [markdown语法](note/Markdown.md)
 
 - [x] [注解](note/java/annotation.md#注解)
 
+  - [ ]  [常用注解_较完整](https://github.com/Snailclimb/JavaGuide/blob/master/docs/system-design/framework/spring/spring-annotations.md)
   - [ ]  [常用Spring注解](note/java/SpringAnnotation.md)
+  - [ ]  [SpringBoot注解](note\java\SpringBoot注解.md)
 
 - [ ] 布隆过滤器
 
@@ -21,7 +24,7 @@
   - [ ] kafka
 
 - [ ] 数据库
-  - [ ] [Mysql实战45讲](note/java/MySQL45讲/README.md)
+  - [ ] [Mysql实战45讲](note/MySQL45讲/README.md)
   - [ ] mybatis-plus
 
 - [x] [Guava](demos/src/main/java/com/linhuanjie/guava/README.md)
