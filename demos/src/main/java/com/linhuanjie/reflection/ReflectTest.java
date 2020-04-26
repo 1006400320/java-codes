@@ -9,6 +9,9 @@ import java.lang.reflect.*;
  * @email: lhuanjie@qq.com
  */
 public class ReflectTest {
+
+    private static final String packageName = "com.linhuanjie.reflection";
+
     /**
      * 为了看清楚Java反射部分代码，所有异常我都最后抛出来给虚拟机处理！
      *
@@ -81,7 +84,7 @@ public class ReflectTest {
         Class<?> class2 = null;
 
         //写法1, 可能抛出 ClassNotFoundException [多用这个写法]
-        class1 = Class.forName("com.lhj.reflection.Person");
+        class1 = Class.forName(packageName + ".Person");
         System.out.println("Demo2:(写法1) 包名: " + class1.getPackage().getName() + "，"
                 + "完整类名: " + class1.getName());
 
@@ -100,7 +103,7 @@ public class ReflectTest {
      */
     public static void Demo3() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         Class<?> class1 = null;
-        class1 = Class.forName("com.lhj.reflection.Person");
+        class1 = Class.forName(packageName + ".Person");
         //由于这里不能带参数，所以你要实例化的这个Person类，一定要有无参构造函数哈～
         Person person = (Person) class1.newInstance();
         person.setAge(20);
@@ -122,7 +125,7 @@ public class ReflectTest {
         Person person1 = null;
         Person person2 = null;
 //
-        class1 = Class.forName("com.lhj.reflection.Person");
+        class1 = Class.forName(packageName + ".Person");
 //        //得到一系列构造函数集合
         Constructor<?>[] constructors = class1.getConstructors();
 
@@ -148,7 +151,7 @@ public class ReflectTest {
      */
     public static void Demo5() throws IllegalArgumentException, IllegalAccessException, SecurityException, NoSuchFieldException, InstantiationException, ClassNotFoundException {
         Class<?> class1 = null;
-        class1 = Class.forName("com.lhj.reflection.Person");
+        class1 = Class.forName(packageName + ".Person");
         Object obj = class1.newInstance();
 
         Field personNameField = class1.getDeclaredField("name");
@@ -168,7 +171,7 @@ public class ReflectTest {
      */
     public static void Demo6() throws ClassNotFoundException {
         Class<?> class1 = null;
-        class1 = Class.forName("com.lhj.reflection.SuperMan");
+        class1 = Class.forName(packageName + ".SuperMan");
 
         //取得父类名称
         Class<?> superClass = class1.getSuperclass();
@@ -218,7 +221,7 @@ public class ReflectTest {
      */
     public static void Demo7() throws ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Class<?> class1 = null;
-        class1 = Class.forName("com.lhj.reflection.SuperMan");
+        class1 = Class.forName(packageName + ".SuperMan");
 
         System.out.println("Demo7: \n调用无参方法fly()：");
         Method method = class1.getMethod("fly");
@@ -244,7 +247,7 @@ public class ReflectTest {
      */
     public static void Demo8() throws ClassNotFoundException {
         Class<?> class1 = null;
-        class1 = Class.forName("com.lhj.reflection.SuperMan");
+        class1 = Class.forName(packageName + ".SuperMan");
         String nameString = class1.getClassLoader().getClass().getName();
 
         System.out.println("Demo8: 类加载器类名: " + nameString);

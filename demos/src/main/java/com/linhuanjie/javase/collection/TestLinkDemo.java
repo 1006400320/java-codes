@@ -1,4 +1,4 @@
-package com.linhuanjie.javase;
+package com.linhuanjie.javase.collection;
 
 /**
  * 链表Demo

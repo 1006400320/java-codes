@@ -1,4 +1,4 @@
-package com.linhuanjie.javase;
+package com.linhuanjie.javase.collection;
 
 public class ReverseArrayTest2 {
     public static void main(String[] args) {
