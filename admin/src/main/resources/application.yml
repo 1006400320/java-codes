@@ -13,7 +13,6 @@ spring:
     url: jdbc:mysql://49.234.41.101:33306/mall?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-#    password: 123456
 #    password: root
     password: 1234Andy
     type: com.alibaba.druid.pool.DruidDataSource
