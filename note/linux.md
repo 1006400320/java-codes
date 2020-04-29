@@ -1,6 +1,3 @@
-
-# 常用命令
-
 ##  查看系统参数
 - 一、查看CPU信息
     - lscpu
@@ -75,8 +72,8 @@ export PATH=$PATH:${JAVA_HOME}/bin
 curl ly.mama.cn/main/index
 
 ## 传输文件
-- 上传   rz   receive zmodem
-- 下载   sz	send zmoden
+- 上传   `rz`   receive zmodem
+- 下载   `sz filename`	send zmoden
 
 ##  强制杀死进程
 kill -9 pid
