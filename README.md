@@ -2,6 +2,10 @@
 ![鲁迅.jpg](http://ww1.sinaimg.cn/large/005CzYvJgy1ge1php2eplj3073073t8s.jpg)
 > 明日复明日，明日何其多
 
+- [ ] JVM
+    - [x] [类加载子系统](note\JVM\类加载子系统.md)
+    - [ ] 运行时数据区
+
 - [ ] JavaSE
   - [ ] 集合
 - [x] [markdown语法](note/Markdown.md)
@@ -29,6 +33,7 @@
 
 - [x] [Guava](demos/src/main/java/com/linhuanjie/guava/README.md)
   - [x] Cache
+  - [ ] 集合 Maps.newHashMapWithExepectSize
 
 - [ ] 缓存
     - [ ] ConcurrentHashMap
@@ -45,7 +50,7 @@
   - [x] [建造者模式](note/java/设计模式/建造者模式.md)
   - [ ] [适配器模式](note/java/设计模式/适配器模式.md)
   - [ ] [桥接模式](note/java/设计模式/桥接模式.md)
-  - [ ] [原型模式]()
+  - [ ] [装饰模式](note/设计模式/装饰模式.md)
   - [ ] [原型模式]()
 
 - [ ] springcloud
