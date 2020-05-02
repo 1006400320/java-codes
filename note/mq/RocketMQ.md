@@ -8,7 +8,7 @@ nohup sh bin/mqnamesrv &
 tail -f ~/logs/rocketmqlogs/namesrv.log
 
 # 启动 Broker
-nohup sh bin/mqbroker -n 49.234.41.101:9876 autoCreateTopicEnable -c /usr/local/software/rocketmq-4.3.0/conf/broker.conf &
+nohup sh bin/mqbroker -n localhost:9876 autoCreateTopicEnable -c /usr/local/software/rocketmq-4.3.0/conf/broker.conf &
 
 tail -f ~/logs/rocketmqlogs/broker.log 
 

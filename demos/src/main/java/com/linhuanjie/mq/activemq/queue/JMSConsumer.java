@@ -1,6 +1,7 @@
 package com.linhuanjie.mq.activemq.queue;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.jms.*;
 
@@ -13,7 +14,10 @@ import javax.jms.*;
 public class JMSConsumer {
     private static final String USERNAME = "lymamacnactcp";
     private static final String PASSWORD = "7c0fb8ce1ef8cbd4db55664126a26ff8";
-    private static final String BROKER_URL = "tcp://49.234.41.101:61616";
+
+    @Value("${LH_HOST}")
+    private static String host;
+    private static final String BROKER_URL = "tcp://" + host + ":61616";
 
     public static void main(String[] args) throws Exception {
         // 1. 创建连接工厂
@@ -38,13 +42,13 @@ public class JMSConsumer {
         MessageConsumer consumer = session.createConsumer(destination);
 
         // 7. 接收消息
-        while (true){
+        while (true) {
             Message msg = consumer.receive();
 
-            if (msg == null){
+            if (msg == null) {
                 break;
             }
-            if (msg instanceof TextMessage){
+            if (msg instanceof TextMessage) {
                 TextMessage textMessage = (TextMessage) msg;
                 System.out.println("textMessage = " + textMessage);
             }

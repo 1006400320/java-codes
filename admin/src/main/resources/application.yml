@@ -10,11 +10,11 @@ server:
 spring:
   datasource:
 #    url: jdbc:mysql://127.0.0.1:3306/msy?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
-    url: jdbc:mysql://49.234.41.101:33306/mall?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://${LH_HOST}:33306/mall?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
 #    password: root
-    password: 1234Andy
+    password: ${LH_MYSQL}
     type: com.alibaba.druid.pool.DruidDataSource
     initial-size: 1
     minIdle: 3
@@ -33,13 +33,13 @@ spring:
     encoding: utf-8
     mode: LEGACYHTML5
   redis:
-    host: 49.234.41.101
+    host: ${LH_HOST}
 #    host: 127.0.0.1
     port: 6379
 
   # springboot 与 activemq 整合配置
   activemq:
-    broker-url: tcp://49.234.41.101:61616 #连接地址
+    broker-url: tcp://${LH_HOST}:61616 #连接地址
     user: lymamacnactcp
     password: 7c0fb8ce1ef8cbd4db55664126a26ff8
     packages:
