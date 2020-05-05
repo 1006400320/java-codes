@@ -1,6 +1,8 @@
 package com.linhuanjie.mapstruct;
 
 /**
+ * todo 试用一下
+ * https://blog.csdn.net/zhige_me/article/details/80699784
  * @author : linhuanjie
  * @email : lhuanjie@qq.com
  * @create : 2020.05.05 17:53
