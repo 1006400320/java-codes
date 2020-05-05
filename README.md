@@ -66,6 +66,11 @@
 
 - [ ] Arthas
 
+- [ ] 开发工具
+    - [ ] [mapstruct](demos/src/main/java/com/linhuanjie/mapstruct/MapStructTest.java)
+    - [x] [lombok](note/lombok.md)
+    - [x] [Markdown](note/Markdown.md)
+
 ### 心流
 Question：为什么集中精力做一件事情的时候容易“忘我”？（比如编程，玩游戏）  
 Answer：“忘我” 其实是一种 **心流**的心理状态
