@@ -4,7 +4,8 @@
 
 - [ ] JVM
     - [x] [类加载子系统](note\JVM\类加载子系统.md)
-    - [ ] 运行时数据区
+    - [x] 运行时数据区
+    - [ ] JVM调参
 
 - [ ] JavaSE
   - [ ] 集合
@@ -70,6 +71,10 @@
     - [ ] [mapstruct](demos/src/main/java/com/linhuanjie/mapstruct/MapStructTest.java)
     - [x] [lombok](note/lombok.md)
     - [x] [Markdown](note/Markdown.md)
+
+- [ ] tools
+    - [x] [idea破解](https://zhile.io/2018/08/25/jetbrains-license-server-crack.html)
+    - [x] [jdk8升级](note/升级jdk8.md)
 
 ### 心流
 Question：为什么集中精力做一件事情的时候容易“忘我”？（比如编程，玩游戏）  
