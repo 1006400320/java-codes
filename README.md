@@ -3,9 +3,9 @@
 > 明日复明日，明日何其多
 
 - [ ] JVM
-    - [x] [类加载子系统](note\JVM\类加载子系统.md)
-    - [x] 运行时数据区
-    - [ ] JVM调参
+    - [x] [类加载子系统](note/JVM/类加载子系统.md)
+    - [x] [运行时数据区](note/JVM/运行时数据区.md)
+    - [ ] [JVM常用参数]()
 
 - [ ] JavaSE
   - [ ] 集合
@@ -19,7 +19,9 @@
 
 - [ ] 布隆过滤器
 
-- [x] [RestTemplate](demos/src/main/java/com/linhuanjie/spring/RestTemplateDemo.java#L7-L26)
+- [ ] spring
+    - [ ] [Bean生命周期流程图](note/spring/Bean生命周期流程图.md)
+    - [x] [RestTemplate](demos/src/main/java/com/linhuanjie/spring/RestTemplateDemo.java#L7-L26)
 
 - [x] mq
   - [x] [ActiveMQ](note/mq/ActiveMQ.md#mqmessage-queue应用场景)
@@ -65,12 +67,15 @@
 
 - [ ] elasticsearch
 
+- [ ] XXL-JOB
+
 - [ ] Arthas
 
 - [ ] 开发工具
     - [ ] [mapstruct](demos/src/main/java/com/linhuanjie/mapstruct/MapStructTest.java)
     - [x] [lombok](note/lombok.md)
     - [x] [Markdown](note/Markdown.md)
+    - [ ] [Windows子系统](note/Windows子系统.md)
 
 - [ ] tools
     - [x] [idea破解](https://zhile.io/2018/08/25/jetbrains-license-server-crack.html)
