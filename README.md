@@ -78,8 +78,10 @@
     - [ ] [Windows子系统](note/Windows子系统.md)
 
 - [ ] tools
+    - [ ] [IDEA](note/tools/IDEA.md)
     - [x] [idea破解](https://zhile.io/2018/08/25/jetbrains-license-server-crack.html)
     - [x] [jdk8升级](note/升级jdk8.md)
+    - [ ] tomcat调优
 
 ### 心流
 Question：为什么集中精力做一件事情的时候容易“忘我”？（比如编程，玩游戏）  
