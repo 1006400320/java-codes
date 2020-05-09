@@ -16,7 +16,7 @@
     - more /etc/issue
     - more /proc/version
 
-- 五、查看磁盘信息
+- 查看磁盘信息
     - df -h
     - cd /data && du -h --max-depth=1
     - du -h --max-depth=1
@@ -24,18 +24,22 @@
     - lsblk
     - fdisk -l
 
-- 六、查看网络信息
+- 查看网络信息
     - cat /etc/sysconfig/network-scripts/ifcfg-eth0
     - cat /etc/sysconfig/network-scripts/ifcfg-l0
     - ifconfig
     - 查看网络带宽：
       - ethtool eth0，查看SPEED参数
 
-- 七、查看服务器名称  hostname
+- 查看端口使用  
+    - lsof -i:端口号
+    - netstat -tunlp|grep 端口号
 
-- 八、查看操作系统版本  cat /proc/version
+- 查看服务器名称  hostname
 
-- 九、[Linux top命令详解](https://www.cnblogs.com/ftl1012/p/top.html)
+- 查看操作系统版本  cat /proc/version
+
+- [Linux top命令详解](https://www.cnblogs.com/ftl1012/p/top.html)
 
 ## 防火墙
 - 查看防火墙开放的端口 firewall-cmd --list-all
@@ -170,12 +174,6 @@ C:\Program Files\nodejs\npm_modules
 全部添加完**环境变量**之后，在**重启cmd**，就是可以使用vue了。
 
 
-
-查看端口
-netstat -a
-netstat -lntup
-
-查看某个端口详细的信息：lsof -i:4000
 
 sudo -i
 

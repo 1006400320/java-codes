@@ -1,5 +1,11 @@
 
 
+# 启动&关闭
+```shell script
+...activemq/bin/activemq start
+...activemq/bin/activemq stop
+```
+
 # 消息持久化
 
 ##  ActiveMQ提供了以下三种的消息存储方式：
