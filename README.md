@@ -27,7 +27,7 @@
   - [x] [ActiveMQ](note/mq/ActiveMQ.md#mqmessage-queue应用场景)
   - [ ] [rocketmq](note/mq/RocketMQ-01.md)
     - [ ] [RocketMQ-源码分析](note/mq/RocketMQ-03.md#2-源码分析)
-  - [ ] rabbitmq
+  - [x] [rabbitmq](note/mq/RabbitMQ.md)
   - [ ] kafka
 
 - [ ] 数据库

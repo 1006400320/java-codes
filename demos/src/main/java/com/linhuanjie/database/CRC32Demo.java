@@ -15,7 +15,8 @@ import java.util.zip.CRC32;
 public class CRC32Demo {
     public static void main(String[] args) {
         CRC32 a = new CRC32();
-        a.update("a".getBytes()); // 126491095
+        // 126491095
+        a.update("a".getBytes());
         System.out.println("a.getValue() = " + a.getValue());
     }
 }

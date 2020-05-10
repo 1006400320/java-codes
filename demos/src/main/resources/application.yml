@@ -29,6 +29,12 @@ spring:
 #  group: my-group   # 发送者组名
 #  topic: SpringBoot-RocketMQ
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    virtual-host: /myHost
+    username: guest
+    password: guest
 
 # 数据库配置
 #  datasource:
