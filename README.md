@@ -5,7 +5,7 @@
 - [ ] JVM
     - [x] [类加载子系统](note/JVM/类加载子系统.md)
     - [x] [运行时数据区](note/JVM/运行时数据区.md)
-    - [ ] [JVM常用参数]()
+    - [ ] [JVM常用参数](note/JVM/JVM常用参数.md)
 
 - [ ] JavaSE
   - [ ] 集合
@@ -22,6 +22,8 @@
 - [ ] spring
     - [ ] [Bean生命周期流程图](note/spring/Bean生命周期流程图.md)
     - [x] [RestTemplate](demos/src/main/java/com/linhuanjie/spring/RestTemplateDemo.java#L7-L26)
+    
+    - [ ] springcloud
 
 - [x] mq
   - [x] [ActiveMQ](note/mq/ActiveMQ.md#mqmessage-queue应用场景)
@@ -56,7 +58,7 @@
   - [ ] [装饰模式](note/设计模式/装饰模式.md)
   - [ ] [原型模式]()
 
-- [ ] springcloud
+
 
 - [ ] 并发
     - [ ] CountDownLatch
@@ -76,6 +78,7 @@
     - [x] [lombok](note/lombok.md)
     - [x] [Markdown](note/Markdown.md)
     - [ ] [Windows子系统](note/Windows子系统.md)
+    - [ ] [tomcat调优](note/tools/tomcat调优.md)
 
 - [ ] tools
     - [ ] [IDEA](note/tools/IDEA.md)
