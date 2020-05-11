@@ -17,8 +17,8 @@ public class MapStructTest {
         addDTO.setPhone("110");
         System.out.println("addDTO = " + addDTO.toString());
 
-        UserDemoDO convert = UserDemoConvert.INSTANCE.convert(addDTO);
-        System.out.println("convert = " + convert.toString());
+//        UserDemoDO convert = UserDemoConvert.INSTANCE.convert(addDTO);
+//        System.out.println("convert = " + convert.toString());
 
     }
 }
