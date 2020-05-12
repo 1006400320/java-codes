@@ -1,3 +1,5 @@
+# 常用
+
 设置全局用户名&邮箱
 
 - git config --global user.name "linhj"
@@ -8,4 +10,3 @@
 https://github.com/microsoft/Git-Credential-Manager-for-Windows/releases
 
  
-

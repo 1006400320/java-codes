@@ -32,14 +32,17 @@ gradle优点：
 
 
 
-### 示例汇总
+
+
+# 示例汇总
 
 这是示例代码汇总得到的一个完整脚本：
 
-### Java 示例 - 一个完整构建脚本
+## Java 示例 - 一个完整构建脚本
+
+`build.gradle`
 
 ```groovy
-build.gradle
 apply plugin: 'java'
 apply plugin: 'eclipse'
 sourceCompatibility = 1.5
