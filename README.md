@@ -34,7 +34,7 @@ RateLimiter rateLimiter = RateLimiter.create(5);
 
 - [ ] JavaSE
   - [ ] 集合
-- [x] [markdown语法](note/Markdown.md)
+- [x] [markdown语法](note/tools/Markdown.md)
 
 - [x] [注解](note/java/annotation.md#注解)
 
@@ -100,16 +100,14 @@ RateLimiter rateLimiter = RateLimiter.create(5);
 
 - [ ] 开发工具
     - [ ] [mapstruct](demos/src/main/java/com/linhuanjie/mapstruct/MapStructTest.java)
-    - [x] [lombok](note/lombok.md)
-    - [x] [Markdown](note/Markdown.md)
-    - [ ] [Windows子系统](note/Windows子系统.md)
+    - [x] [lombok](note/tools/lombok.md)
+    - [x] [Markdown](note/tools/Markdown.md)
+    - [ ] [Windows子系统](note/tools/Windows子系统.md)
     - [ ] [tomcat调优](note/tools/tomcat调优.md)
-
-- [ ] tools
-    - [ ] [IDEA](note/tools/IDEA.md)
-    - [x] [idea破解](https://zhile.io/2018/08/25/jetbrains-license-server-crack.html)
-    - [x] [jdk8升级](note/升级jdk8.md)
-    - [ ] tomcat调优
+    - [x] [IDEA](note/tools/IDEA.md)
+    - [x] [jdk8升级](note/tools/升级jdk8.md)
+    - [ ] [maven](note/tools/maven.md)
+    - [ ] [Git](note/tools/Git.md)
 
 ### 心流
 Question：为什么集中精力做一件事情的时候容易“忘我”？（比如编程，玩游戏）  
