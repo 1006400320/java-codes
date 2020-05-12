@@ -107,7 +107,11 @@ RateLimiter rateLimiter = RateLimiter.create(5);
     - [x] [IDEA](note/tools/IDEA.md)
     - [x] [jdk8升级](note/tools/升级jdk8.md)
     - [ ] [maven](note/tools/maven.md)
-    - [ ] [Git](note/tools/Git.md)
+    - [ ] [gradle](note/tools/gradle.md)
+    - [ ] git
+        - [ ] [Github搜索技巧](note/tools/git/Github搜索技巧.md)
+        - [ ] [Git命令](note/tools/git/Git命令.md)
+        - [ ] [Git常用](note/tools/git/Git常用.md)
 
 ### 心流
 Question：为什么集中精力做一件事情的时候容易“忘我”？（比如编程，玩游戏）  
