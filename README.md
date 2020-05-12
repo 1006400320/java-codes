@@ -92,13 +92,13 @@ RateLimiter rateLimiter = RateLimiter.create(5);
     - [ ] CyclicBarrier
 
 
-- [ ] elasticsearch
+- [ ] Elasticsearch
 
 - [ ] XXL-JOB
 
 - [ ] Arthas
 
-- [ ] 开发工具
+- [ ] tools
     - [ ] [mapstruct](demos/src/main/java/com/linhuanjie/mapstruct/MapStructTest.java)
     - [x] [lombok](note/tools/lombok.md)
     - [x] [Markdown](note/tools/Markdown.md)
