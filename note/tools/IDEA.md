@@ -5,4 +5,6 @@ plugins:
  - [Git Commit Template]()
  - [easy code]()
  
+[idea破解](https://zhile.io/2018/08/25/jetbrains-license-server-crack.html)
+
  
