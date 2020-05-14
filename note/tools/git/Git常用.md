@@ -9,4 +9,5 @@
 如果idea git push失败，可能需要升级git凭证存储工具
 https://github.com/microsoft/Git-Credential-Manager-for-Windows/releases
 
- 
+ 如果还是不行，就清空windows的Github凭据
+ https://blog.csdn.net/dalinsi/article/details/77989840
