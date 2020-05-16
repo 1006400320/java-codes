@@ -82,7 +82,7 @@ RateLimiter rateLimiter = RateLimiter.create(5);
   - [ ] [桥接模式](note/java/设计模式/桥接模式.md)
   - [ ] [装饰模式](note/设计模式/装饰模式.md)
   - [ ] [原型模式]()
-
+  - [ ] [观察者模式]()
 
 
 - [ ] 并发
