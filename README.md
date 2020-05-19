@@ -39,8 +39,9 @@ RateLimiter rateLimiter = RateLimiter.create(5);
 - [x] [注解](note/java/annotation.md#注解)
 
   - [ ]  [常用注解_较完整](https://github.com/Snailclimb/JavaGuide/blob/master/docs/system-design/framework/spring/spring-annotations.md)
-  - [ ]  [常用Spring注解](note/java/SpringAnnotation.md)
-  - [ ]  [SpringBoot注解](note\java\SpringBoot注解.md)
+  - [ ]  [常用Spring注解](note/spring/SpringAnnotation.md)
+  - [ ]  [SpringBoot注解](note/spring/SpringBoot注解.md)
+  - [ ]  [Spring@Transactional](note/spring/Spring@Transactional.md)
 
 - [ ] 布隆过滤器
 
