@@ -7,12 +7,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * 不配置数据库则加上这个   SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
  */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 //@EnableDubboConfiguration
+@ImportResource("classpath:/spring/spring-rabbitmq.xml")
 public class DemoApplication extends SpringBootServletInitializer {
     private static final Logger logger = LoggerFactory.getLogger(DemoApplication.class);
 
