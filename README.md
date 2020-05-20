@@ -43,7 +43,6 @@ RateLimiter rateLimiter = RateLimiter.create(5);
   - [ ]  [SpringBoot注解](note/spring/SpringBoot注解.md)
   - [ ]  [Spring@Transactional](note/spring/Spring@Transactional.md)
 
-- [ ] 布隆过滤器
 
 - [ ] spring
     - [ ] [Bean生命周期流程图](note/spring/Bean生命周期流程图.md)
@@ -115,6 +114,7 @@ RateLimiter rateLimiter = RateLimiter.create(5);
 - [ ] tools
     - [ ] [mapstruct](demos/src/main/java/com/linhuanjie/mapstruct/MapStructTest.java)
     - [x] [lombok](note/tools/lombok.md)
+    - [ ] [布隆过滤器](note/tools/布隆过滤器.md)
     - [x] [Markdown](note/tools/Markdown.md)
     - [ ] [Windows子系统](note/tools/Windows子系统.md)
     - [ ] [tomcat调优](note/tools/tomcat调优.md)
