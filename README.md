@@ -35,7 +35,8 @@ RateLimiter rateLimiter = RateLimiter.create(5);
 
 
 - [ ] JavaSE
-  - [ ] 集合
+  - [ ] collection
+    -  [ ] [fail-fast&fail-safe]()
 - [x] [markdown语法](note/tools/Markdown.md)
 
 - [x] [注解](note/java/annotation.md#注解)
