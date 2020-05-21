@@ -112,6 +112,8 @@ RateLimiter rateLimiter = RateLimiter.create(5);
 - [ ] Arthas
 
 - [ ] tools
+    - [ ] [hutools](https://hutool.cn/docs/#/)
+        - [ ] [树结构工具-TreeUtil](https://hutool.cn/docs/#/core/%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/%E6%A0%91%E7%BB%93%E6%9E%84/%E6%A0%91%E7%BB%93%E6%9E%84%E5%B7%A5%E5%85%B7-TreeUtil)
     - [ ] [mapstruct](demos/src/main/java/com/linhuanjie/mapstruct/MapStructTest.java)
     - [x] [lombok](note/tools/lombok.md)
     - [ ] [布隆过滤器](note/tools/布隆过滤器.md)
@@ -126,6 +128,8 @@ RateLimiter rateLimiter = RateLimiter.create(5);
         - [ ] [Github搜索技巧](note/tools/git/Github搜索技巧.md)
         - [ ] [Git命令](note/tools/git/Git命令.md)
         - [ ] [Git常用](note/tools/git/Git常用.md)
+
+    - [ ] [JAVA线上故障排查全套路](https://fredal.xin/java-error-check)
 
 ### 心流
 Question：为什么集中精力做一件事情的时候容易“忘我”？（比如编程，玩游戏）  
