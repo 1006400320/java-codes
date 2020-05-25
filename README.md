@@ -66,7 +66,7 @@ RateLimiter rateLimiter = RateLimiter.create(5);
 
 - [x] [Guava](demos/src/main/java/com/linhuanjie/guava/README.md)
   - [x] Cache
-  - [ ] 集合 Maps.newHashMapWithExepectSize
+  - [x] 集合 Maps.newHashMapWithExepectSize
 
 - [ ] 缓存
     - [ ] ConcurrentHashMap
@@ -81,16 +81,16 @@ RateLimiter rateLimiter = RateLimiter.create(5);
   - [x] [工厂模式总结](note/java/设计模式/工厂模式总结.md)
   - [x] [原型模式](note/java/设计模式/原型模式.md)
   - [x] [建造者模式](note/java/设计模式/建造者模式.md)
-  - [ ] [适配器模式](note/java/设计模式/适配器模式.md)
-  - [ ] [桥接模式](note/java/设计模式/桥接模式.md)
-  - [ ] [装饰模式](note/设计模式/装饰模式.md)
+  - [x] [适配器模式](note/java/设计模式/适配器模式.md)
+  - [x] [桥接模式](note/java/设计模式/桥接模式.md)
+  - [x] [装饰模式](note/设计模式/装饰模式.md)
   - [ ] [组合模式]()
-  - [ ] [观察者模式](note/设计模式/观察者模式.md)
+  - [x] [观察者模式](note/设计模式/观察者模式.md)
   - [ ] [外观模式]()
   - [ ] [迭代器模式]()
   - [ ] [解释器模式]()
   - [ ] [责任链模式]()
-  - [ ] [代理模式](note/设计模式/代理模式.md)
+  - [x] [代理模式](note/设计模式/代理模式.md)
   - [ ] [调停者模式]()
   - [ ] [享元模式]()
   - [ ] [模板方法模式]()
@@ -133,7 +133,9 @@ RateLimiter rateLimiter = RateLimiter.create(5);
         - [ ] [Git常用](note/tools/git/Git常用.md)
 
     - [ ] [JAVA线上故障排查全套路](https://fredal.xin/java-error-check)
-
+    - [ ] dubbo(C:\IDEA\IdeaProjects\springboot-integration-examples)
+    
+    
 ### 心流
 Question：为什么集中精力做一件事情的时候容易“忘我”？（比如编程，玩游戏）  
 Answer：“忘我” 其实是一种 **心流**的心理状态

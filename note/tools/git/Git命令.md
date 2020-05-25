@@ -72,3 +72,29 @@
 ## 拉取、上传免密码
 
 1. git config --global credential.helper store
+
+# 补充
+git init xxx.txt
+git add xxx.txt
+(git add -u:添加所有文件到暂存区)
+
+git commit -m'init commit'
+git commit -am'init commit'(-am:添加并提交到)
+
+git status
+git log [-n5] [--oneline] [--all] [--graph]
+
+git mv xxx.txt xxx.md
+git rm xxx.md
+
+
+git reset --hard: 清空暂存区（谨慎操作）
+
+git branch -v
+git branch -av (-av: 所有分支版本)
+
+git checkout -b temp_branch
+
+git help --web log
+
+gitk ： 图形界面
