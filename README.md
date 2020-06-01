@@ -100,6 +100,7 @@ RateLimiter rateLimiter = RateLimiter.create(5);
   - [ ] [访问者模式]()
   - [ ] [备忘录模式]()
 
+- [ ] [thread](demos/src/main/java/com/linhuanjie/thread/README.md)
 
 - [ ] 并发
     - [ ] CountDownLatch

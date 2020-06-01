@@ -1,9 +1,17 @@
 # plugins:
  - [jclasslib](https://plugins.jetbrains.com/plugin/9248-jclasslib-bytecode-viewer)
- - [SequenceDiagram]()
- - [Maven Helper]()
- - [Git Commit Template]()
- - [easy code]()
+ - SequenceDiagram
+ - Maven Helper
+ - Git Commit Template
+ - easy code
+ - SequenceDiagram 时序图
+ - Rainbow Brackets 彩虹颜色括号
+ - MyBatis Log Plugin、MyBatisCodeHelperPro、Free Mybatis plugin
+ - translation plugin
+ - RestfulToolkit 跳转Action
+ - HighlightBracketPair 高亮提示
+
+ 
 
 # [idea破解](https://zhile.io/2018/08/25/jetbrains-license-server-crack.html)
 
