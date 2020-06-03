@@ -7,6 +7,13 @@
     - [x] [运行时数据区](note/JVM/运行时数据区.md)
     - [ ] [JVM常用参数](note/JVM/JVM常用参数.md)
 
+    - [ ] jstack(查看线程)、jmap(查看内存)和jstat(性能分析)
+    - [ ] [JIT(just in time compilation)即时编译]
+        - [什么是JIT](https://www.cnblogs.com/dzhou/p/9549839.html)
+        - [深入浅出 JIT 编译器 ](https://www.ibm.com/developerworks/cn/java/j-lo-just-in-time/index.html)
+    - [ ][Java问题定位之Java线程堆栈分析](https://blog.csdn.net/weiweicao0429/article/details/53185999)
+    - [ ][JAVA线上故障排查全套路](https://fredal.xin/java-error-check) 
+
 - [ ] 网络
     - [ ] 三次挥手四次握手
     - [ ] http 和 rpc 的区别
