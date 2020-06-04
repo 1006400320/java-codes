@@ -1,8 +1,5 @@
 package com.linhuanjie.admin;
 
-import cn.hutool.core.util.RandomUtil;
-import com.linhuanjie.common.utils.MD5Utils;
-
 /**
  * @author: linhuanjie
  * @description:

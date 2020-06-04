@@ -12,7 +12,7 @@
 - 四、查看系统内核版本
     - uname -a
     - uname -r
-    - more /etc/*release
+    - more /etc/*release (centos x.x)
     - more /etc/issue
     - more /proc/version
 

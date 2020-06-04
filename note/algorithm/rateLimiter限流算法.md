@@ -117,4 +117,7 @@ Semaphore的主要方法摘要：
 　　boolean hasQueuedThreads():查询是否有线程正在等待获取。
 
 
+以上代码表示一秒钟只允许处理五个并发请求，以上方式只能用在单应用的请求限流，不能进行全局限流；这个时候就需要分布式限流，可以基于 `redis+lua` 来实现；
+## redis+lua实现限流 (todo)
+
 参考：[java之限流算法(计数器算法、令牌算法、漏桶算法）](https://blog.csdn.net/qq_37220419/article/details/104499852)
