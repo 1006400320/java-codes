@@ -27,7 +27,8 @@
 
 - [ ] JavaSE
   - [ ] collection
-    -  [ ] [fail-fast&fail-safe]()
+    - [ ] [fail-fast&fail-safe]()
+    - [ ] [HASHMAP的死循环](https://coolshell.cn/articles/9606.html/comment-page-1#comments) 
 - [x] [markdown语法](note/tools/Markdown.md)
 
 - [x] [注解](note/java/annotation.md#注解)
