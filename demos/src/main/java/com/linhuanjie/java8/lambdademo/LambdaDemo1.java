@@ -36,8 +36,7 @@ public class LambdaDemo1 {
         GreetingService greetService2 = (message) ->
                 System.out.println("Hello " + message);
 
-        greetService1.sayMessage("" +
-                "");
+        greetService1.sayMessage("Baidu");
         greetService2.sayMessage("Google");
     }
 

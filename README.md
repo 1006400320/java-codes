@@ -25,6 +25,7 @@
 
 - [ ] [linux](note/linux.md)
 
+
 - [ ] JavaSE
   - [ ] collection
     - [ ] [fail-fast&fail-safe]()
@@ -42,7 +43,9 @@
 - [ ] spring
     - [ ] [Bean生命周期流程图](note/spring/Bean生命周期流程图.md)
     - [x] [RestTemplate](demos/src/main/java/com/linhuanjie/spring/RestTemplateDemo.java#L7-L26)
-    
+    - [ ] spring security
+        - [芋道 Spring Boot 安全框架 Spring Security 入门](http://www.iocoder.cn/Spring-Boot/Spring-Security)
+        - [Spring Security PasswordEncoder 密码校验和密码加密流程](https://www.jianshu.com/p/922963106729)
     - [ ] springcloud
 
 - [x] mq
