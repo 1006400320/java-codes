@@ -1,5 +1,7 @@
 package com.linhuanjie.admin;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * @author: linhuanjie
  * @description:
@@ -7,15 +9,19 @@ package com.linhuanjie.admin;
  * @email: lhuanjie@qq.com
  */
 public class TestDemo {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-    public static void main(String[] args) {
-//        for (int i = 0; i < 20; i++) {
-//            System.out.println(RandomUtil.randomInt(6));
-//        }
-//        System.out.println("====================");
-//        for (int i = 0; i < 50; i++) {
-//            System.out.print(RandomUtil.randomInt(1,6)+"||");
-//        }
-//
+        Object o = new Object();
+        System.out.println(o.getClass().getClassLoader());
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+        TestDemo d = new TestDemo();
+        System.out.println(d.getClass().getClassLoader().getParent().getParent());
+        System.out.println(d.getClass().getClassLoader().getParent());
+        System.out.println(d.getClass().getClassLoader());
+
     }
 }
